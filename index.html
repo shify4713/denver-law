@@ -128,6 +128,17 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 .okbox{background:#052e16;border:1px solid #166534;color:#86efac;border-radius:10px;padding:.6rem .8rem;font-size:.8rem;margin:.4rem .85rem .85rem}
 .redbox{background:#3f0d0d;border:1px solid #7f1d1d;color:#fca5a5;border-radius:10px;padding:.6rem .8rem;font-size:.8rem;margin:.4rem .85rem .85rem}
 
+
+.home-layout{display:grid;grid-template-columns:minmax(200px,240px) 1fr;gap:1rem;align-items:start;max-width:900px;margin:0 auto}
+@media(max-width:720px){.home-layout{grid-template-columns:1fr}}
+.home-side{position:sticky;top:160px}
+.home-side .ios-group{margin-bottom:.6rem}
+.home-side .ios-label{padding-top:0}
+.home-main .ios-label:first-child{padding-top:0}
+.chk.compact{padding:.5rem .7rem}
+.chk.compact b{font-size:.8rem}
+.chk.compact span{font-size:.68rem}
+
 </style>
 </head>
 <body>
@@ -161,123 +172,58 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 </div>
 </div>
 
+
 <div class="panel" id="panel-quick">
-  <p class="hint">Клик → полный кодекс + подсветка · Ctrl+клик → только копирование</p>
+  <p class="hint">Только статьи <b>с наказаниями</b> · клик → кодекс · Ctrl+клик → копировать</p>
 
-
-  <div class="section-title" style="color:#a78bfa">🎖️ ВУ SANG — важное</div>
+  <div class="section-title" style="color:#f472b6">⚖️ ДУ — жёсткое</div>
   <div class="qgrid">
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-1-11" data-copy="ВУ 3.1.11 — Рабочее время 11:00–00:00 · быть на Форте" data-search="ВУ 3.1.11 Рабочее время 11:00–00:00 · быть на Форте" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.1.11</span></div>
-  <div class="qc-name">Рабочее время 11:00–00:00 · быть на Форте</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-1-12" data-copy="ВУ 3.1.12 — Форма только своего подразделения" data-search="ВУ 3.1.12 Форма только своего подразделения" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.1.12</span></div>
-  <div class="qc-name">Форма только своего подразделения</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-2-1" data-copy="ВУ 3.2.1 — Задержание на ФЗ → передача FIB/LSPD/LSCSD" data-search="ВУ 3.2.1 Задержание на ФЗ → передача FIB/LSPD/LSCSD" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.2.1</span></div>
-  <div class="qc-name">Задержание на ФЗ → передача FIB/LSPD/LSCSD</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-2-4" data-copy="ВУ 3.2.4 — Маски: когда можно / нельзя" data-search="ВУ 3.2.4 Маски: когда можно / нельзя" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.2.4</span></div>
-  <div class="qc-name">Маски: когда можно / нельзя</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-3" data-copy="ВУ 3.3 — Когда можно применять оружие" data-search="ВУ 3.3 Когда можно применять оружие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.3</span></div>
-  <div class="qc-name">Когда можно применять оружие</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-5-1" data-copy="ВУ 5.1 — Увольнительное с ранга Сержант [4+]" data-search="ВУ 5.1 Увольнительное с ранга Сержант [4+]" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 5.1</span></div>
-  <div class="qc-name">Увольнительное с ранга Сержант [4+]</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-5-3" data-copy="ВУ 5.3 — Построение — явиться всем (кроме 1 на КПП)" data-search="ВУ 5.3 Построение — явиться всем (кроме 1 на КПП)" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 5.3</span></div>
-  <div class="qc-name">Построение — явиться всем (кроме 1 на КПП)</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-6-1" data-copy="ВУ 6.1 — Нагрудная камера обязательна" data-search="ВУ 6.1 Нагрудная камера обязательна" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 6.1</span></div>
-  <div class="qc-name">Нагрудная камера обязательна</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-6-6" data-copy="ВУ 6.6 — Запрет продажи снаряжения/оружия" data-search="ВУ 6.6 Запрет продажи снаряжения/оружия" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 6.6</span></div>
-  <div class="qc-name">Запрет продажи снаряжения/оружия</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-1-7" data-copy="ВУ 1.7 — Незнание устава не освобождает" data-search="ВУ 1.7 Незнание устава не освобождает" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 1.7</span></div>
-  <div class="qc-name">Незнание устава не освобождает</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-1-4" data-copy="ВУ 3.1.4 — Не мешать LSPD/LSCSD/FIB без нарушений" data-search="ВУ 3.1.4 Не мешать LSPD/LSCSD/FIB без нарушений" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.1.4</span></div>
-  <div class="qc-name">Не мешать LSPD/LSCSD/FIB без нарушений</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-1-8" data-copy="ВУ 3.1.8 — Военная тайна" data-search="ВУ 3.1.8 Военная тайна" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.1.8</span></div>
-  <div class="qc-name">Военная тайна</div>
-</div>
-<div class="qcard sev-medium" data-panel="vu" data-art="art-vu-3-1-7" data-copy="ВУ 3.1.7 — Фото/видео фиксация происшествий" data-search="ВУ 3.1.7 Фото/видео фиксация происшествий" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ВУ 3.1.7</span></div>
-  <div class="qc-name">Фото/видео фиксация происшествий</div>
-</div>
-  </div>
-
-  <div class="section-title" style="color:#f472b6">⚖️ ДУ SANG — важное</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="du" data-art="art-du-3-3" data-copy="ДУ 3.3 — Виды взысканий" data-search="ДУ 3.3 Виды взысканий выговор строгий понижение увольнение ЧС" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 3.3</span></div>
-  <div class="qc-name">Виды взысканий: выговор / строгий / понижение / ЧС</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-7" data-copy="ДУ 2.7 — Конфликт → Увольнение+ЧС" data-search="ДУ 2.7 Конфликт" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 2.7</span></div>
-  <div class="qc-name">Конфликт между военными / гос.</div>
-  <div class="qc-pen">Выговор / Строгий / Увольнение+ЧС</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-8" data-copy="ДУ 2.8 — Ложь → Увольнение+ЧС" data-search="ДУ 2.8 Ложь" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 2.8</span></div>
-  <div class="qc-name">Ложь / введение в заблуждение</div>
-  <div class="qc-pen">Выговор / Строгий / Увольнение+ЧС</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-9" data-copy="ДУ 2.9 — Внешний вид → Увольнение" data-search="ДУ 2.9 Внешний вид" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-9" data-copy="ДУ 2.9 — Внешний вид → Увольнение" data-search="ДУ 2.9" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 2.9</span></div>
   <div class="qc-name">Внешний вид (ирокез, тату лицо…)</div>
   <div class="qc-pen">Увольнение</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-7" data-copy="ДУ 4.7 — Связь с криминалом → Увольнение+ЧС" data-search="ДУ 4.7 криминал" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-7" data-copy="ДУ 4.7 — Криминал → Увольнение+ЧС" data-search="ДУ 4.7" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.7</span></div>
   <div class="qc-name">Связь с криминалом</div>
   <div class="qc-pen">Увольнение + ЧС</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-9" data-copy="ДУ 4.9 — Продажа оружия → Увольнение+ЧС" data-search="ДУ 4.9 оружие продажа" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-9" data-copy="ДУ 4.9 — Продажа оружия → Увольнение+ЧС" data-search="ДУ 4.9" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.9</span></div>
   <div class="qc-name">Продажа / отдача табельного оружия</div>
   <div class="qc-pen">Увольнение + ЧС</div>
 </div>
-<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-11" data-copy="ДУ 4.11 — Игнор приказов → Строгий" data-search="ДУ 4.11 приказы" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.11</span></div>
-  <div class="qc-name">Игнор приказов старших</div>
-  <div class="qc-pen">Строгий выговор</div>
-</div>
-<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-13" data-copy="ДУ 4.13 — Огонь по безоружному → Строгий" data-search="ДУ 4.13 безоружному" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.13</span></div>
-  <div class="qc-name">Огонь по безоружному (есть исключения)</div>
-  <div class="qc-pen">Строгий выговор</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-14" data-copy="ДУ 4.14 — Покинуть ФЗ без разрешения" data-search="ДУ 4.14 покинуть" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.14</span></div>
-  <div class="qc-name">Покинуть ФЗ без разрешения</div>
-  <div class="qc-pen">Строгий / Увольнение</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-18" data-copy="ДУ 4.18 — Военная тайна → Увольнение+ЧС" data-search="ДУ 4.18 тайна" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-18" data-copy="ДУ 4.18 — Тайна → Увольнение+ЧС" data-search="ДУ 4.18" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.18</span></div>
   <div class="qc-name">Разглашение военной тайны</div>
   <div class="qc-pen">Увольнение + ЧС</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-5" data-copy="ДУ 4.5 — Наркотики → Строгий/Увольнение" data-search="ДУ 4.5 наркотики" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.5</span></div>
-  <div class="qc-name">Наркотики</div>
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-7" data-copy="ДУ 2.7 — Конфликт → Увольнение+ЧС" data-search="ДУ 2.7" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 2.7</span></div>
+  <div class="qc-name">Конфликт между военными / гос.</div>
+  <div class="qc-pen">Строгий / Увольнение+ЧС</div>
+</div>
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-8" data-copy="ДУ 2.8 — Ложь → Увольнение+ЧС" data-search="ДУ 2.8" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 2.8</span></div>
+  <div class="qc-name">Ложь / введение в заблуждение</div>
+  <div class="qc-pen">Строгий / Увольнение+ЧС</div>
+</div>
+<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-11" data-copy="ДУ 4.11 — Игнор приказов → Строгий" data-search="ДУ 4.11" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 4.11</span></div>
+  <div class="qc-name">Игнор приказов старших</div>
+  <div class="qc-pen">Строгий выговор</div>
+</div>
+<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-13" data-copy="ДУ 4.13 — Огонь по безоружному → Строгий" data-search="ДУ 4.13" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 4.13</span></div>
+  <div class="qc-name">Огонь по безоружному</div>
+  <div class="qc-pen">Строгий (есть исключения)</div>
+</div>
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-14" data-copy="ДУ 4.14 — Покинуть ФЗ → Строгий/Увольнение" data-search="ДУ 4.14" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 4.14</span></div>
+  <div class="qc-name">Покинуть ФЗ без разрешения</div>
   <div class="qc-pen">Строгий / Увольнение</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-12" data-copy="ДУ 4.12 — Превышение полномочий" data-search="ДУ 4.12 превышение" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-12" data-copy="ДУ 4.12 — Превышение полномочий" data-search="ДУ 4.12" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.12</span></div>
   <div class="qc-name">Превышение полномочий</div>
   <div class="qc-pen">Строгий / Увольнение</div>
@@ -285,11 +231,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   </div>
 
   <div class="section-title" style="color:#38bdf8">⚡ УК — частое</div>
-  <div class="qgrid"><div class="qcard sev-medium" data-panel="uk" data-art="art-uk-6-1" data-copy="Ст. УК 6.1 — Умышленное и/или неоднократное нанесение телесных по… — До 20 месяцев лишения свободы. ★★" data-search="УК 6.1 Умышленное и/или неоднократное нанесение телесных повреждений легкой или средней степени тяжести До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 6.1</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Умышленное и/или неоднократное нанесение телесных по…</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
+  <div class="qgrid">
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-6-2" data-copy="Ст. УК 6.2 — Убийство, то есть умышленное причинение смерти друго… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 6.2 Убийство, то есть умышленное причинение смерти другому человеку и/или нанесения телесных повреждений тяжелой степени До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 6.2</span><span class="qc-stars">★★★★</span></div>
   <div class="qc-name">Убийство, то есть умышленное причинение смерти друго…</div>
@@ -300,50 +242,15 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <div class="qc-name">Тяжкое убийство, то есть убийство двух или более лиц…</div>
   <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
 </div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-6-6" data-copy="Ст. УК 6.6 — Угроза расправой (прямая или косвенная) должностному… — До 30 месяцев лишения свободы. ★★★" data-search="УК 6.6 Угроза расправой (прямая или косвенная) должностному (сотруднику гос. структур) лицу а равно их близким До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 6.6</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Угроза расправой (прямая или косвенная) должностному…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-6-7" data-copy="Ст. УК 6.7 — Угрозы с целью запугать человека — До 20 месяцев лишения свободы. ★★" data-search="УК 6.7 Угрозы с целью запугать человека До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 6.7</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Угрозы с целью запугать человека</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-7-1" data-copy="Ст. УК 7.1 — Похищение человека — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 7.1 Похищение человека До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 7.1</span><span class="qc-stars">★★★★★</span></div>
   <div class="qc-name">Похищение человека</div>
   <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
 </div>
-<div class="qcard sev-light" data-panel="uk" data-art="art-uk-10-1" data-copy="Ст. УК 10.1 — Кража — До 10 месяцев лишения свободы. ★" data-search="УК 10.1 Кража До 10 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.1</span><span class="qc-stars">★</span></div>
-  <div class="qc-name">Кража</div>
-  <div class="qc-pen">До 10 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-10-2" data-copy="Ст. УК 10.2 — Кража — До 20 месяцев лишения свободы. ★★" data-search="УК 10.2 Кража До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.2</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Кража</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-10-3" data-copy="Ст. УК 10.3 — Кража — До 30 месяцев лишения свободы. ★★★" data-search="УК 10.3 Кража До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.3</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Кража</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-10-5" data-copy="Ст. УК 10.5 — Грабеж — До 30 месяцев лишения свободы. ★★★" data-search="УК 10.5 Грабеж До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.5</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Грабеж</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-10-6" data-copy="Ст. УК 10.6 — Разбойное ограбление — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 10.6 Разбойное ограбление До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 10.6</span><span class="qc-stars">★★★★</span></div>
   <div class="qc-name">Разбойное ограбление</div>
   <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-11-1" data-copy="Ст. УК 11.1 — Осуществление предпринимательской деятельности без р… — До 30 месяцев лишения свободы. ★★★" data-search="УК 11.1 Осуществление предпринимательской деятельности без регистрации До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 11.1</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Осуществление предпринимательской деятельности без р…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
 </div>
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-12-1" data-copy="Ст. УК 12.1 — Терроризм — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 12.1 Терроризм До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 12.1</span><span class="qc-stars">★★★★★</span></div>
@@ -385,382 +292,42 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <div class="qc-name">Умышленное и/или неоднократное нанесением телесных п…</div>
   <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
 </div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-17-3" data-copy="Ст. УК 17.3 — Оскорбление представителя власти при исполнении им с… — До 30 месяцев лишения свободы. ★★★" data-search="УК 17.3 Оскорбление представителя власти при исполнении им своих должностных обязанностей или в связи с их исполнением До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 17.3</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Оскорбление представителя власти при исполнении им с…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-8-1" data-copy="Ст. УК 8.1 — Насильственные действия сексуального характера, то е… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 8.1 Насильственные действия сексуального характера, то есть половое сношение с применением насилия или с угрозой его применения к потерпевшей (потерпевшему) или к другим лицам либо с использованием беспомощного состояния потерпевшей (потерпевшему) До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 8.1</span><span class="qc-stars">★★★★</span></div>
   <div class="qc-name">Насильственные действия сексуального характера, то е…</div>
   <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-9-1" data-copy="Ст. УК 9.1 — Незаконное собирание или распространение сведений о … — До 20 месяцев лишения свободы. ★★" data-search="УК 9.1 Незаконное собирание или распространение сведений о частной жизни лица, составляющих его личную или семейную тайну, без его согласия либо распространение этих сведений в публичном выступлении, публичном произведении или средствах массовой информации, в том числе с использованием своего служебного положения До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 9.1</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Незаконное собирание или распространение сведений о …</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
 </div>
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-14-1" data-copy="Ст. УК 14.1 — Посягательство на жизнь государственного или обществ… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 14.1 Посягательство на жизнь государственного или общественного деятеля, совершенное в целях прекращения его государственной или иной политической деятельности либо из мести за такую деятельность До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 14.1</span><span class="qc-stars">★★★★★</span></div>
   <div class="qc-name">Посягательство на жизнь государственного или обществ…</div>
   <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
 </div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-18-1" data-copy="Ст. УК 18.1 — Неисполнение подчиненным приказа начальника, отданно… — До 30 месяцев лишения свободы. ★★★" data-search="УК 18.1 Неисполнение подчиненным приказа начальника, отданного в установленном порядке, причинившее существенный вред интересам службы До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 18.1</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Неисполнение подчиненным приказа начальника, отданно…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-8-3" data-copy="Ст. УК 8.3 — Насильственное принуждение лица к половому сношению … — До 20 месяцев лишения свободы. ★★" data-search="УК 8.3 Насильственное принуждение лица к половому сношению или совершению иных действий сексуального характера путем шантажа, угрозы уничтожением, повреждением или изъятием имущества либо с использованием материальной или иной зависимости потерпевшего (потерпевшей) До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 8.3</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Насильственное принуждение лица к половому сношению …</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-10-6-1" data-copy="Ст. УК 10.6.1 — Разбойное ограбление — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 10.6.1 Разбойное ограбление До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.6.1</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Разбойное ограбление</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-10-12" data-copy="Ст. УК 10.12 — Кража с проникновением в частное жилище или помещение — До 30 месяцев лишения свободы. ★★★" data-search="УК 10.12 Кража с проникновением в частное жилище или помещение До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.12</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Кража с проникновением в частное жилище или помещение</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-10-12-1" data-copy="Ст. УК 10.12.1 — Кража, совершенная группой лиц с проникновением в ча… — До 40 месяцев лишения свободыс созданием записи о судимости. ★★★★" data-search="УК 10.12.1 Кража, совершенная группой лиц с проникновением в частное жилище или помещение До 40 месяцев лишения свободыс созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 10.12.1</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Кража, совершенная группой лиц с проникновением в ча…</div>
-  <div class="qc-pen">До 40 месяцев лишения свободыс созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-11-2" data-copy="Ст. УК 11.2 — Принуждение к совершению сделки или к отказу от ее с… — До 30 месяцев лишения свободы. ★★★" data-search="УК 11.2 Принуждение к совершению сделки или к отказу от ее совершения под угрозой применения насилия, уничтожения или повреждения чужого имущества До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 11.2</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Принуждение к совершению сделки или к отказу от ее с…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-11-2-1" data-copy="Ст. УК 11.2.1 — Принуждение к совершению сделки или к отказу от ее с… — До 30 месяцев лишения свободы. ★★★" data-search="УК 11.2.1 Принуждение к совершению сделки или к отказу от ее совершения под угрозой применения насилия, уничтожения или повреждения чужого имущества До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 11.2.1</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Принуждение к совершению сделки или к отказу от ее с…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-12-6" data-copy="Ст. УК 12.6 — Хулиганство — До 20 месяцев лишения свободы. ★★" data-search="УК 12.6 Хулиганство До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 12.6</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Хулиганство</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-12-8" data-copy="Ст. УК 12.8 — Незаконное обращение с оружием — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 12.8 Незаконное обращение с оружием До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 12.8</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Незаконное обращение с оружием</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-12-9" data-copy="Ст. УК 12.9 — Хищение оружия — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 12.9 Хищение оружия До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 12.9</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Хищение оружия</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-12-9-1" data-copy="Ст. УК 12.9.1 — Хищение оружия сотрудниками правоохранительных органов — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 12.9.1 Хищение оружия сотрудниками правоохранительных органов До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 12.9.1</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Хищение оружия сотрудниками правоохранительных органов</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-13-2" data-copy="Ст. УК 13.2 — Незаконное хранение, приобретение и перевозка наркот… — До 30 месяцев лишения свободы. ★★★" data-search="УК 13.2 Незаконное хранение, приобретение и перевозка наркотических веществ в значительном размере До 30 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.2</span><span class="qc-stars">★★★</span></div>
-  <div class="qc-name">Незаконное хранение, приобретение и перевозка наркот…</div>
-  <div class="qc-pen">До 30 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-13-3" data-copy="Ст. УК 13.3 — Незаконное хранение, приобретение, перевозка наркоти… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 13.3 Незаконное хранение, приобретение, перевозка наркотических средств в особо крупном размере До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.3</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Незаконное хранение, приобретение, перевозка наркоти…</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-13-4" data-copy="Ст. УК 13.4 — Пропаганда наркотических средств, психотропных вещес… — До 20 месяцев лишения свободы. ★★" data-search="УК 13.4 Пропаганда наркотических средств, психотропных веществ или растений, содержащих наркотические вещества До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.4</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Пропаганда наркотических средств, психотропных вещес…</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-13-5" data-copy="Ст. УК 13.5 — Приобретение, хранение, перевозка, изготовление, сбы… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 13.5 Приобретение, хранение, перевозка, изготовление, сбыт, сбор наркотических веществ сотрудниками гос. структур До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.5</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Приобретение, хранение, перевозка, изготовление, сбы…</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-13-6" data-copy="Ст. УК 13.6 — Приобретение, хранение, перевозка, изготовление, син… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 13.6 Приобретение, хранение, перевозка, изготовление, синтетических наркотических веществ До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.6</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Приобретение, хранение, перевозка, изготовление, син…</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-13-7" data-copy="Ст. УК 13.7 — Незаконный сбыт и распространение наркотических сред… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 13.7 Незаконный сбыт и распространение наркотических средств До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 13.7</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Незаконный сбыт и распространение наркотических сред…</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-16-2" data-copy="Ст. УК 16.2 — Угроза или посягательство на жизнь лиц, участвующих … — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 16.2 Угроза или посягательство на жизнь лиц, участвующих в отправлении правосудия До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 16.2</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Угроза или посягательство на жизнь лиц, участвующих …</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
-</div>
-<div class="qcard sev-medium" data-panel="uk" data-art="art-uk-18-5" data-copy="Ст. УК 18.5 — Уничтожение или повреждение оружия, боеприпасов или … — До 20 месяцев лишения свободы. ★★" data-search="УК 18.5 Уничтожение или повреждение оружия, боеприпасов или предметов военной техники, равно как халатное отношение к имуществу Национальной Гвардии До 20 месяцев лишения свободы." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 18.5</span><span class="qc-stars">★★</span></div>
-  <div class="qc-name">Уничтожение или повреждение оружия, боеприпасов или …</div>
-  <div class="qc-pen">До 20 месяцев лишения свободы.</div>
-</div></div>
-  <div class="section-title" style="color:#22c55e">🛡 ПГО — ключевое</div>
-  <div class="qgrid"><div class="qcard sev-none" data-panel="pgo" data-art="art-pgo-1-1-1" data-copy="Ст. ПГО 1.1.1 — Сотрудником государственных структур считается игрок… — —" data-search="ПГО 1.1.1 Сотрудником государственных структур считается игрок использующий что-либо с фракционного склада, гардероба и/или выполняющий свои обязанности вне зависимости от использования функционала (министры, адвокаты и т.п.). —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.1.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудником государственных структур считается игрок…</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-1-2" data-copy="Ст. ПГО 1.1.2 — Сотрудникам гос. структур запрещено любые криминальн… — WARN / Ban / HardBan 3-15 дней." data-search="ПГО 1.1.2 Сотрудникам гос. структур запрещено любые криминальные действия без написанной и одобренной РП ситуации на форуме. WARN / Ban / HardBan 3-15 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.1.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудникам гос. структур запрещено любые криминальн…</div>
-  <div class="qc-pen">WARN / Ban / HardBan 3-15 дней.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-1-3" data-copy="Ст. ПГО 1.1.3 — Руководящему составу запрещено иметь какую-либо крим… — WARN." data-search="ПГО 1.1.3 Руководящему составу запрещено иметь какую-либо криминальную деятельность, включая взятки. WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.1.3</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Руководящему составу запрещено иметь какую-либо крим…</div>
-  <div class="qc-pen">WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-1-4" data-copy="Ст. ПГО 1.1.4 — Сумма взятки не должна превышать 100.000$ (взятка до… — WARN." data-search="ПГО 1.1.4 Сумма взятки не должна превышать 100.000$ (взятка должна быть исключительно деньгами), для получения более крупных сумм необходимо написание криминальной РП ситуации (пояснение р. 1, п. 1.1, а также исключение р. 1, п. 1.2). WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.1.4</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сумма взятки не должна превышать 100.000$ (взятка до…</div>
-  <div class="qc-pen">WARN.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-2-1" data-copy="Ст. ПГО 1.2.1 — Запрещено продавать / сливать гос. имущество / казну. — Demorgan 45-90 минут / Ban 3-30 дней / Hardban 7-30 / PermBan, а так же аннулирование сделки / обнуление персонажа." data-search="ПГО 1.2.1 Запрещено продавать / сливать гос. имущество / казну. Demorgan 45-90 минут / Ban 3-30 дней / Hardban 7-30 / PermBan, а так же аннулирование сделки / обнуление персонажа." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.2.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено продавать / сливать гос. имущество / казну.</div>
-  <div class="qc-pen">Demorgan 45-90 минут / Ban 3-30 дней / Hardban 7-30 / PermBan, а так же аннулирование сделки / обнуление персонажа.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-2-2" data-copy="Ст. ПГО 1.2.2 — Запрещено продавать или оставлять себе предметы, кот… — Demorgan 35-90 минут / Ban 3 - 15 дней / HardBan до изъятия." data-search="ПГО 1.2.2 Запрещено продавать или оставлять себе предметы, которые были получены после криминальных событий. Demorgan 35-90 минут / Ban 3 - 15 дней / HardBan до изъятия." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.2.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено продавать или оставлять себе предметы, кот…</div>
-  <div class="qc-pen">Demorgan 35-90 минут / Ban 3 - 15 дней / HardBan до изъятия.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-2-3" data-copy="Ст. ПГО 1.2.3 — Сотрудникам гос. структур разрешено хранить предметы… — Demorgan 35-90 минут / Ban 3-30 дней + Изъятие / HardBan до изъятия." data-search="ПГО 1.2.3 Сотрудникам гос. структур разрешено хранить предметы, принадлежащие любой гос. структуре, исключительно на складе своей фракции, в транспорте своей фракции и(или) в своём инвентаре. Demorgan 35-90 минут / Ban 3-30 дней + Изъятие / HardBan до изъятия." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.2.3</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудникам гос. структур разрешено хранить предметы…</div>
-  <div class="qc-pen">Demorgan 35-90 минут / Ban 3-30 дней + Изъятие / HardBan до изъятия.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-3" data-copy="Ст. ПГО 1.3 — Запрещено изъятие адвокатских / обычных лицензий без… — WARN / Ban 3-15 дней." data-search="ПГО 1.3 Запрещено изъятие адвокатских / обычных лицензий без весомой IC причины. WARN / Ban 3-15 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.3</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено изъятие адвокатских / обычных лицензий без…</div>
-  <div class="qc-pen">WARN / Ban 3-15 дней.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-4" data-copy="Ст. ПГО 1.4 — Запрещено намеренно затягивать процесс задержания. — Demorgan 35 минут / WARN." data-search="ПГО 1.4 Запрещено намеренно затягивать процесс задержания. Demorgan 35 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.4</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено намеренно затягивать процесс задержания.</div>
-  <div class="qc-pen">Demorgan 35 минут / WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-5" data-copy="Ст. ПГО 1.5 — Запрещено принимать во фракцию игроков, которые имею… — Demorgan 90 минут / WARN." data-search="ПГО 1.5 Запрещено принимать во фракцию игроков, которые имеют активный ЧС государственных организаций. Demorgan 90 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.5</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено принимать во фракцию игроков, которые имею…</div>
-  <div class="qc-pen">Demorgan 90 минут / WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-6" data-copy="Ст. ПГО 1.6 — Изъятие нелегальных предметов производится исключите… — Demorgan 35 минут / WARN." data-search="ПГО 1.6 Изъятие нелегальных предметов производится исключительно через функционал сервера. Demorgan 35 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.6</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Изъятие нелегальных предметов производится исключите…</div>
-  <div class="qc-pen">Demorgan 35 минут / WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-7" data-copy="Ст. ПГО 1.7 — Запрещено использование дронов не по назначению. — WARN." data-search="ПГО 1.7 Запрещено использование дронов не по назначению. WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.7</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено использование дронов не по назначению.</div>
-  <div class="qc-pen">WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-8" data-copy="Ст. ПГО 1.8 — Все права, а так же статьи, которые нарушил игрок, д… — Demorgan 30 минут / WARN / Ban 3-7 дней." data-search="ПГО 1.8 Все права, а так же статьи, которые нарушил игрок, должны быть озвучены в голосовой чат. Demorgan 30 минут / WARN / Ban 3-7 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.8</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Все права, а так же статьи, которые нарушил игрок, д…</div>
-  <div class="qc-pen">Demorgan 30 минут / WARN / Ban 3-7 дней.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-9" data-copy="Ст. ПГО 1.9 — При просьбе вызова адвоката от задержанного необходи… — WARN." data-search="ПГО 1.9 При просьбе вызова адвоката от задержанного необходимо реализовать его право на защиту. WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.9</span><span class="qc-stars"></span></div>
-  <div class="qc-name">При просьбе вызова адвоката от задержанного необходи…</div>
-  <div class="qc-pen">WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-10-1" data-copy="Ст. ПГО 1.10.1 — Запрещено первым оскорблять, провоцировать, использо… — Demorgan 50-100 минут / WARN." data-search="ПГО 1.10.1 Запрещено первым оскорблять, провоцировать, использовать унизительные анимации, а также грубо выражаться в присутствии / на задержанного или посторонних граждан. Demorgan 50-100 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.10.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено первым оскорблять, провоцировать, использо…</div>
-  <div class="qc-pen">Demorgan 50-100 минут / WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-10-2" data-copy="Ст. ПГО 1.10.2 — В значимых для RP составляющей функциональных зелены… — Demorgan 20-80 минут / WARN / Ban 2-5 дней." data-search="ПГО 1.10.2 В значимых для RP составляющей функциональных зеленых зонах (LSPD, FIB, EMS, мэрия, ферма, магазины, банки и т.п.) запрещена модель поведения не соответствующая модели поведения государственного сотрудника. Demorgan 20-80 минут / WARN / Ban 2-5 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.10.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">В значимых для RP составляющей функциональных зелены…</div>
-  <div class="qc-pen">Demorgan 20-80 минут / WARN / Ban 2-5 дней.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-11" data-copy="Ст. ПГО 1.11 — Запрещена выдача / изъятие военных билетов без весом… — HardBan 15-30 дней / HardBan до изъятия / PermBan." data-search="ПГО 1.11 Запрещена выдача / изъятие военных билетов без весомой IC причины. HardBan 15-30 дней / HardBan до изъятия / PermBan." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.11</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещена выдача / изъятие военных билетов без весом…</div>
-  <div class="qc-pen">HardBan 15-30 дней / HardBan до изъятия / PermBan.</div>
-</div>
-<div class="qcard sev-light" data-panel="pgo" data-art="art-pgo-1-12" data-copy="Ст. ПГО 1.12 — Премирование государственных фракций и их участников… — Выговор лидеру." data-search="ПГО 1.12 Премирование государственных фракций и их участников происходит исключительно через функционал финансирования. Выговор лидеру." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.12</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Премирование государственных фракций и их участников…</div>
-  <div class="qc-pen">Выговор лидеру.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-13" data-copy="Ст. ПГО 1.13 — Сотрудникам государственной организации запрещено по… — WARN / Ban 3 дня / Выговор лидеру + понижение игрока до прежнего ранга." data-search="ПГО 1.13 Сотрудникам государственной организации запрещено повышать более чем на 1 ранг в сутки. WARN / Ban 3 дня / Выговор лидеру + понижение игрока до прежнего ранга." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.13</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудникам государственной организации запрещено по…</div>
-  <div class="qc-pen">WARN / Ban 3 дня / Выговор лидеру + понижение игрока до прежнего ранга.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-14" data-copy="Ст. ПГО 1.14 — Сотрудник государственной организации может быть аре… — Ban 3-15 дней / HardBan 5-10 дней." data-search="ПГО 1.14 Сотрудник государственной организации может быть арестован / посажен в КПЗ только при выявлении нарушения от прокурора, принявшего вызов на задержание. Ban 3-15 дней / HardBan 5-10 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.14</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудник государственной организации может быть аре…</div>
-  <div class="qc-pen">Ban 3-15 дней / HardBan 5-10 дней.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-15" data-copy="Ст. ПГО 1.15 — Запрещено повышать игрока без отчета о проделанной р… — Ban 3-15 дней / HardBan 5-10 дней / Выговор лидеру + понижение игрока до прежнего ранга." data-search="ПГО 1.15 Запрещено повышать игрока без отчета о проделанной работе. Ban 3-15 дней / HardBan 5-10 дней / Выговор лидеру + понижение игрока до прежнего ранга." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.15</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено повышать игрока без отчета о проделанной р…</div>
-  <div class="qc-pen">Ban 3-15 дней / HardBan 5-10 дней / Выговор лидеру + понижение игрока до прежнего ранга.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-17" data-copy="Ст. ПГО 1.17 — Запрещено изымать предметы у игрока (из транспортног… — Hardban 15-30 дней / PermBan + Обнуление аккаунта." data-search="ПГО 1.17 Запрещено изымать предметы у игрока (из транспортного средства, рюкзаков, инвентаря и т.п.) не имея причин. Hardban 15-30 дней / PermBan + Обнуление аккаунта." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.17</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено изымать предметы у игрока (из транспортног…</div>
-  <div class="qc-pen">Hardban 15-30 дней / PermBan + Обнуление аккаунта.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-18-1" data-copy="Ст. ПГО 1.18.1 — Игрокам государственных структур запрещено использов… — Demorgan 35 - 90 минут / WARN." data-search="ПГО 1.18.1 Игрокам государственных структур запрещено использование вещей не входящих во фракционный гардероб, а также нарушение общего внешнего вида государственного игрока. Demorgan 35 - 90 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.18.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Игрокам государственных структур запрещено использов…</div>
-  <div class="qc-pen">Demorgan 35 - 90 минут / WARN.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-18-2" data-copy="Ст. ПГО 1.18.2 — Частные адвокаты исполняющие свою адвокатскую деятел… — Demorgan 35 - 90 минут / WARN." data-search="ПГО 1.18.2 Частные адвокаты исполняющие свою адвокатскую деятельность обязаны соблюдать официально-деловой стиль, соответствующий пункту 1.18.1. Demorgan 35 - 90 минут / WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.18.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Частные адвокаты исполняющие свою адвокатскую деятел…</div>
-  <div class="qc-pen">Demorgan 35 - 90 минут / WARN.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-19" data-copy="Ст. ПГО 1.19 — Запрещено использование фракционного склада вне фрак… — Ban 10-30 дней / HardBan 15-30 дней." data-search="ПГО 1.19 Запрещено использование фракционного склада вне фракционных мероприятий / процессов. Ban 10-30 дней / HardBan 15-30 дней." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.19</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено использование фракционного склада вне фрак…</div>
-  <div class="qc-pen">Ban 10-30 дней / HardBan 15-30 дней.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="pgo" data-art="art-pgo-1-20" data-copy="Ст. ПГО 1.20 — Запрещено намеренное злоупотребление функционалом го… — WARN / Ban 7-15 дней / HardBan 10-30 дней / PermBan." data-search="ПГО 1.20 Запрещено намеренное злоупотребление функционалом государственных структур. WARN / Ban 7-15 дней / HardBan 10-30 дней / PermBan." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.20</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено намеренное злоупотребление функционалом го…</div>
-  <div class="qc-pen">WARN / Ban 7-15 дней / HardBan 10-30 дней / PermBan.</div>
-</div>
-<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-21" data-copy="Ст. ПГО 1.21 — Максимально допустимый срок посадки в КПЗ за 1 звезд… — WARN." data-search="ПГО 1.21 Максимально допустимый срок посадки в КПЗ за 1 звезду - до 10 минут. WARN." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.21</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Максимально допустимый срок посадки в КПЗ за 1 звезд…</div>
-  <div class="qc-pen">WARN.</div>
-</div>
-<div class="qcard sev-light" data-panel="pgo" data-art="art-pgo-1-22-1" data-copy="Ст. ПГО 1.22.1 — Номер опознавательного знака игроков из государствен… — Demorgan 25 минут." data-search="ПГО 1.22.1 Номер опознавательного знака игроков из государственных фракций приравнивается к его статическому ID (#1234). Demorgan 25 минут." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ПГО 1.22.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Номер опознавательного знака игроков из государствен…</div>
-  <div class="qc-pen">Demorgan 25 минут.</div>
-</div></div>
-  
-  <div class="qgrid"><div class="qcard sev-light" data-panel="ak" data-art="art-ak-5-9" data-copy="Ст. АК 5.9 — Мелкое хулиганство — штраф до 20.000$." data-search="АК 5.9 Мелкое хулиганство штраф до 20.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 5.9</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Мелкое хулиганство</div>
-  <div class="qc-pen">штраф до 20.000$.</div>
-</div>
-<div class="qcard sev-light" data-panel="ak" data-art="art-ak-5-12" data-copy="Ст. АК 5.12 — Нарушение установленных законодательством правил нош… — штраф до 20.000$." data-search="АК 5.12 Нарушение установленных законодательством правил ношения холодного оружия либо предметов двойного назначения штраф до 20.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 5.12</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушение установленных законодательством правил нош…</div>
-  <div class="qc-pen">штраф до 20.000$.</div>
-</div>
-<div class="qcard sev-light" data-panel="ak" data-art="art-ak-6-4" data-copy="Ст. АК 6.4 — Оскорбление — штраф до 10.000$." data-search="АК 6.4 Оскорбление штраф до 10.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 6.4</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Оскорбление</div>
-  <div class="qc-pen">штраф до 10.000$.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ak" data-art="art-ak-6-5" data-copy="Ст. АК 6.5 — Нарушение трудовых прав работника — штраф до 40.000$." data-search="АК 6.5 Нарушение трудовых прав работника штраф до 40.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 6.5</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушение трудовых прав работника</div>
-  <div class="qc-pen">штраф до 40.000$.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ak" data-art="art-ak-8-1" data-copy="Ст. АК 8.1 — Нарушений трудовых отношений — штраф до 50.000$." data-search="АК 8.1 Нарушений трудовых отношений штраф до 50.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 8.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушений трудовых отношений</div>
-  <div class="qc-pen">штраф до 50.000$.</div>
-</div>
-<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-8-2" data-copy="Ст. АК 8.2 — Нарушение трудовых отношений — штраф до 30.000$." data-search="АК 8.2 Нарушение трудовых отношений штраф до 30.000$." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 8.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушение трудовых отношений</div>
-  <div class="qc-pen">штраф до 30.000$.</div>
-</div>
-<div class="qcard sev-light" data-panel="ak" data-art="art-ak-10-4" data-copy="Ст. АК 10.4 — Нарушение правил безопасности во время охоты — штраф до 10.000$ и изъятие лицензии." data-search="АК 10.4 Нарушение правил безопасности во время охоты штраф до 10.000$ и изъятие лицензии." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">АК 10.4</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушение правил безопасности во время охоты</div>
-  <div class="qc-pen">штраф до 10.000$ и изъятие лицензии.</div>
-</div></div>
+  </div>
 
-  <div class="section-title" style="color:#e879f9">📋 ТК — полезное</div>
-  <div class="qgrid"><div class="qcard sev-none" data-panel="tk" data-art="art-tk-19" data-copy="Ст. ТК 19 — Прекращение действия трудового договора по инициатив… — —" data-search="ТК 19 Прекращение действия трудового договора по инициативе работника —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 19</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Прекращение действия трудового договора по инициатив…</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-20" data-copy="Ст. ТК 20 — Прекращение действия трудового договора по инициатив… — —" data-search="ТК 20 Прекращение действия трудового договора по инициативе работодателя —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 20</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Прекращение действия трудового договора по инициатив…</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-21" data-copy="Ст. ТК 21 — Прекращение действия трудового договора по инициатив… — —" data-search="ТК 21 Прекращение действия трудового договора по инициативе органов государственного надзора —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 21</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Прекращение действия трудового договора по инициатив…</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-21-1" data-copy="Ст. ТК 21.1 — Перечень нежелательных лиц государственных органах — —" data-search="ТК 21.1 Перечень нежелательных лиц государственных органах —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 21.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Перечень нежелательных лиц государственных органах</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-25" data-copy="Ст. ТК 25 — Обеденный перерыв — —" data-search="ТК 25 Обеденный перерыв —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 25</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Обеденный перерыв</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-26" data-copy="Ст. ТК 26 — Перерыв за отработанное время — —" data-search="ТК 26 Перерыв за отработанное время —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 26</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Перерыв за отработанное время</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-27" data-copy="Ст. ТК 27 — Отпуск — —" data-search="ТК 27 Отпуск —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 27</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Отпуск</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="tk" data-art="art-tk-32" data-copy="Ст. ТК 32 — Дисциплинарные взыскания — —" data-search="ТК 32 Дисциплинарные взыскания —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ТК 32</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Дисциплинарные взыскания</div>
-  <div class="qc-pen">—</div>
-</div></div>
 
-  <div class="section-title" style="color:#fb7185">📋 Этика — ключевое</div>
-  <div class="qgrid"><div class="qcard sev-none" data-panel="et" data-art="art-et-18" data-copy="Ст. Этика 18 — Государственному (муниципальному) служащему запрещае… — —" data-search="Этика 18 Государственному (муниципальному) служащему запрещается получать в связи с исполнением им должнос… —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 18</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Государственному (муниципальному) служащему запрещае…</div>
-  <div class="qc-pen">—</div>
+  <div class="section-title" style="color:#fb7185">📋 Этика — штрафы</div>
+  <div class="qgrid">
+<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-1" data-copy="Этика 38.1 — Оскорбление гражданина → до 25000$" data-search="Этика 38.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Этика 38.1</span></div>
+  <div class="qc-name">Оскорбление гражданина</div>
+  <div class="qc-pen">до 25.000$</div>
 </div>
-<div class="qcard sev-none" data-panel="et" data-art="art-et-26" data-copy="Ст. Этика 26 — В служебном поведении государственный (муниципальный… — —" data-search="Этика 26 В служебном поведении государственный (муниципальный) служащий воздерживается от: —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 26</span><span class="qc-stars"></span></div>
-  <div class="qc-name">В служебном поведении государственный (муниципальный…</div>
-  <div class="qc-pen">—</div>
+<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-2" data-copy="Этика 38.2 — Оскорбление госника → до 30000$" data-search="Этика 38.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Этика 38.2</span></div>
+  <div class="qc-name">Оскорбление госника</div>
+  <div class="qc-pen">до 30.000$</div>
 </div>
-<div class="qcard sev-none" data-panel="et" data-art="art-et-33" data-copy="Ст. Этика 33 — Запрещено использовать в дресс-коде такие вещи, как: — —" data-search="Этика 33 Запрещено использовать в дресс-коде такие вещи, как: —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 33</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Запрещено использовать в дресс-коде такие вещи, как:</div>
-  <div class="qc-pen">—</div>
+<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-4" data-copy="Этика 38.4 — Демонстрация власти → до 40000$" data-search="Этика 38.4" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Этика 38.4</span></div>
+  <div class="qc-name">Демонстрация власти</div>
+  <div class="qc-pen">до 40.000$</div>
 </div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-1" data-copy="Ст. Этика 38.1 — Неуважительное отношение к гражданам штата, равно ка… — штраф до 25000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." data-search="Этика 38.1 Неуважительное отношение к гражданам штата, равно как оскорбление личности, чести и достои штраф до 25000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.1</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Неуважительное отношение к гражданам штата, равно ка…</div>
-  <div class="qc-pen">штраф до 25000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации.</div>
+<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-5" data-copy="Этика 38.5 — Внешний вид → до 30000$" data-search="Этика 38.5" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Этика 38.5</span></div>
+  <div class="qc-name">Нарушение внешнего вида</div>
+  <div class="qc-pen">до 30.000$</div>
 </div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-2" data-copy="Ст. Этика 38.2 — Неуважительное отношение к государственным сотрудник… — штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." data-search="Этика 38.2 Неуважительное отношение к государственным сотрудникам равно как оскорбление личности, чес штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.2</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Неуважительное отношение к государственным сотрудник…</div>
-  <div class="qc-pen">штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации.</div>
-</div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-5" data-copy="Ст. Этика 38.5 — Нарушения внешнего вида, предусмотренного разделом I… — штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." data-search="Этика 38.5 Нарушения внешнего вида, предусмотренного разделом IV, а также внутреннем уставом государс штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.5</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Нарушения внешнего вида, предусмотренного разделом I…</div>
-  <div class="qc-pen">штраф до 30000$, а также дисциплинарное взыскание по решению прокуратуры, суда или руководства государственной организации.</div>
-</div>
-<div class="qcard sev-none" data-panel="et" data-art="art-et-39" data-copy="Ст. Этика 39 — Сотрудник, получивший взыскание в виде штрафа, выпла… — —" data-search="Этика 39 Сотрудник, получивший взыскание в виде штрафа, выплачивает штраф в казну штата в течении 24 часов… —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 39</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Сотрудник, получивший взыскание в виде штрафа, выпла…</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-none" data-panel="et" data-art="art-et-40" data-copy="Ст. Этика 40 — Обман руководства, противоправные действия, повлекши… — —" data-search="Этика 40 Обман руководства, противоправные действия, повлекшие за собой уголовное преследование, отказ вып… —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 40</span><span class="qc-stars"></span></div>
-  <div class="qc-name">Обман руководства, противоправные действия, повлекши…</div>
-  <div class="qc-pen">—</div>
-</div></div>
+  </div>
 </div>
 
 <div class="panel" id="panel-search">
@@ -775,111 +342,145 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 <div class="ios-stack">
 
 <div class="ios-home" id="ios-home">
-  <p class="hint" style="margin:.2rem .2rem .7rem">Как настройки iPhone: жми строку → открывается слайд</p>
+  <p class="hint" style="margin:.2rem .2rem .7rem">Как настройки iPhone: жми строку → слайд · слева — чеклист перед службой</p>
+  <div class="home-layout">
+    <div class="home-side">
+      <div class="ios-label">Перед службой</div>
+      <div class="ios-group" id="home-prep">
+        <label class="chk compact"><input type="checkbox" data-k="cam"><div><b>Нагрудная камера</b><span>Облако SANG · ВУ 6.1</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="video"><div><b>Видео происшествий</b><span>Фиксация на смене · ВУ 3.1.7</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="form"><div><b>Форма своего подразделения</b><span>ВУ 3.1.12</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="eq"><div><b>Полный экип</b><span>Оружие · броник · спецсредства · ВУ 6.3–6.4</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="sang"><div><b>Только табель SANG</b><span>ВУ 3.1.13</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="look"><div><b>Внешний вид</b><span>Без ирокеза/тату лицо · ДУ 2.9</span></div></label>
+        <label class="chk compact"><input type="checkbox" data-k="med"><div><b>Медкарта не просрочена</b><span>ТК</span></div></label>
+      </div>
+    </div>
+    <div class="home-main">
+      <div class="ios-label">Служба</div>
+      <div class="ios-group">
+        <div class="ios-row" onclick="iosOpen('duty')">
+          <div class="ios-ico b">🕐</div>
+          <div class="ios-body"><div class="ios-title">На смене</div><div class="ios-sub">11:00–00:00 · Форт · построение · маски</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('status')">
+          <div class="ios-ico p">📜</div>
+          <div class="ios-body"><div class="ios-title">Закон о статусе SANG</div><div class="ios-sub">Зоны · полномочия · оружие · ЧП/ВП</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+      </div>
 
-  <div class="ios-label">Служба</div>
-  <div class="ios-group">
-    <div class="ios-row" onclick="iosOpen('prep')">
-      <div class="ios-ico g">✅</div>
-      <div class="ios-body"><div class="ios-title">Перед службой</div><div class="ios-sub">Камера, форма, экип, рация — чеклист</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('duty')">
-      <div class="ios-ico b">🕐</div>
-      <div class="ios-body"><div class="ios-title">На смене</div><div class="ios-sub">11:00–00:00 · Форт · построение · маски</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-  </div>
+      <div class="ios-label">Процессуалка</div>
+      <div class="ios-group">
+        <div class="ios-row" onclick="iosOpen('detain')">
+          <div class="ios-ico o">⛓️</div>
+          <div class="ios-body"><div class="ios-title">Задержание гражданских</div><div class="ios-sub">По шагам до передачи</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('breach')">
+          <div class="ios-ico r">🚨</div>
+          <div class="ios-body"><div class="ios-title">Проникновение на ФЗ</div><div class="ios-sub">В т.ч. бессознательный</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('hand')">
+          <div class="ios-ico p">🤝</div>
+          <div class="ios-body"><div class="ios-title">Передача шерифам / FIB</div><div class="ios-sub">Позвать или отвезти</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('mask')">
+          <div class="ios-ico pk">🎭</div>
+          <div class="ios-body"><div class="ios-title">Маски</div><div class="ios-sub">Гражданин и военнослужащий</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('miranda')">
+          <div class="ios-ico b">📜</div>
+          <div class="ios-body"><div class="ios-title">Миранда · состав · адвокат</div><div class="ios-sub">Что читать и отвечать</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+      </div>
 
-  <div class="ios-label">Процессуалка</div>
-  <div class="ios-group">
-    <div class="ios-row" onclick="iosOpen('detain')">
-      <div class="ios-ico o">⛓️</div>
-      <div class="ios-body"><div class="ios-title">Задержание гражданских</div><div class="ios-sub">По шагам: от наручников до передачи</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('breach')">
-      <div class="ios-ico r">🚨</div>
-      <div class="ios-body"><div class="ios-title">Проникновение на ФЗ</div><div class="ios-sub">В т.ч. бессознательный · сразу каф</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('hand')">
-      <div class="ios-ico p">🤝</div>
-      <div class="ios-body"><div class="ios-title">Передача шерифам / FIB</div><div class="ios-sub">Позвать или отвезти самому</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('mask')">
-      <div class="ios-ico pk">🎭</div>
-      <div class="ios-body"><div class="ios-title">Маски</div><div class="ios-sub">Гражданин и военнослужащий</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('miranda')">
-      <div class="ios-ico b">📜</div>
-      <div class="ios-body"><div class="ios-title">Миранда · состав · адвокат</div><div class="ios-sub">Что читать и что отвечать</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-  </div>
+      <div class="ios-label">SANG</div>
+      <div class="ios-group">
+        <div class="ios-row" onclick="iosOpen('jur')">
+          <div class="ios-ico p">🗺️</div>
+          <div class="ios-body"><div class="ios-title">Юрисдикция и оружие</div><div class="ios-sub">Где можно · когда стрелять</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('du')">
+          <div class="ios-ico r">⚖️</div>
+          <div class="ios-body"><div class="ios-title">ДУ — взыскания</div><div class="ios-sub">Выговор · строгий · ЧС</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+      </div>
 
-  <div class="ios-label">SANG</div>
-  <div class="ios-group">
-    <div class="ios-row" onclick="iosOpen('jur')">
-      <div class="ios-ico p">🗺️</div>
-      <div class="ios-body"><div class="ios-title">Юрисдикция и оружие</div><div class="ios-sub">Где можно · когда стрелять</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('du')">
-      <div class="ios-ico r">⚖️</div>
-      <div class="ios-body"><div class="ios-title">ДУ — взыскания</div><div class="ios-sub">Выговор · строгий · ЧС</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-  </div>
-
-  <div class="ios-label">Кодексы</div>
-  <div class="ios-group">
-    <div class="ios-row" onclick="iosOpen('tk')">
-      <div class="ios-ico o">📋</div>
-      <div class="ios-body"><div class="ios-title">ТК — увольнение</div><div class="ios-sub">3 дня · 72 часа · ЧС</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('et')">
-      <div class="ios-ico pk">👔</div>
-      <div class="ios-body"><div class="ios-title">Этика и дресс-код</div><div class="ios-sub">Штрафы 20–40к · внешний вид</div></div>
-      <div class="ios-chev">›</div>
-    </div>
-    <div class="ios-row" onclick="iosOpen('time')">
-      <div class="ios-ico g">⏱</div>
-      <div class="ios-body"><div class="ios-title">Сроки и звёзды</div><div class="ios-sub">УДОС 60 · совокупность 50/100</div></div>
-      <div class="ios-chev">›</div>
+      <div class="ios-label">Кодексы</div>
+      <div class="ios-group">
+        <div class="ios-row" onclick="iosOpen('tk')">
+          <div class="ios-ico o">📋</div>
+          <div class="ios-body"><div class="ios-title">ТК — увольнение</div><div class="ios-sub">3 дня · 72 часа</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('et')">
+          <div class="ios-ico pk">👔</div>
+          <div class="ios-body"><div class="ios-title">Этика и дресс-код</div><div class="ios-sub">Штрафы 20–40к</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+        <div class="ios-row" onclick="iosOpen('time')">
+          <div class="ios-ico g">⏱</div>
+          <div class="ios-body"><div class="ios-title">Сроки и звёзды</div><div class="ios-sub">УДОС 60 · совокупность</div></div>
+          <div class="ios-chev">›</div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- SLIDES -->
-<div class="ios-slide" id="slide-prep">
+<div class="ios-slide" id="slide-status">
   <button class="ios-back" onclick="iosBack()">‹ Назад</button>
-  <div class="ios-h">Перед службой</div>
-  <div class="ios-label">Включить / взять</div>
+  <div class="ios-h">Закон о статусе SANG</div>
+  <div class="okbox">Важное для службы · Губернатор Hanako Norton · 11.05.2022</div>
+
+  <div class="ios-label">Кто мы и задачи</div>
   <div class="ios-group">
-    <label class="chk"><input type="checkbox"><div><b>Нагрудная камера</b><span>Вещает на облако SANG · ВУ 6.1</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Видеозапись происшествий</b><span>Фото/видео всего, что происходит на смене · ВУ 3.1.7</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Рация</b><span>Связь · на построении / КПП / передаче задержанных</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Удостоверение</b><span>При поступлении обязательно · ВУ 4.4 · в увольнительном тоже</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>GPS + кнопка тревоги</b><span>На поясе и/или бронежилете · ВУ 6.2</span></div></label>
+    <div class="ios-step"><div class="ios-n">•</div><div><div class="ios-st">Силовая структура МО</div><div class="ios-sd">Контрразведка, контртеррор, защита граждан и нацбезопасности. ВГК — Губернатор. Руководство — Министр Обороны.</div></div></div>
+    <div class="ios-step"><div class="ios-n">•</div><div><div class="ios-st">База</div><div class="ios-sd">Постоянная дислокация: Форт-Занкудо и авианосец. Фото/видео/аудио на территории — запрещено без разрешения руководства.</div></div></div>
+    <div class="ios-step"><div class="ios-n">•</div><div><div class="ios-st">Задачи</div><div class="ios-sd">ЧП / ВП / КТО · борьба с терроризмом · ЧС и катастрофы · ОП совместно с ПО · охрана режимных объектов.</div></div></div>
   </div>
-  <div class="ios-label">Одежда и экип</div>
+
+  <div class="ios-label">Зоны Форта</div>
   <div class="ios-group">
-    <label class="chk"><input type="checkbox"><div><b>Форма своего подразделения</b><span>Не чужая · исключения: спецоп / тренировка / приказ Штаба · ВУ 3.1.12</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Полный экип</b><span>Оружие · патроны · броник · дубинка · тайзер · наручники · ВУ 6.3–6.4</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Только табель SANG</b><span>Маркировка SANG или обменное · ВУ 3.1.13</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Внешний вид</b><span>Без ирокеза / дредов / цветных волос / тату лицо-шея-кисти · ДУ 2.9 = увольнение</span></div></label>
+    <div class="ios-step"><div class="ios-n">🔴</div><div><div class="ios-st">Красная зона</div><div class="ios-sd">Только по закону о закрытых территориях / пропуск / Подполковник+. Посторонний → огонь на поражение без предупреждения.</div></div></div>
+    <div class="ios-step"><div class="ios-n">🟡</div><div><div class="ios-st">Жёлтая зона</div><div class="ios-sd">Визит с уважительной причиной. По требованию — покинуть сразу. Можно требовать документы и цель визита.</div></div></div>
+    <div class="ios-step"><div class="ios-n">✈️</div><div><div class="ios-st">Воздух над ФЗ</div><div class="ios-sd">Запрещён без разрешения уполномоченных.</div></div></div>
   </div>
-  <div class="ios-label">Голова</div>
+
+  <div class="ios-label">Полномочия (мирное время)</div>
   <div class="ios-group">
-    <label class="chk"><input type="checkbox"><div><b>Знать Штаб в лицо</b><span>ВУ 3.1.6</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Присяга и уд получены</b><span>Иначе строгий · ВУ 4.3–4.4</span></div></label>
-    <label class="chk"><input type="checkbox"><div><b>Медкарта не просрочена</b><span>ТК 17 / 20к — приостановка / увольнение</span></div></label>
+    <div class="ios-step"><div class="ios-n">1</div><div><div class="ios-st">С гражданами — через ПО</div><div class="ios-sd">Кроме угрозы жизни. Исключение: Military Police на патруле — могут задерживать и досматривать подозрительных.</div></div></div>
+    <div class="ios-step"><div class="ios-n">2</div><div><div class="ios-st">Задержание до передачи в ПО</div><div class="ios-sd">Проникновение на объект · комендантский час · побег · преступление на глазах · розыск (совместно с ПО). По ПК + видео-фиксация.</div></div></div>
+    <div class="ios-step"><div class="ios-n">3</div><div><div class="ios-st">Доставка</div><div class="ios-sd">В ближайший орган ПО, безопасно для жизни/здоровья.</div></div></div>
   </div>
-  <div class="okbox">Чеклист сохраняется в этом браузере. Снял галочки — прошёл перед сменой.</div>
+
+  <div class="ios-label">Оружие и сила (кратко)</div>
+  <div class="ios-group">
+    <div class="ios-step"><div class="ios-n">!</div><div><div class="ios-st">Предупредить</div><div class="ios-sd">Кто ты, намерение применить силу/оружие, дать время выполнить требование. Без предупреждения — если промедление = угроза жизни.</div></div></div>
+    <div class="ios-step"><div class="ios-n">✓</div><div><div class="ios-st">Оружие</div><div class="ios-sd">Защита граждан/военных · захват оружия/техники · заложники/террор · тяжкое + скрывается/сопротивление · проникновение на объект · остановка ТС угрозой · взлом при проникновении.</div></div></div>
+    <div class="ios-step"><div class="ios-n">✗</div><div><div class="ios-st">Нельзя</div><div class="ios-sd">При скоплении людей, если пострадают случайные (кроме теракта). После применения — первая помощь.</div></div></div>
+  </div>
+
+  <div class="ios-label">ЧП и Военное положение</div>
+  <div class="ios-group">
+    <div class="ios-step"><div class="ios-n">ЧП</div><div><div class="ios-st">Чрезвычайное</div><div class="ios-sd">Спецназ может дислоцироваться по штату. Руководство операций — FIB / Канцлер ВБ. Ограничения движения, документы, обыски, комендантский час.</div></div></div>
+    <div class="ios-step"><div class="ios-n">ВП</div><div><div class="ios-st">Военное</div><div class="ios-sd">Весь состав — населённые пункты, надзор, полномочия ПО. Руководство — высший офицерский состав / Глава ДВС.</div></div></div>
+  </div>
+
+  <div class="ios-label">Защита военнослужащего</div>
+  <div class="ios-group">
+    <div class="ios-step"><div class="ios-n">•</div><div><div class="ios-st">Представитель власти на службе</div><div class="ios-sd">Вмешиваться не вправе никто, кроме Губернатора, Генпрокурора, Главы ДВС и командиров.</div></div></div>
+    <div class="ios-step"><div class="ios-n">•</div><div><div class="ios-st">Обыск / задержание военного</div><div class="ios-sd">Только с командира или суда, кроме застигнут при преступлении.</div></div></div>
+  </div>
 </div>
 
 <div class="ios-slide" id="slide-duty">
@@ -7083,15 +6684,16 @@ function iosBack(){
 }
 // persist checklist
 document.addEventListener('change', e=>{
-  if(e.target.matches('#slide-prep input[type=checkbox]')){
-    const boxes=[...document.querySelectorAll('#slide-prep input[type=checkbox]')].map(x=>x.checked);
-    try{localStorage.setItem('sang-prep', JSON.stringify(boxes))}catch(err){}
+  if(e.target.matches('#home-prep input[type=checkbox]')){
+    const o={};
+    document.querySelectorAll('#home-prep input[type=checkbox]').forEach(x=>{ o[x.dataset.k]=x.checked; });
+    try{localStorage.setItem('sang-prep-v2', JSON.stringify(o))}catch(err){}
   }
 });
 document.addEventListener('DOMContentLoaded', ()=>{
   try{
-    const boxes=JSON.parse(localStorage.getItem('sang-prep')||'[]');
-    document.querySelectorAll('#slide-prep input[type=checkbox]').forEach((x,i)=>{ if(boxes[i]) x.checked=true; });
+    const o=JSON.parse(localStorage.getItem('sang-prep-v2')||'{}');
+    document.querySelectorAll('#home-prep input[type=checkbox]').forEach(x=>{ if(o[x.dataset.k]) x.checked=true; });
   }catch(err){}
 });
 
