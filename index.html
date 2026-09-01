@@ -155,7 +155,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 .assist-chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.4rem .75rem;font-size:.78rem;cursor:pointer;transition:.15s}
 .assist-chip:hover,.assist-chip.on{border-color:#38bdf8;background:rgba(56,189,248,.12);color:#7dd3fc}
 .assist-panel{display:none;margin-top:.7rem;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--border);background:var(--card)}
-.assist-panel.open{display:block}
+.assist-panel.open{display:block!important;margin-top:.75rem}
 .assist-q{font-weight:600;margin-bottom:.5rem;font-size:.9rem}
 .assist-opts{display:flex;flex-wrap:wrap;gap:.4rem}
 .assist-opt{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:.45rem .7rem;font-size:.78rem;cursor:pointer}
@@ -231,7 +231,6 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
     <button type="button" data-s="Green zone">Green zone</button>
     <button type="button" data-s="RMT">RMT</button>
     <button type="button" data-s="выговор">выговор</button>
-    <span class="kbd-hint">/ поиск · Esc · 2×клик → рапорт</span>
   </div>
 </div>
 </div>
@@ -9844,17 +9843,6 @@ if (searchEl) {
 }
 
 // chips
-document.getElementById('search-suggest')?.addEventListener('click', e => {
-  const b = e.target.closest('button[data-s]');
-  if (!b) return;
-  const box = document.getElementById('search');
-  if (!box) return;
-  box.value = b.dataset.s;
-  searchScope = 'all';
-  document.querySelectorAll('.scope-btn').forEach(x => x.classList.toggle('active', x.dataset.scope === 'all'));
-  runSearch();
-  box.focus();
-});
 
 
 function goFromSearch(el) {
@@ -10401,20 +10389,171 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })();
 
 
-document.getElementById('search-suggest')?.addEventListener('click', e=>{
-  const b = e.target.closest('button[data-s]');
-  if(!b) return;
-  const box = document.getElementById('search');
-  if(!box) return;
-  box.value = b.dataset.s;
-  // prefer everywhere for chips
-  document.querySelectorAll('.scope-btn').forEach(x=>{
-    x.classList.toggle('active', x.dataset.scope==='all');
+
+/* ===== FIXED: assistant + instant search ===== */
+window.SCENARIOS = {
+  detain: {
+    title: 'Задержание гражданского',
+    opts: [
+      {t: 'На Форте / охраняемый объект', sc: 'breach'},
+      {t: 'В городе / патруль', go: [
+        {code: 'Статус SANG', note: 'Задержание до передачи в ПО'},
+        {code: 'ПК', note: 'Процедура задержания'},
+        {code: 'ОПП 5.1', note: 'DM — смотри исключения'}
+      ]}
+    ]
+  },
+  breach: {
+    title: 'Проникновение на ФЗ',
+    opts: [
+      {t: 'В сознании / сопротивление', go: [
+        {code: 'Статус ст.26', note: 'Красная зона — огонь без предупреждения'},
+        {code: 'Статус гл.II', note: 'Задержание проникших'},
+        {code: 'ДУ 4.13', note: 'Огонь по безоружному — осторожно'}
+      ]},
+      {t: 'Без сознания', go: [
+        {code: 'Памятка: проникновение', note: 'Фикс → причина → передача'},
+        {code: 'ВУ 6.x', note: 'Экип и камера'}
+      ]}
+    ]
+  },
+  supply: {
+    title: 'Поставка / перехват',
+    opts: [
+      {t: 'SANG', go: [
+        {code: 'Пост. 3.1', note: '15:00–22:30, старт с ФЗ'},
+        {code: 'Пост. 3.2', note: 'Помощь — до выезда'},
+        {code: 'Пост. 1.9', note: 'Безопасный час 15–16'}
+      ]},
+      {t: 'Гос сопровождение', go: [
+        {code: 'Пост. 2.1', note: 'Мин. 8 · макс. 100'},
+        {code: 'Пост. 1.6', note: 'Не ждать у точки <350м'},
+        {code: 'Пост. 2.3', note: 'Без подкрепления в бою'}
+      ]},
+      {t: 'Криминал (перехват)', go: [
+        {code: 'Пост. 4.3', note: 'Перекрытие ≥4 авто'},
+        {code: 'Пост. 4.11', note: 'Макс. 2 атаки/день'},
+        {code: 'Пост. 1.19', note: 'Груз только после боя'}
+      ]}
+    ]
+  },
+  gz: {
+    title: 'Green / Red zone',
+    opts: [
+      {t: 'Криминал / стрельба в GZ', go: [
+        {code: 'Зоны 1.1', note: 'Криминал в GZ'},
+        {code: 'Зоны 1.2', note: 'Стрельба в GZ'},
+        {code: 'Зоны 1.4', note: 'Прятки от погони в GZ'}
+      ]},
+      {t: 'Red zone', go: [
+        {code: 'Зоны 2.1', note: 'Урон вооружённым'},
+        {code: 'Зоны 2.2', note: 'PG в Red'}
+      ]}
+    ]
+  },
+  weapon: {
+    title: 'Оружие',
+    opts: [
+      {t: 'На службе SANG', go: [
+        {code: 'Статус гл.III', note: 'Когда можно применять'},
+        {code: 'ДУ 4.13', note: 'Безоружный'},
+        {code: 'ВУ 6.x', note: 'Табель / экип'}
+      ]},
+      {t: 'Ивент ФЗ', go: [
+        {code: 'ФЗ 1.3', note: 'HS / дроны / стяжки — нельзя'},
+        {code: 'ФЗ 2.1', note: 'NLR лазарет'}
+      ]}
+    ]
+  },
+  du: {
+    title: 'Дисциплинарка',
+    opts: [
+      {t: 'Внешний вид / форма', go: [
+        {code: 'ДУ 2.9', note: 'Внешний вид → увольнение'},
+        {code: 'ВУ 6', note: 'Форма подразделения'}
+      ]},
+      {t: 'Оружие / тайна / криминал', go: [
+        {code: 'ДУ 4.9', note: 'Продажа табельного'},
+        {code: 'ДУ 4.18', note: 'Военная тайна'},
+        {code: 'ДУ 4.7', note: 'Связь с криминалом'}
+      ]},
+      {t: 'Приказы / ФЗ', go: [
+        {code: 'ДУ 4.11', note: 'Игнор приказов'},
+        {code: 'ДУ 4.12', note: 'Превышение'},
+        {code: 'ДУ 4.14', note: 'Покинул ФЗ'}
+      ]}
+    ]
+  }
+};
+
+window.showAssist = function(id) {
+  const panel = document.getElementById('assist-panel');
+  if (!panel) return;
+  const sc = window.SCENARIOS[id];
+  if (!sc) { panel.classList.remove('open'); panel.innerHTML = ''; return; }
+  let html = '<div class="assist-q">' + sc.title + '</div><div class="assist-opts">';
+  sc.opts.forEach(function(o, i) {
+    html += '<button type="button" class="assist-opt" data-sc="' + id + '" data-i="' + i + '">' + o.t + '</button>';
   });
-  if(typeof searchScope!=='undefined') searchScope = 'all';
-  box.dispatchEvent(new Event('input', {bubbles:true}));
-  box.focus();
+  html += '</div><div class="assist-res" id="assist-res"></div>';
+  panel.innerHTML = html;
+  panel.classList.add('open');
+};
+
+document.addEventListener('click', function(e) {
+  const chip = e.target.closest('.assist-chip');
+  if (chip && chip.dataset.sc) {
+    e.preventDefault();
+    document.querySelectorAll('.assist-chip').forEach(function(c){ c.classList.remove('on'); });
+    chip.classList.add('on');
+    window.showAssist(chip.dataset.sc);
+    return;
+  }
+  const opt = e.target.closest('.assist-opt');
+  if (opt && opt.dataset.sc != null) {
+    e.preventDefault();
+    const sc = window.SCENARIOS[opt.dataset.sc];
+    const o = sc && sc.opts[+opt.dataset.i];
+    if (!o) return;
+    if (o.sc) { window.showAssist(o.sc); return; }
+    const res = document.getElementById('assist-res');
+    if (!res) return;
+    res.innerHTML = (o.go || []).map(function(g) {
+      return '<div class="ar" data-q="' + g.code + '"><b>' + g.code + '</b><span>' + g.note + '</span></div>';
+    }).join('');
+    return;
+  }
+  const ar = e.target.closest('.ar[data-q]');
+  if (ar) {
+    e.preventDefault();
+    const box = document.getElementById('search');
+    if (!box) return;
+    box.value = ar.dataset.q;
+    if (typeof searchScope !== 'undefined') searchScope = 'all';
+    document.querySelectorAll('.scope-btn').forEach(function(x) {
+      x.classList.toggle('active', x.dataset.scope === 'all');
+    });
+    if (typeof runSearch === 'function') runSearch();
+    return;
+  }
 });
+
+
+/* search chips — click = instant global search */
+document.addEventListener('click', function(e) {
+  var b = e.target.closest('#search-suggest button[data-s]');
+  if (!b) return;
+  e.preventDefault();
+  var box = document.getElementById('search');
+  if (!box) return;
+  box.value = b.getAttribute('data-s') || '';
+  if (typeof searchScope !== 'undefined') searchScope = 'all';
+  document.querySelectorAll('.scope-btn').forEach(function(x) {
+    x.classList.toggle('active', x.getAttribute('data-scope') === 'all');
+  });
+  if (typeof runSearch === 'function') runSearch();
+});
+
 </script>
 </body>
 </html>
