@@ -92,7 +92,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 @media(max-width:768px){.title,.text{max-width:120px}th,td{padding:.3rem .4rem;font-size:.75rem}.qgrid{grid-template-columns:1fr 1fr}}
 
 .qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.5rem}
-.ios-wrap{max-width:560px;margin:0 auto}
+.ios-wrap{max-width:1100px;margin:0 auto;padding:0 .5rem 2rem}
 .ios-label{font-size:.68rem;font-weight:600;color:#64748b;text-transform:uppercase;letter-spacing:.06em;padding:.55rem .9rem .3rem}
 .ios-group{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--border);margin-bottom:1.05rem}
 .ios-row{display:flex;align-items:center;gap:.7rem;padding:.72rem .85rem;cursor:pointer;border-bottom:1px solid rgba(42,53,72,.9);transition:background .12s}
@@ -129,7 +129,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 .redbox{background:#3f0d0d;border:1px solid #7f1d1d;color:#fca5a5;border-radius:10px;padding:.6rem .8rem;font-size:.8rem;margin:.4rem .85rem .85rem}
 
 
-.home-layout{display:grid;grid-template-columns:minmax(200px,240px) 1fr;gap:1rem;align-items:start;max-width:900px;margin:0 auto}
+.home-layout{display:grid;grid-template-columns:minmax(240px,280px) 1fr;gap:1.1rem;align-items:start;max-width:1100px;margin:0 auto}
 @media(max-width:720px){.home-layout{grid-template-columns:1fr}}
 .home-side{position:sticky;top:160px}
 .home-side .ios-group{margin-bottom:.6rem}
@@ -436,8 +436,9 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <div class="qc-pen">GunBan / Demorgan / Ban</div>
 </div>
   </div>
+</div>
 
-  <<div class="panel" id="panel-search">
+<div class="panel" id="panel-search">
   <p class="hint" id="search-hint">Результаты глобального поиска</p>
   <div id="search-results"></div>
 </div>
@@ -449,7 +450,21 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 <div class="ios-stack">
 
 <div class="ios-home" id="ios-home">
-  <p class="hint" style="margin:.2rem .2rem .7rem">Как настройки iPhone: жми строку → слайд · слева — чеклист перед службой</p>
+<div class="memo-hero">
+  <h2>Памятки SANG</h2>
+  <p>Чеклист слева · сценарии справа · помощник подскажет статью</p>
+</div>
+<div class="assist-bar">
+  <div class="assist-chips" id="assist-chips">
+    <button type="button" class="assist-chip" data-sc="detain">⛓️ Задержание</button>
+    <button type="button" class="assist-chip" data-sc="breach">🚨 Проникновение ФЗ</button>
+    <button type="button" class="assist-chip" data-sc="supply">🚛 Поставка</button>
+    <button type="button" class="assist-chip" data-sc="gz">🟢 Green zone</button>
+    <button type="button" class="assist-chip" data-sc="weapon">🔫 Оружие</button>
+    <button type="button" class="assist-chip" data-sc="du">⚖️ Взыскание ДУ</button>
+  </div>
+  <div class="assist-panel" id="assist-panel"></div>
+</div>
   <div class="home-layout">
     <div class="home-side">
       <div class="ios-label">Перед службой</div>
@@ -9687,7 +9702,27 @@ document.querySelectorAll('.scope-btn').forEach(btn => {
   });
 });
 
-document.getElementById('search').addEventListener('input', function() {
+document.
+window._expandQuery = function(q){
+  q = (q||'').toLowerCase().trim();
+  if(!q) return '';
+  const SY = {
+    'уволил':'увольнение чс','увольнение':'увольнение чс выговор','деморган':'demorgan','деморген':'demorgan',
+    'муте':'mute','мьют':'mute','варн':'warn','варны':'warn','дм':'dm deathmatch','мг':'mg meta',
+    'нлр':'nlr','пг':'pg power','тк':'tk teamkill','ск':'sk spawn','дб':'db driveby','рмт':'rmt реальн',
+    'читы':'по стороннее','матовоз':'матовозка поставка','матовозка':'матовозка поставка',
+    'залож':'заложник похищение','заложник':'заложник похищение','штурм':'штурм переговоры',
+    'гз':'green zone зелён','ред':'red zone','форт':'форт занкудо фз','занкудо':'форт занкудо фз',
+    'санг':'sang','санги':'sang national guard','наручники':'задержание','миранда':'миранда адвокат',
+    'выкуп':'выкуп заложник','коридор':'зелён коридор','рейд':'рейд ордер','теракт':'теракт захват',
+    'цех':'цех дилер','дилер':'дилер цех','выговор':'выговор строгий','увольнение':'увольнение чс'
+  };
+  let parts = q.split(/\s+/), extra=[];
+  parts.forEach(p=>{ if(SY[p]) extra.push(SY[p]); if(p.length>4){ extra.push(p.slice(0,-1)); extra.push(p.slice(0,-2)); }});
+  return (q+' '+extra.join(' ')).trim();
+};
+
+getElementById('search').addEventListener('input', function() {
   const raw = this.value.trim();
   const q = raw.toLowerCase();
   const exp = (window._expandQuery ? window._expandQuery(raw) : raw).toLowerCase();
