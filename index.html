@@ -465,7 +465,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 <div class="ios-home" id="ios-home">
 <div class="memo-hero">
   <h2>Памятки SANG</h2>
-  <p>Чеклист слева · сценарии справа · помощник подскажет статью</p>
+  <p>Чеклист · сценарии · в поиске можно писать ситуацию («стреляли в GZ», «матовозка»)</p>
 </div>
 <div class="assist-bar">
   <div class="assist-chips" id="assist-chips">
@@ -9744,6 +9744,16 @@ function rankHit(a, raw) {
   return r;
 }
 
+
+function escHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function runSearch() {
   const box = document.getElementById('search');
   if (!box) return;
@@ -9798,17 +9808,24 @@ function runSearch() {
 
   const boxR = document.getElementById('search-results');
   const hint = document.getElementById('search-hint');
+  if (typeof renderSituation === 'function') renderSituation(raw);
   if (hint) hint.textContent = 'Найдено: ' + hits.length + (hits.length >= 100 ? '+ (первые 100)' : '') + ' · по всем кодексам · клик = переход';
   if (boxR) {
-    boxR.innerHTML = hits.map(a => {
-      const stars = a.stars ? '★'.repeat(parseInt(a.stars)||0) : '';
-      return `<div class="sres" data-panel="${a.src}" data-art="${a.id}" data-copy="Ст. ${a.label} ${a.code} — ${a.title} — ${a.penalty||'—'}" onclick="goFromSearch(this)">
-      <span class="src-badge src-${a.src}">${a.label}</span>
-      <span class="s-code">${a.code}</span>
-      <div class="s-title">${escHtml(a.title)}</div>
-      <div class="s-pen">${escHtml(a.penalty||'—')} ${stars}</div>
-    </div>`;
-    }).join('') || '<p style="color:var(--muted);padding:1rem">Ничего не найдено. Попробуй другой запрос или код статьи (например ДУ 4.9).</p>';
+    try {
+      boxR.innerHTML = hits.map(a => {
+        const stars = a.stars ? '★'.repeat(parseInt(a.stars)||0) : '';
+        const title = (typeof escHtml === 'function' ? escHtml(a.title) : String(a.title||''));
+        const pen = (typeof escHtml === 'function' ? escHtml(a.penalty||'—') : String(a.penalty||'—'));
+        return '<div class="sres" data-panel="'+a.src+'" data-art="'+a.id+'" data-copy="Ст. '+(a.label||'')+' '+a.code+' — '+(a.title||'')+' — '+(a.penalty||'—')+'" onclick="goFromSearch(this)">'
+          + '<span class="src-badge src-'+a.src+'">'+(a.label||a.src)+'</span>'
+          + '<span class="s-code">'+a.code+'</span>'
+          + '<div class="s-title">'+title+'</div>'
+          + '<div class="s-pen">'+pen+' '+stars+'</div></div>';
+      }).join('') || '<p style="color:var(--muted);padding:1rem">Ничего не найдено. Попробуй код статьи (например ДУ 4.9).</p>';
+    } catch (err) {
+      console.error(err);
+      boxR.innerHTML = '<p style="color:#f87171;padding:1rem">Ошибка вывода результатов. Обнови страницу (Ctrl+Shift+R).</p>';
+    }
   }
   // show search panel
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -10549,6 +10566,148 @@ document.addEventListener('click', function(e) {
   box.value = b.getAttribute('data-s') || '';
   if (typeof searchScope !== 'undefined') searchScope = 'all';
   document.querySelectorAll('.scope-btn').forEach(function(x) {
+    x.classList.toggle('active', x.getAttribute('data-scope') === 'all');
+  });
+  if (typeof runSearch === 'function') runSearch();
+});
+
+
+/* ===== Situation assistant from free-text search ===== */
+window.SITUATIONS = [
+  {
+    keys: ['маск', 'не снял маск', 'скрыть лицо', 'балаклав'],
+    title: 'Маска / сокрытие лица',
+    steps: [
+      'Спокойно зафиксируй: кто, где, что сказал/показал (камера).',
+      'Если ты гражданский и тебя остановили — спроси основание и звание/подразделение.',
+      'Не спорь на эмоциях. Коротко: «Какое законное основание?»',
+      'Если ты SANG/гос: напомни про правила масок в зоне/на службе (ВУ/статус/ОПП).',
+      'Передача в ПО — по процедуре, без самосуда.'
+    ],
+    links: ['маска', 'ДУ 2.9', 'ОПП', 'Статус SANG']
+  },
+  {
+    keys: ['выстрел', 'стрелял', 'стреляют', 'открыл огонь', 'дм', 'dm'],
+    title: 'Стрельба / угроза оружием',
+    steps: [
+      'Укрытие → оценка: цель (ты / гражданский / гос).',
+      'Камера/фиксация. Не геройствуй без прикрытия.',
+      'Команда: «Огонь прекратить! Оружие на землю!» + обозначь себя.',
+      'Green zone? — отдельный режим (Зоны 1.2). Red/ФЗ — свои правила.',
+      'После: рапорт, статья (УК/ОПП DM), передача задержанного.'
+    ],
+    links: ['DM', 'Зоны 1.2', 'УК 6', 'ФЗ 1.3']
+  },
+  {
+    keys: ['задержал', 'арестова', 'наручник', 'задержан'],
+    title: 'Задержание',
+    steps: [
+      'Основание вслух + фиксация.',
+      'Представься, причина, куда следует.',
+      'Миранда/права — по ПК/ПГО, если требуется.',
+      'Не издевайся, не тяни без причины (ПГО/ОПП).',
+      'Передача шерифам/FIB — вызвать или доставить по памятке.'
+    ],
+    links: ['задержание', 'ПГО', 'ПК', 'Миранда']
+  },
+  {
+    keys: ['матовоз', 'поставк', 'перехват', 'колонн'],
+    title: 'Поставка / матовозка',
+    steps: [
+      'Уточни роль: SANG / гос сопровождение / перехват.',
+      'SANG: время 15:00–22:30, старт с ФЗ, помощь — до выезда.',
+      'Не ждать у точки загрузки <350 м.',
+      'Груз не трогать до конца перестрелки. HS — нельзя.',
+      'Видео 2 шт., 720p, 72 ч.'
+    ],
+    links: ['матовозка', 'Пост. 3.1', 'Пост. 1.6', 'Пост. 1.19']
+  },
+  {
+    keys: ['форт', 'занкудо', 'проник', 'на фз', 'на базе'],
+    title: 'ФЗ / проникновение',
+    steps: [
+      'Красная зона / охраняемый объект — особые полномочия.',
+      'Бессознательный: фикс → основание → передача, без самодеятельности.',
+      'Огонь по безоружному — только по исключениям (ДУ 4.13).',
+      'Ивент ФЗ: HS/дроны/стяжки запрещены.'
+    ],
+    links: ['ФЗ', 'Проникновение', 'ДУ 4.13', 'Статус']
+  },
+  {
+    keys: ['залож', 'выкуп', 'теракт', 'переговор'],
+    title: 'Заложник / теракт',
+    steps: [
+      'Не геройствуй один. Жди старших / переговорщика.',
+      'Выкуп/требования — по лимитам правил теракта.',
+      'Переговорщика в заложники брать нельзя.',
+      'Зелёный коридор — короткое окно, соблюдай с обеих сторон.'
+    ],
+    links: ['заложник', 'Теракт', 'выкуп']
+  },
+  {
+    keys: ['рейд', 'ордер', 'склад'],
+    title: 'Рейд',
+    steps: [
+      'Нужен ордер + куратор (кроме военного положения).',
+      'Успех: контроль >10 мин или меньшинство обороны → 1/2 склада.',
+      'Слив склада до/во время — бан. Отпор только по PG.'
+    ],
+    links: ['рейд', 'ордер']
+  }
+];
+
+window.matchSituation = function(raw) {
+  raw = (raw || '').toLowerCase();
+  if (raw.length < 4) return null;
+  for (var i = 0; i < window.SITUATIONS.length; i++) {
+    var s = window.SITUATIONS[i];
+    for (var k = 0; k < s.keys.length; k++) {
+      if (raw.indexOf(s.keys[k]) !== -1) return s;
+    }
+  }
+  // soft: any word overlap for longer queries
+  if (raw.split(/\s+/).length >= 4) {
+    for (var i = 0; i < window.SITUATIONS.length; i++) {
+      var s = window.SITUATIONS[i];
+      var hit = 0;
+      for (var k = 0; k < s.keys.length; k++) {
+        if (raw.indexOf(s.keys[k].slice(0, 4)) !== -1) hit++;
+      }
+      if (hit >= 1) return s;
+    }
+  }
+  return null;
+};
+
+window.renderSituation = function(raw) {
+  var host = document.getElementById('situ-host');
+  if (!host) {
+    var boxR = document.getElementById('search-results');
+    if (!boxR) return;
+    host = document.createElement('div');
+    host.id = 'situ-host';
+    boxR.parentNode.insertBefore(host, boxR);
+  }
+  var s = window.matchSituation(raw);
+  if (!s) { host.innerHTML = ''; return; }
+  var html = '<div class="situ-box"><h3>🧭 ' + s.title + '</h3><ol>';
+  s.steps.forEach(function(step){ html += '<li>' + step + '</li>'; });
+  html += '</ol><div class="situ-links">';
+  s.links.forEach(function(l){
+    html += '<button type="button" data-situ-q="' + l.replace(/"/g,'') + '">' + l + '</button>';
+  });
+  html += '</div></div>';
+  host.innerHTML = html;
+};
+
+document.addEventListener('click', function(e) {
+  var b = e.target.closest('[data-situ-q]');
+  if (!b) return;
+  var box = document.getElementById('search');
+  if (!box) return;
+  box.value = b.getAttribute('data-situ-q');
+  if (typeof searchScope !== 'undefined') searchScope = 'all';
+  document.querySelectorAll('.scope-btn').forEach(function(x){
     x.classList.toggle('active', x.getAttribute('data-scope') === 'all');
   });
   if (typeof runSearch === 'function') runSearch();
