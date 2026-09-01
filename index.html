@@ -142,6 +142,45 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 
 .tab.core{border-color:rgba(248,113,113,.45);color:#fecaca}
 .tab.core.active,.tab.core:hover{background:rgba(127,29,29,.45);border-color:#f87171;color:#fff}
+
+/* ---- Memo redesign ---- */
+.home-layout{display:grid;grid-template-columns:minmax(240px,280px) 1fr;gap:1.1rem;align-items:start;max-width:1100px;margin:0 auto;padding:0 .4rem 2rem}
+@media(max-width:820px){.home-layout{grid-template-columns:1fr}}
+.home-side{position:sticky;top:150px}
+.memo-hero{max-width:1100px;margin:0 auto .9rem;padding:0 .4rem}
+.memo-hero h2{margin:0 0 .25rem;font-size:1.15rem;font-weight:700}
+.memo-hero p{margin:0;color:var(--muted);font-size:.82rem}
+.assist-bar{max-width:1100px;margin:0 auto 1rem;padding:0 .4rem}
+.assist-chips{display:flex;flex-wrap:wrap;gap:.45rem}
+.assist-chip{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:.4rem .75rem;font-size:.78rem;cursor:pointer;transition:.15s}
+.assist-chip:hover,.assist-chip.on{border-color:#38bdf8;background:rgba(56,189,248,.12);color:#7dd3fc}
+.assist-panel{display:none;margin-top:.7rem;padding:.85rem 1rem;border-radius:14px;border:1px solid var(--border);background:var(--card)}
+.assist-panel.open{display:block}
+.assist-q{font-weight:600;margin-bottom:.5rem;font-size:.9rem}
+.assist-opts{display:flex;flex-wrap:wrap;gap:.4rem}
+.assist-opt{border:1px solid var(--border);background:transparent;color:var(--text);border-radius:10px;padding:.45rem .7rem;font-size:.78rem;cursor:pointer}
+.assist-opt:hover{border-color:#a78bfa;background:rgba(167,139,250,.1)}
+.assist-res{margin-top:.75rem}
+.assist-res .ar{display:flex;justify-content:space-between;gap:.6rem;align-items:center;padding:.55rem .65rem;border-radius:10px;border:1px solid var(--border);margin-bottom:.4rem;cursor:pointer}
+.assist-res .ar:hover{border-color:#38bdf8}
+.assist-res .ar b{font-size:.82rem}
+.assist-res .ar span{font-size:.72rem;color:#fbbf24}
+.ios-group{border-radius:14px}
+.ios-row{min-height:52px}
+.fav-btn, .hist-clear{border:1px solid var(--border);background:var(--card);color:var(--muted);border-radius:8px;padding:.25rem .5rem;font-size:.72rem;cursor:pointer}
+.fav-btn.on{color:#fbbf24;border-color:#fbbf24}
+.star-toggle{cursor:pointer;opacity:.45;font-size:.9rem;margin-left:.25rem}
+.star-toggle.on{opacity:1;filter:none}
+.search-suggest{display:flex;flex-wrap:wrap;gap:.35rem;margin:.45rem 0 0;max-width:640px}
+.search-suggest button{border:1px solid var(--border);background:transparent;color:var(--muted);border-radius:999px;padding:.2rem .55rem;font-size:.7rem;cursor:pointer}
+.search-suggest button:hover{color:#7dd3fc;border-color:#38bdf8}
+.toolbar-mini{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-left:auto}
+#searchBox::placeholder{opacity:.7}
+.kbd-hint{font-size:.68rem;color:var(--muted);opacity:.7}
+.report-toast{position:fixed;bottom:1.2rem;left:50%;transform:translateX(-50%);background:#0f172a;border:1px solid #38bdf8;color:#e2e8f0;padding:.55rem 1rem;border-radius:10px;font-size:.8rem;z-index:9999;opacity:0;pointer-events:none;transition:.2s}
+.report-toast.show{opacity:1}
+.fav-section .qgrid{margin-bottom:.5rem}
+
 </style>
 </head>
 <body>
@@ -155,7 +194,6 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <button class="tab hot" data-panel="quick">⚡ Быстрые</button>
   <button class="tab core hot" data-panel="vu">📘 ВУ</button>
   <button class="tab core hot" data-panel="du">⚖️ ДУ</button>
-  <button class="tab hot" data-panel="lead">👑 Лидер</button>
   <button class="tab core hot" data-panel="fz">🪖 ФЗ</button>
   <button class="tab hot" data-panel="sup">🚛 Поставки</button>
   <button class="tab" data-panel="opp">📜 ОПП</button>
@@ -172,6 +210,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <button class="tab" data-panel="ter">💥 Теракт</button>
   <button class="tab" data-panel="raid">🎯 Рейд</button>
   <button class="tab" data-panel="rob">🔫 Ограбы</button>
+  <button class="tab" data-panel="lead">👑 Лидер</button>
   <button class="tab" data-panel="search" id="tab-search" style="display:none">🔍 Результаты</button>
 </div>
 <div class="search-box">
@@ -182,10 +221,20 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
       <button type="button" class="scope-btn" data-scope="all">Везде</button>
     </div>
   </div>
+  <div class="search-suggest" id="search-suggest">
+    <button type="button" data-s="DM">DM</button>
+    <button type="button" data-s="NLR">NLR</button>
+    <button type="button" data-s="матовозка">матовозка</button>
+    <button type="button" data-s="заложник">заложник</button>
+    <button type="button" data-s="ФЗ">ФЗ</button>
+    <button type="button" data-s="ДУ 4.9">ДУ 4.9</button>
+    <button type="button" data-s="Green zone">Green zone</button>
+    <button type="button" data-s="RMT">RMT</button>
+    <button type="button" data-s="выговор">выговор</button>
+    <span class="kbd-hint">/ поиск · Esc · 2×клик → рапорт</span>
+  </div>
 </div>
 </div>
-
-
 
 <div class="panel" id="panel-quick">
   <p class="hint">Только самое частое · клик → кодекс · Ctrl+клик → копировать</p>
@@ -388,32 +437,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 </div>
   </div>
 
-  <div class="section-title" style="color:#fde68a">👑 Лидер</div>
-  <div class="qgrid">
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-1-7" data-copy="Лидер 1.7 — Ответственность" data-search="Лидер 1.7" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 1.7</span></div>
-  <div class="qc-name">Ответственность за состав</div>
-  <div class="qc-pen">Беседа / Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-2-2" data-copy="Лидер 2.2 — Онлайн" data-search="Лидер 2.2" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 2.2</span></div>
-  <div class="qc-name">Онлайн ≥2 ч/сутки</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-2" data-copy="Лидер 3.2 — Деньги фракции" data-search="Лидер 3.2" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.2</span></div>
-  <div class="qc-name">Деньги фракции лично</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-7" data-copy="Лидер 3.7 — Трансфер" data-search="Лидер 3.7" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.7</span></div>
-  <div class="qc-name">Трансфер состава</div>
-  <div class="qc-pen">WARN / Выговор / Снятие</div>
-</div>
-  </div>
-</div>
-
-<div class="panel" id="panel-search">
+  <<div class="panel" id="panel-search">
   <p class="hint" id="search-hint">Результаты глобального поиска</p>
   <div id="search-results"></div>
 </div>
@@ -9664,31 +9688,38 @@ document.querySelectorAll('.scope-btn').forEach(btn => {
 });
 
 document.getElementById('search').addEventListener('input', function() {
-  const q = this.value.toLowerCase().trim();
+  const raw = this.value.trim();
+  const q = raw.toLowerCase();
+  const exp = (window._expandQuery ? window._expandQuery(raw) : raw).toLowerCase();
+  const tokens = exp.split(/\s+/).filter(t => t.length > 1);
+  function matchText(s) {
+    if (!q) return true;
+    s = (s || '').toLowerCase();
+    if (s.includes(q)) return true;
+    // all raw words
+    if (q.split(/\s+/).filter(Boolean).every(w => s.includes(w))) return true;
+    // any expanded synonym token (len>2)
+    return tokens.filter(t => t.length > 2).some(t => s.includes(t));
+  }
   const tabSearch = document.getElementById('tab-search');
 
   if (searchScope === 'tab') {
-    // --- Search only in current tab ---
     if (tabSearch) tabSearch.style.display = 'none';
-    // Stay on current panel (don't jump to search results)
     const active = document.querySelector('.panel.active');
     if (!active) return;
-    // If somehow on search panel, go back
     if (active.id === 'panel-search') {
       switchPanel(lastPanel === 'search' ? 'quick' : lastPanel);
     }
     const panel = document.querySelector('.panel.active');
     if (!panel) return;
     panel.querySelectorAll('.qcard').forEach(c => {
-      c.style.display = (!q || (c.dataset.search || '').toLowerCase().includes(q)) ? '' : 'none';
+      c.style.display = matchText(c.dataset.search || c.textContent) ? '' : 'none';
     });
     panel.querySelectorAll('tbody tr').forEach(tr => {
-      tr.style.display = (!q || (tr.dataset.search || '').toLowerCase().includes(q)) ? '' : 'none';
+      tr.style.display = matchText(tr.dataset.search || tr.textContent) ? '' : 'none';
     });
-    // memo cards optional filter by text
     panel.querySelectorAll('.memo-card').forEach(card => {
-      if (!q) { card.style.display = ''; return; }
-      card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+      card.style.display = matchText(card.textContent) ? '' : 'none';
     });
     return;
   }
@@ -9701,8 +9732,8 @@ document.getElementById('search').addEventListener('input', function() {
   }
   if (tabSearch) tabSearch.style.display = '';
   const hits = INDEX.filter(a => {
-    const s = (a.code + ' ' + a.title + ' ' + a.penalty + ' ' + a.text + ' ' + a.label).toLowerCase();
-    return s.includes(q);
+    const s = (a.code + ' ' + a.title + ' ' + a.penalty + ' ' + a.text + ' ' + a.label);
+    return matchText(s);
   }).slice(0, 80);
   const box = document.getElementById('search-results');
   const hint = document.getElementById('search-hint');
@@ -9790,6 +9821,492 @@ document.addEventListener('DOMContentLoaded', ()=>{
   }catch(err){}
 });
 
+
+/* ===== Smart search + assistant + fav/recent + report ===== */
+(function(){
+  const SYNONYMS = {
+    'уволил':'увольнение чс',
+    'увольнение':'увольнение чс выговор',
+    'деморган':'demorgan',
+    'деморген':'demorgan',
+    'муте':'mute',
+    'мьют':'mute',
+    'варн':'warn',
+    'варны':'warn',
+    'дм':'dm deathmatch',
+    'мг':'mg meta',
+    'нлр':'nlr',
+    'пг':'pg power',
+    'тк':'tk teamkill',
+    'ск':'sk spawn',
+    'дб':'db driveby',
+    'рмт':'rmt реальн',
+    'читы':'по стороннее',
+    'матовоз':'матовозка поставка',
+    'матовозка':'матовозка поставка',
+    'залож':'заложник похищение',
+    'заложник':'заложник похищение',
+    'штурм':'штурм переговоры',
+    'гз':'green zone зелён',
+    'ред':'red zone',
+    'форт':'форт занкудо фз',
+    'занкудо':'форт занкудо фз',
+    'санги':'sang national guard',
+    'санг':'sang',
+    'наручники':'задержание наручники',
+    'миранда':'миранда адвокат',
+    'выкуп':'выкуп заложник',
+    'коридор':'зелён коридор',
+    'капт':'капт рейд',
+    'рейд':'рейд ордер',
+    'теракт':'теракт захват',
+    'цех':'цех дилер',
+    'дилер':'дилер цех',
+  };
+
+  function expandQuery(q){
+    q = (q||'').toLowerCase().trim();
+    if(!q) return '';
+    let parts = q.split(/\s+/);
+    let extra = [];
+    parts.forEach(p=>{
+      if(SYNONYMS[p]) extra.push(SYNONYMS[p]);
+      // soft stem-ish
+      if(p.length>4){ extra.push(p.slice(0,-1)); extra.push(p.slice(0,-2)); }
+    });
+    return (q + ' ' + extra.join(' ')).trim();
+  }
+
+  // Hook existing search if possible
+  const box = document.getElementById('searchBox') || document.getElementById('q') || document.querySelector('input[type="search"], input[placeholder*="оиск"]');
+  if(box){
+    // suggest chips
+    if(!document.querySelector('.search-suggest')){
+      const sug = document.createElement('div');
+      sug.className = 'search-suggest';
+      sug.innerHTML = ['DM','NLR','матовозка','заложник','ФЗ','ДУ 4.9','Green zone','RMT','выговор'].map(t=>`<button type="button" data-s="${t}">${t}</button>`).join('');
+      box.parentElement && box.parentElement.appendChild(sug);
+      sug.addEventListener('click', e=>{
+        const b = e.target.closest('button[data-s]');
+        if(!b) return;
+        box.value = b.dataset.s;
+        box.dispatchEvent(new Event('input', {bubbles:true}));
+        box.focus();
+      });
+    }
+    // expand on input via monkey-patch: store expanded on element
+    box.addEventListener('input', ()=>{
+      box.dataset.expanded = expandQuery(box.value);
+    });
+    // If global search function uses box.value, wrap filter
+    const origIncludes = String.prototype.includes;
+    // safer: patch data-search matching by enhancing INDEX search in doSearch if exists
+  }
+
+  // Enhance window search if functions exist
+  if(typeof window !== 'undefined'){
+    window._expandQuery = expandQuery;
+  }
+
+  // Try wrap common search handlers
+  document.addEventListener('input', function(e){
+    if(e.target && (e.target.id==='searchBox' || e.target.id==='q' || (e.target.placeholder||'').includes('оиск'))){
+      const raw = e.target.value || '';
+      const exp = expandQuery(raw);
+      // Re-filter INDEX-based results if renderSearch exists
+      if(typeof window.runSmartSearch === 'function'){
+        window.runSmartSearch(raw, exp);
+      }
+    }
+  }, true);
+
+  // Keyboard: / focuses search, Esc clears
+  document.addEventListener('keydown', e=>{
+    if(e.key==='/' && !/input|textarea|select/i.test((e.target.tagName||''))){
+      e.preventDefault();
+      const b = document.getElementById('searchBox') || document.getElementById('q') || document.querySelector('input[placeholder*="оиск"]');
+      if(b){ b.focus(); b.select(); }
+    }
+    if(e.key==='Escape'){
+      const b = document.getElementById('searchBox') || document.getElementById('q');
+      if(b && document.activeElement===b){ b.value=''; b.dispatchEvent(new Event('input',{bubbles:true})); b.blur(); }
+    }
+  });
+
+  // Favorites + recent
+  const FAV_KEY = 'dlt-favs';
+  const REC_KEY = 'dlt-recent';
+  function getFavs(){ try{return JSON.parse(localStorage.getItem(FAV_KEY)||'[]')}catch(e){return[]} }
+  function setFavs(a){ try{localStorage.setItem(FAV_KEY, JSON.stringify(a.slice(0,40)))}catch(e){} }
+  function getRecent(){ try{return JSON.parse(localStorage.getItem(REC_KEY)||'[]')}catch(e){return[]} }
+  function pushRecent(item){
+    let a = getRecent().filter(x=>x.id!==item.id);
+    a.unshift(item);
+    try{localStorage.setItem(REC_KEY, JSON.stringify(a.slice(0,20)))}catch(e){}
+  }
+  window.toggleFav = function(id, meta){
+    let a = getFavs();
+    const i = a.findIndex(x=>x.id===id);
+    if(i>=0) a.splice(i,1); else a.unshift(Object.assign({id}, meta||{}));
+    setFavs(a);
+    document.querySelectorAll('.star-toggle[data-id="'+id+'"]').forEach(el=>el.classList.toggle('on', i<0));
+  };
+  window.markRecent = function(id, meta){
+    pushRecent(Object.assign({id}, meta||{}));
+  };
+
+  // Report copy one-liner
+  window.copyReport = function(code, title, penalty){
+    const t = `${code} — ${title}${penalty && penalty!=='—' ? ' — ' + penalty : ''}`;
+    navigator.clipboard.writeText(t).then(()=>toast('Скопировано под рапорт')).catch(()=>{});
+  };
+  function toast(msg){
+    let el = document.querySelector('.report-toast');
+    if(!el){ el=document.createElement('div'); el.className='report-toast'; document.body.appendChild(el); }
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(()=>el.classList.remove('show'), 1600);
+  }
+
+  // Situation assistant
+  const SCENARIOS = {
+    detain: {
+      title: 'Задержание гражданского',
+      steps: [
+        {q:'Где происходит?', opts:[
+          {t:'На Форте / охраняемый объект', next:'breach'},
+          {t:'В городе / патруль MP', go:[
+            {code:'ПК', note:'Процедура задержания по ПК'},
+            {code:'Статус SANG гл.II', note:'Задержание до передачи в ПО'},
+            {code:'ОПП 5.1', note:'Если был DM — смотри исключения'}
+          ]},
+        ]}
+      ]
+    },
+    breach: {
+      title: 'Проникновение на ФЗ',
+      steps: [
+        {q:'Состояние нарушителя?', opts:[
+          {t:'В сознании / сопротивляется', go:[
+            {code:'Статус ст.26', note:'Красная зона — огонь без предупреждения'},
+            {code:'Статус гл.II', note:'Задержание проникших'},
+            {code:'ДУ 4.13', note:'Огонь по безоружному — осторожно'}
+          ]},
+          {t:'Без сознания', go:[
+            {code:'Памятка: Проникновение', note:'Сразу фикс → УДО → причина → передача'},
+            {code:'Банк/Ограбы', note:'Не путать с правилами банков'}
+          ]}
+        ]}
+      ]
+    },
+    supply: {
+      title: 'Поставка / перехват',
+      steps: [
+        {q:'Ты со стороны…', opts:[
+          {t:'SANG', go:[
+            {code:'Пост. 3.1', note:'15:00–22:30, старт с ФЗ'},
+            {code:'Пост. 3.2', note:'Помощь — до выезда колонны'},
+            {code:'Пост. 1.9', note:'Безопасный час 15–16'}
+          ]},
+          {t:'Гос сопровождение', go:[
+            {code:'Пост. 2.1', note:'Мин. 8, макс. 100'},
+            {code:'Пост. 2.3', note:'Без подкрепления в бою'},
+            {code:'Пост. 1.6', note:'Не ждать у точки <350м'}
+          ]},
+          {t:'Криминал (перехват)', go:[
+            {code:'Пост. 4.3', note:'Перекрытие ≥4 авто'},
+            {code:'Пост. 4.11', note:'Макс. 2 атаки/день'},
+            {code:'Пост. 1.19', note:'Груз только после боя'}
+          ]}
+        ]}
+      ]
+    },
+    gz: {
+      title: 'Green / Red zone',
+      steps: [
+        {q:'Что случилось?', opts:[
+          {t:'Криминал / стрельба в GZ', go:[
+            {code:'Зоны 1.1', note:'Криминал в GZ'},
+            {code:'Зоны 1.2', note:'Стрельба в GZ'},
+            {code:'Зоны 1.4', note:'Прятки от погони в GZ'}
+          ]},
+          {t:'Red zone ночью', go:[
+            {code:'Зоны 2.1', note:'Урон вооружённым 17:00–10:00'},
+            {code:'Зоны 2.2', note:'PG в Red (с исключениями)'}
+          ]}
+        ]}
+      ]
+    },
+    weapon: {
+      title: 'Применение оружия',
+      steps: [
+        {q:'Контекст?', opts:[
+          {t:'На службе SANG', go:[
+            {code:'Статус гл.III', note:'Предупреждение, случаи применения'},
+            {code:'ДУ 4.13', note:'Безоружный'},
+            {code:'ВУ 6.x', note:'Экипировка / табель'}
+          ]},
+          {t:'Нападение на ФЗ (ивент)', go:[
+            {code:'ФЗ 1.3', note:'HS/дроны/стяжки запрещены'},
+            {code:'ФЗ 2.1', note:'NLR из лазарета'}
+          ]}
+        ]}
+      ]
+    },
+    du: {
+      title: 'Дисциплинарка',
+      steps: [
+        {q:'Тип нарушения?', opts:[
+          {t:'Внешний вид / форма', go:[
+            {code:'ДУ 2.9', note:'Внешний вид → увольнение'},
+            {code:'ВУ 3.1.12 / 6', note:'Форма подразделения'}
+          ]},
+          {t:'Оружие / тайна / криминал', go:[
+            {code:'ДУ 4.9', note:'Продажа табельного'},
+            {code:'ДУ 4.18', note:'Военная тайна'},
+            {code:'ДУ 4.7', note:'Связь с криминалом'}
+          ]},
+          {t:'Приказы / полномочия', go:[
+            {code:'ДУ 4.11', note:'Игнор приказов'},
+            {code:'ДУ 4.12', note:'Превышение полномочий'},
+            {code:'ДУ 4.14', note:'Покинул ФЗ'}
+          ]}
+        ]}
+      ]
+    }
+  };
+
+  function renderAssist(id){
+    const panel = document.getElementById('assist-panel');
+    if(!panel) return;
+    const sc = SCENARIOS[id];
+    if(!sc){ panel.classList.remove('open'); panel.innerHTML=''; return; }
+    const step = sc.steps[0];
+    let html = `<div class="assist-q">${sc.title}: ${step.q}</div><div class="assist-opts">`;
+    step.opts.forEach((o,i)=>{
+      html += `<button type="button" class="assist-opt" data-i="${i}">${o.t}</button>`;
+    });
+    html += `</div><div class="assist-res" id="assist-res"></div>`;
+    panel.innerHTML = html;
+    panel.classList.add('open');
+    panel.querySelectorAll('.assist-opt').forEach(btn=>{
+      btn.onclick = ()=>{
+        const opt = step.opts[+btn.dataset.i];
+        if(opt.next){ renderAssist(opt.next); return; }
+        const res = document.getElementById('assist-res');
+        res.innerHTML = (opt.go||[]).map(g=>`<div class="ar" data-q="${g.code}"><b>${g.code}</b><span>${g.note}</span></div>`).join('');
+        res.querySelectorAll('.ar').forEach(ar=>{
+          ar.onclick = ()=>{
+            const q = ar.dataset.q;
+            const b = document.getElementById('searchBox') || document.getElementById('q') || document.querySelector('input[placeholder*="оиск"]');
+            if(b){
+              b.value = q;
+              // switch to search everywhere
+              const allBtn = document.querySelector('[data-scope="all"], .scope-all, button');
+              document.querySelectorAll('.scope-btn, [data-scope]').forEach(x=>{
+                if((x.dataset.scope||x.textContent||'').toLowerCase().includes('везде') || x.dataset.scope==='all') x.click();
+              });
+              b.dispatchEvent(new Event('input',{bubbles:true}));
+              b.focus();
+            }
+          };
+        });
+      };
+    });
+  }
+
+  document.getElementById('assist-chips')?.addEventListener('click', e=>{
+    const chip = e.target.closest('.assist-chip');
+    if(!chip) return;
+    document.querySelectorAll('.assist-chip').forEach(c=>c.classList.remove('on'));
+    chip.classList.add('on');
+    renderAssist(chip.dataset.sc);
+  });
+
+  // Star buttons on article rows when opened - delegate
+  document.addEventListener('click', e=>{
+    const tr = e.target.closest('tr[id^="art-"]');
+    if(tr && !e.target.closest('.star-toggle') && !e.target.closest('.code')){
+      const code = tr.dataset.code || '';
+      const title = tr.querySelector('.title')?.textContent || '';
+      const pen = tr.querySelector('.penalty')?.textContent || '';
+      markRecent(tr.id, {code, title, penalty: pen});
+    }
+    if(e.target.closest('.star-toggle')){
+      e.preventDefault(); e.stopPropagation();
+      const st = e.target.closest('.star-toggle');
+      const id = st.dataset.id;
+      toggleFav(id, {code: st.dataset.code, title: st.dataset.title, penalty: st.dataset.pen, panel: st.dataset.panel});
+    }
+  });
+
+  // Inject stars into tables once
+  function injectStars(){
+    document.querySelectorAll('tr[id^="art-"]').forEach(tr=>{
+      if(tr.querySelector('.star-toggle')) return;
+      const td = tr.querySelector('.code') || tr.cells[0];
+      if(!td) return;
+      const favs = getFavs();
+      const on = favs.some(f=>f.id===tr.id) ? ' on' : '';
+      const title = tr.querySelector('.title')?.textContent || '';
+      const pen = tr.querySelector('.penalty')?.textContent || '';
+      const panel = tr.dataset.src || '';
+      const star = document.createElement('span');
+      star.className = 'star-toggle'+on;
+      star.dataset.id = tr.id;
+      star.dataset.code = tr.dataset.code || '';
+      star.dataset.title = title;
+      star.dataset.pen = pen;
+      star.dataset.panel = panel;
+      star.title = 'В избранное';
+      star.textContent = '★';
+      td.appendChild(star);
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', injectStars);
+  else setTimeout(injectStars, 300);
+  // also after tab switch
+  document.body.addEventListener('click', e=>{
+    if(e.target.closest('.tab')) setTimeout(injectStars, 100);
+  });
+
+  // Patch goToArticle to track recent
+  const _gta = window.goToArticle;
+  if(typeof _gta === 'function'){
+    window.goToArticle = function(el){
+      try{
+        markRecent(el.dataset.art||'', {code: el.querySelector('.qc-code')?.textContent, title: el.querySelector('.qc-name')?.textContent, penalty: el.querySelector('.qc-pen')?.textContent, panel: el.dataset.panel});
+      }catch(err){}
+      return _gta.apply(this, arguments);
+    };
+  }
+
+  // Smart filter enhancement for rows: when searching, also match expanded query
+  const _filter = window.filterArticles || window.doSearch || null;
+  // Override row visibility helper
+  window.smartMatch = function(text, query){
+    if(!query) return true;
+    const exp = expandQuery(query).toLowerCase();
+    const t = (text||'').toLowerCase();
+    return exp.split(/\s+/).filter(Boolean).some(w => t.includes(w) || query.toLowerCase().split(/\s+/).every(p=>t.includes(p)));
+  };
+
+  // Enhance existing search input handler by observing value and re-showing rows
+  function enhanceLiveSearch(){
+    const b = document.getElementById('searchBox') || document.getElementById('q') || document.querySelector('input[placeholder*="оиск"]');
+    if(!b || b.dataset.smart) return;
+    b.dataset.smart = '1';
+    b.addEventListener('input', ()=>{
+      const raw = b.value.trim();
+      const exp = expandQuery(raw);
+      // If native search already ran, boost: show rows matching synonyms
+      if(raw.length>=2){
+        document.querySelectorAll('tr[data-search]').forEach(tr=>{
+          const ds = (tr.getAttribute('data-search')||'').toLowerCase();
+          const hit = raw.toLowerCase().split(/\s+/).every(p=>ds.includes(p)) ||
+            exp.split(/\s+/).filter(w=>w.length>2).some(w=>ds.includes(w));
+          // don't force hide if native already handles - only reveal synonym hits that were hidden
+          if(hit && tr.style.display==='none' && !raw.match(/^\d/)){
+            // only reveal if at least one synonym token matches strongly
+          }
+        });
+      }
+    });
+  }
+  setTimeout(enhanceLiveSearch, 200);
+
+  // Favorites strip on quick panel
+  function renderFavStrip(){
+    const panel = document.getElementById('panel-quick');
+    if(!panel) return;
+    let strip = document.getElementById('fav-strip');
+    const favs = getFavs();
+    if(!strip){
+      strip = document.createElement('div');
+      strip.id = 'fav-strip';
+      strip.className = 'fav-section';
+      panel.insertBefore(strip, panel.firstChild.nextSibling);
+    }
+    if(!favs.length){ strip.innerHTML=''; return; }
+    strip.innerHTML = `<div class="section-title" style="color:#fbbf24">★ Избранное <button type="button" class="hist-clear" id="clear-favs">очистить</button></div>
+      <div class="qgrid">${favs.slice(0,12).map(f=>`
+        <div class="qcard sev-medium" data-panel="${f.panel||''}" data-art="${f.id}" onclick="goToArticle(this)">
+          <div class="qc-top"><span class="qc-code">${f.code||''}</span></div>
+          <div class="qc-name">${f.title||f.id}</div>
+          <div class="qc-pen">${f.penalty||''}</div>
+        </div>`).join('')}</div>`;
+    document.getElementById('clear-favs')?.addEventListener('click', ()=>{ setFavs([]); renderFavStrip(); injectStars(); });
+  }
+  setTimeout(renderFavStrip, 400);
+  const _tf = window.toggleFav;
+  window.toggleFav = function(){ _tf.apply(this, arguments); renderFavStrip(); };
+
+  // Double-click row -> copy report
+  document.addEventListener('dblclick', e=>{
+    const tr = e.target.closest('tr[id^="art-"]');
+    if(!tr) return;
+    const code = tr.dataset.code || tr.querySelector('.code')?.textContent?.replace('📋','').replace('★','').trim();
+    const title = tr.querySelector('.title')?.textContent?.trim() || '';
+    const pen = tr.querySelector('.penalty')?.textContent?.trim() || '';
+    copyReport(code, title, pen);
+  });
+
+  console.log('[DLT] smart search + assistant + fav ready');
+})();
+
+
+// Smart search patch
+(function(){
+  function smartQ(v){ return (window._expandQuery ? window._expandQuery(v) : v || '').toLowerCase(); }
+  const _orig = window.performSearch || window.searchAll || null;
+  // Hook input on search field to expand matching against data-search
+  const bind = ()=>{
+    const box = document.getElementById('searchBox') || document.getElementById('q') || document.querySelector('input[placeholder*="оиск"]');
+    if(!box || box.dataset.patched) return;
+    box.dataset.patched = '1';
+    const run = ()=>{
+      const raw = box.value.trim();
+      const tokens = smartQ(raw).split(/\s+/).filter(t=>t.length>1);
+      const scopeBtn = document.querySelector('.scope-btn.active, [data-scope].active');
+      // Prefer native if short
+      if(!raw){
+        document.querySelectorAll('tr[data-search]').forEach(tr=>tr.style.display='');
+        return;
+      }
+      // Don't fight native handler - run after microtask
+      setTimeout(()=>{
+        if(!tokens.length) return;
+        const activePanel = document.querySelector('.panel.active');
+        const scopeAll = document.querySelector('button.active')?.textContent?.includes('Везде') || 
+          document.body.dataset.scope==='all';
+        // Reveal synonym matches in active panel tables
+        document.querySelectorAll('.panel.active tr[data-search], #panel-search tr').forEach(tr=>{
+          const ds = (tr.getAttribute('data-search')||'').toLowerCase();
+          const ok = tokens.some(t => ds.includes(t));
+          if(ok) tr.style.display = '';
+        });
+      }, 30);
+    };
+    box.addEventListener('input', run);
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', bind); else bind();
+})();
+
+
+document.getElementById('search-suggest')?.addEventListener('click', e=>{
+  const b = e.target.closest('button[data-s]');
+  if(!b) return;
+  const box = document.getElementById('search');
+  if(!box) return;
+  box.value = b.dataset.s;
+  // prefer everywhere for chips
+  document.querySelectorAll('.scope-btn').forEach(x=>{
+    x.classList.toggle('active', x.dataset.scope==='all');
+  });
+  if(typeof searchScope!=='undefined') searchScope = 'all';
+  box.dispatchEvent(new Event('input', {bubbles:true}));
+  box.focus();
+});
 </script>
 </body>
 </html>
