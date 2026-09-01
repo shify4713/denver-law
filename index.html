@@ -9732,7 +9732,31 @@ header{box-shadow:0 4px 20px rgba(0,0,0,.35)}
 <div class="assist-chat" id="assist-chat" aria-live="polite">
   <div class="assist-chat-h">
     <span>🧭 Ассистент SANG</span>
-    <button type="button" id="assist-close" aria-label="Закрыть">×</button>
+    <span style="display:flex;gap:.35rem;align-items:center">
+      <button type="button" id="assist-settings" title="API" style="background:transparent;border:none;color:#fff;font-size:1rem;cursor:pointer">⚙️</button>
+      <button type="button" id="assist-close" aria-label="Закрыть">×</button>
+    </span>
+  </div>
+  <div id="assist-settings-panel" style="display:none;padding:.75rem;border-bottom:1px solid #334155;background:#0a101a;font-size:.8rem;color:#cbd5e1">
+    <div style="margin-bottom:.45rem;font-weight:600;color:#7dd3fc">Дополнительно (не обязательно) — API</div>
+    <label style="display:block;margin:.3rem 0 .15rem">Провайдер</label>
+    <select id="api-provider" style="width:100%;padding:.4rem;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0">
+      <option value="worker">Shared Worker (бесплатно для всех)</option>
+      <option value="openrouter">OpenRouter (свой ключ)</option>
+      <option value="openai">OpenAI</option>
+      <option value="custom">Custom base URL</option>
+    </select>
+    <label style="display:block;margin:.45rem 0 .15rem">Base URL</label>
+    <input id="api-base" type="text" placeholder="https://dlt-ai.xxx.workers.dev  или https://openrouter.ai/api/v1" style="width:100%;padding:.4rem;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;box-sizing:border-box">
+    <label style="display:block;margin:.45rem 0 .15rem">Модель</label>
+    <input id="api-model" type="text" placeholder="openai/gpt-4o-mini" style="width:100%;padding:.4rem;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;box-sizing:border-box">
+    <label style="display:block;margin:.45rem 0 .15rem">API Key</label>
+    <input id="api-key" type="password" placeholder="sk-... или or-..." style="width:100%;padding:.4rem;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;box-sizing:border-box">
+    <div style="display:flex;gap:.4rem;margin-top:.55rem">
+      <button type="button" id="api-save" style="flex:1;padding:.45rem;border:none;border-radius:8px;background:#38bdf8;color:#0f172a;font-weight:700;cursor:pointer">Сохранить</button>
+      <button type="button" id="api-clear" style="padding:.45rem .6rem;border:1px solid #475569;border-radius:8px;background:transparent;color:#94a3b8;cursor:pointer">Сброс</button>
+    </div>
+    <p style="margin:.5rem 0 0;font-size:.72rem;color:#94a3b8;line-height:1.35">Shared Worker = один бесплатный деплой на Cloudflare для всего отряда. Личный ключ — OpenRouter/OpenAI (localStorage).</p>
   </div>
   <div class="assist-chat-body" id="assist-chat-body"></div>
   <div class="assist-chat-in">
@@ -10644,132 +10668,11 @@ document.addEventListener('click', function(e) {
 
 
 /* ===== Situation assistant from free-text search ===== */
-window.SITUATIONS = [
-  {
-    keys: ['маск', 'не снял маск', 'скрыть лицо', 'балаклав'],
-    title: 'Маска / сокрытие лица',
-    steps: [
-      'Спокойно зафиксируй: кто, где, что сказал/показал (камера).',
-      'Если ты гражданский и тебя остановили — спроси основание и звание/подразделение.',
-      'Не спорь на эмоциях. Коротко: «Какое законное основание?»',
-      'Если ты SANG/гос: напомни про правила масок в зоне/на службе (ВУ/статус/ОПП).',
-      'Передача в ПО — по процедуре, без самосуда.'
-    ],
-    links: ['маска', 'ДУ 2.9', 'ОПП', 'Статус SANG']
-  },
-  {
-    keys: ['выстрел', 'стрелял', 'стреляют', 'открыл огонь', 'дм', 'dm'],
-    title: 'Стрельба / угроза оружием',
-    steps: [
-      'Укрытие → оценка: цель (ты / гражданский / гос).',
-      'Камера/фиксация. Не геройствуй без прикрытия.',
-      'Команда: «Огонь прекратить! Оружие на землю!» + обозначь себя.',
-      'Green zone? — отдельный режим (Зоны 1.2). Red/ФЗ — свои правила.',
-      'После: рапорт, статья (УК/ОПП DM), передача задержанного.'
-    ],
-    links: ['DM', 'Зоны 1.2', 'УК 6', 'ФЗ 1.3']
-  },
-  {
-    keys: ['задержал', 'арестова', 'наручник', 'задержан'],
-    title: 'Задержание',
-    steps: [
-      'Основание вслух + фиксация.',
-      'Представься, причина, куда следует.',
-      'Миранда/права — по ПК/ПГО, если требуется.',
-      'Не издевайся, не тяни без причины (ПГО/ОПП).',
-      'Передача шерифам/FIB — вызвать или доставить по памятке.'
-    ],
-    links: ['задержание', 'ПГО', 'ПК', 'Миранда']
-  },
-  {
-    keys: ['матовоз', 'поставк', 'перехват', 'колонн'],
-    title: 'Поставка / матовозка',
-    steps: [
-      'Уточни роль: SANG / гос сопровождение / перехват.',
-      'SANG: время 15:00–22:30, старт с ФЗ, помощь — до выезда.',
-      'Не ждать у точки загрузки <350 м.',
-      'Груз не трогать до конца перестрелки. HS — нельзя.',
-      'Видео 2 шт., 720p, 72 ч.'
-    ],
-    links: ['матовозка', 'Пост. 3.1', 'Пост. 1.6', 'Пост. 1.19']
-  },
-  {
-    keys: ['форт', 'занкудо', 'проник', 'на фз', 'на базе'],
-    title: 'ФЗ / проникновение',
-    steps: [
-      'Красная зона / охраняемый объект — особые полномочия.',
-      'Бессознательный: фикс → основание → передача, без самодеятельности.',
-      'Огонь по безоружному — только по исключениям (ДУ 4.13).',
-      'Ивент ФЗ: HS/дроны/стяжки запрещены.'
-    ],
-    links: ['ФЗ', 'Проникновение', 'ДУ 4.13', 'Статус']
-  },
-  {
-    keys: ['залож', 'выкуп', 'теракт', 'переговор'],
-    title: 'Заложник / теракт',
-    steps: [
-      'Не геройствуй один. Жди старших / переговорщика.',
-      'Выкуп/требования — по лимитам правил теракта.',
-      'Переговорщика в заложники брать нельзя.',
-      'Зелёный коридор — короткое окно, соблюдай с обеих сторон.'
-    ],
-    links: ['заложник', 'Теракт', 'выкуп']
-  },
-  {
-    keys: ['рейд', 'ордер', 'склад'],
-    title: 'Рейд',
-    steps: [
-      'Нужен ордер + куратор (кроме военного положения).',
-      'Успех: контроль >10 мин или меньшинство обороны → 1/2 склада.',
-      'Слив склада до/во время — бан. Отпор только по PG.'
-    ],
-    links: ['рейд', 'ордер']
-  }
-];
 
-window.matchSituation = function(raw) {
-  raw = (raw || '').toLowerCase();
-  if (raw.length < 4) return null;
-  for (var i = 0; i < window.SITUATIONS.length; i++) {
-    var s = window.SITUATIONS[i];
-    for (var k = 0; k < s.keys.length; k++) {
-      if (raw.indexOf(s.keys[k]) !== -1) return s;
-    }
-  }
-  // soft: any word overlap for longer queries
-  if (raw.split(/\s+/).length >= 4) {
-    for (var i = 0; i < window.SITUATIONS.length; i++) {
-      var s = window.SITUATIONS[i];
-      var hit = 0;
-      for (var k = 0; k < s.keys.length; k++) {
-        if (raw.indexOf(s.keys[k].slice(0, 4)) !== -1) hit++;
-      }
-      if (hit >= 1) return s;
-    }
-  }
-  return null;
-};
 
-window.renderSituation = function(raw) {
-  var host = document.getElementById('situ-host');
-  if (!host) {
-    var boxR = document.getElementById('search-results');
-    if (!boxR) return;
-    host = document.createElement('div');
-    host.id = 'situ-host';
-    boxR.parentNode.insertBefore(host, boxR);
-  }
-  var s = window.matchSituation(raw);
-  if (!s) { host.innerHTML = ''; return; }
-  var html = '<div class="situ-box"><h3>🧭 ' + s.title + '</h3><ol>';
-  s.steps.forEach(function(step){ html += '<li>' + step + '</li>'; });
-  html += '</ol><div class="situ-links">';
-  s.links.forEach(function(l){
-    html += '<button type="button" data-situ-q="' + l.replace(/"/g,'') + '">' + l + '</button>';
-  });
-  html += '</div></div>';
-  host.innerHTML = html;
-};
+
+
+
 
 document.addEventListener('click', function(e) {
   var b = e.target.closest('[data-situ-q]');
@@ -10787,6 +10690,207 @@ document.addEventListener('click', function(e) {
 
 
 /* Chat assistant */
+
+/* ===== Smart Majestic / SANG assistant ===== */
+
+window.MAJ_SLANG = {
+  'каф':'задержание', 'кафнуть':'задержание', 'кафануть':'задержание', 'закафать':'задержание',
+  'кафы':'наручники', 'оск':'оскорбление', 'оски':'оскорбление', 'оскор':'оскорбление',
+  'санг':'sang', 'санга':'sang', 'сангов':'sang', 'нлр':'nlr', 'дм':'dm', 'мг':'mg', 'пг':'pg',
+  'деморган':'demorgan', 'демик':'demorgan', 'варн':'warn', 'матовоз':'матовозка', 'матовозка':'поставка',
+  'гз':'green zone', 'грин':'green zone', 'редка':'red zone', 'форт':'фз', 'занкудо':'фз', 'фз':'фз',
+  'миранда':'права', 'фикс':'камера', 'табель':'оружие', 'чс':'чёрный список', 'выговор':'выговор',
+  'строгач':'строгий выговор', 'рейд':'рейд', 'цех':'цех', 'дилер':'дилер', 'теракт':'теракт',
+  'залож':'заложник', 'выкуп':'выкуп', 'поставка':'поставка', 'перехват':'перехват',
+  'шериф':'шериф', 'фиб':'fib', 'лспд':'lspd', 'неподчинение':'сопротивление', 'маска':'маска'
+};
+
+window.expandMajestic = function(q) {
+  q = (q || '').toLowerCase().replace(/[.,!?]/g, ' ');
+  var extra = [];
+  q.split(/\s+/).forEach(function(p) {
+    if (!p) return;
+    if (window.MAJ_SLANG[p]) extra.push(window.MAJ_SLANG[p]);
+    Object.keys(window.MAJ_SLANG).forEach(function(k) {
+      if (k.length >= 3 && p.indexOf(k) === 0) extra.push(window.MAJ_SLANG[k]);
+    });
+  });
+  return (q + ' ' + extra.join(' ')).trim();
+};
+
+window.SITUATIONS = [
+  {
+    keys: ['каф', 'кафнуть', 'кафануть', 'закафать', 'наручник', 'задержал', 'задержан', 'арест'],
+    title: 'Задержание (каф)',
+    steps: [
+      '<b>Основание.</b> Без состава / ордера / проникновения на объект каф «просто так» — риск жалобы и разбора.',
+      '<b>Вслух:</b> кто ты (SANG, звание), за что задерживаешь, куда следует. Камера/фикс.',
+      '<b>Оски</b> сами по себе не всегда = автокаф. Нужен состав (оскорбление власти, угрозы, срыв службы) — не «не понравилось».',
+      '<b>Сила</b> — после отказа подчиниться законному требованию, не сразу с кулаков.',
+      '<b>Передача</b> шерифам/FIB по процедуре. Не держать без движения без причины.',
+      'Статьи смотри: ПГО, процессуалка, ОПП 5.x (DM), статус SANG.'
+    ],
+    links: ['задержание', 'ПГО', 'ОПП 5', 'Статус SANG']
+  },
+  {
+    keys: ['оск', 'оски', 'оскорб', 'мат ', 'унизил'],
+    title: 'Оскорбления (оски)',
+    steps: [
+      'Оцени: просто мат / оскорбление представителя власти / угрозы.',
+      'На посту SANG: фиксация → предупреждение → при составе — основание и каф по процедуре.',
+      'Если <b>тебя</b> кафают «за оски без статьи» — не бей, проси основание и звание, пиши IC жалобу.',
+      'Не уходи в nonRP-срач в /do и OOC.'
+    ],
+    links: ['оскорбление', 'АК', 'задержание']
+  },
+  {
+    keys: ['неподчин', 'сопротивле', 'не слуша', 'упирает', 'убегает'],
+    title: 'Неподчинение / сопротивление',
+    steps: [
+      'Законное требование + понятное время выполнить.',
+      'Фиксация отказа на камеру.',
+      'Потом сила / каф. Избиение «за характер» = разбор по ПГО/ОПП.'
+    ],
+    links: ['сопротивление', 'ПГО', 'задержание']
+  },
+  {
+    keys: ['маск', 'балаклав', 'скрыть лицо'],
+    title: 'Маска',
+    steps: [
+      'Где: город / ФЗ / служба — правила разные.',
+      'SANG на службе: форма и вид (ВУ, ДУ 2.9).',
+      'Гражданский: снять маску — только с основанием, не «потому что я так хочу».'
+    ],
+    links: ['маска', 'ДУ 2.9', 'ВУ']
+  },
+  {
+    keys: ['дм', 'dm', 'стреля', 'выстрел', 'убил', 'килл'],
+    title: 'Стрельба / DM',
+    steps: [
+      'Укрытие → кто цель → какая зона (GZ / Red / ФЗ).',
+      'Обозначь себя, команда прекратить огонь.',
+      'В <b>Green zone</b> стрельба жёстко ограничена (Зоны 1.2).',
+      'После: фиксация, задержание по основаниям, рапорт. Не добивай из тильта.'
+    ],
+    links: ['DM', 'Зоны 1.2', 'ОПП 5.1']
+  },
+  {
+    keys: ['матовоз', 'поставк', 'перехват', 'колонн'],
+    title: 'Поставка / матовозка',
+    steps: [
+      'Уточни роль: SANG / гос сопровождение / крим-перехват — разные пункты.',
+      '<b>SANG:</b> обычно 15:00–22:30, старт с ФЗ, помощь договаривать до выезда.',
+      'Не сидеть на точке загрузки ближе ~350 м.',
+      'Груз не трогать до конца боя. Heavy sniper / запрещёнку на ивентах — нельзя.',
+      'Видео: как в правилах поставок (часто 2 записи, 720p, хранение).'
+    ],
+    links: ['матовозка', 'Пост. 3.1', 'Пост. 1.6', 'Пост. 1.19']
+  },
+  {
+    keys: ['фз', 'форт', 'занкудо', 'проник'],
+    title: 'ФЗ / Форт Занкудо',
+    steps: [
+      'Охраняемый объект. Проникновение — жёсткий режим.',
+      'Бессознательный: фикс → основание → передача, без самосуда.',
+      'Огонь по безоружному — только исключения (см. ДУ 4.13).',
+      'На ивенте нападения на ФЗ — отдельные запреты (HS, дроны, стяжки и т.д.).'
+    ],
+    links: ['ФЗ', 'ДУ 4.13', 'Статус']
+  },
+  {
+    keys: ['выговор', 'строгач', 'увольнен', 'чс', 'дисциплин', 'ду '],
+    title: 'Дисциплинарка SANG (ДУ)',
+    steps: [
+      'Смотри ДУ: кто имеет право выписать и за что.',
+      'Часто жёстко: внешний вид 2.9, криминал 4.7, табель 4.9, тайна 4.18, уход с ФЗ 4.14.',
+      'Фиксируй приказы. Спорный приказ — обжалование старшим / MP, а не игнор в эфире.'
+    ],
+    links: ['ДУ 2.9', 'ДУ 4.9', 'ДУ 4.18', 'ДУ 4.14']
+  },
+  {
+    keys: ['рейд', 'ордер', 'склад'],
+    title: 'Рейд',
+    steps: [
+      'Нужен ордер и одобрение куратора (кроме отдельных режимов).',
+      'Успех: контроль территории >10 мин или меньшинство обороны → часть склада.',
+      'Не сливать склад до/во время без правил. Отпор — по PG.'
+    ],
+    links: ['рейд', 'ордер']
+  },
+  {
+    keys: ['залож', 'теракт', 'выкуп', 'переговор'],
+    title: 'Заложник / теракт',
+    steps: [
+      'Не геройствуй один. Жди старших и переговорщика.',
+      'Лимиты выкупа, время удержания, зелёный коридор — по правилам теракта/ограбов.',
+      'Переговорщика в заложники брать нельзя.'
+    ],
+    links: ['теракт', 'заложник', 'выкуп']
+  },
+  {
+    keys: ['гз', 'green', 'зелён'],
+    title: 'Green zone',
+    steps: [
+      'Криминал и стрельба в GZ сильно ограничены (Зоны 1.1–1.4).',
+      'Прятки от погони в GZ тоже наказуемы.',
+      'Исключения — только те, что прямо прописаны (мероприятия и т.п.).'
+    ],
+    links: ['Green zone', 'Зоны 1.2', 'Зоны 1.1']
+  },
+  {
+    keys: ['перед служб', 'экип', 'форма', 'камера', 'бодик'],
+    title: 'Перед сменой SANG',
+    steps: [
+      'Камера (облако SANG), форма своего подразделения, полный экип.',
+      'Только табель SANG, внешний вид без ирокеза/тату на лице (ДУ 2.9).',
+      'Медкарта, помнить ОПП 5.x (DM/MG).'
+    ],
+    links: ['ВУ 6', 'ДУ 2.9', 'ОПП 5']
+  }
+];
+
+window.matchSituation = function(raw) {
+  var t = window.expandMajestic(raw || '').toLowerCase();
+  if (t.length < 2) return null;
+  var best = null, bestScore = 0;
+  for (var i = 0; i < window.SITUATIONS.length; i++) {
+    var s = window.SITUATIONS[i], score = 0;
+    for (var k = 0; k < s.keys.length; k++) {
+      if (t.indexOf(s.keys[k]) !== -1) score += 2 + Math.min(4, s.keys[k].length / 2);
+    }
+    if (score > bestScore) { bestScore = score; best = s; }
+  }
+  return bestScore >= 2 ? best : null;
+};
+
+window.adviseSituation = function(raw) {
+  var s = window.matchSituation(raw);
+  if (!s) return null;
+  var html = '<b>' + s.title + '</b><ol style="margin:.45rem 0 0;padding-left:1.15rem">';
+  s.steps.forEach(function(step) { html += '<li style="margin:.28rem 0">' + step + '</li>'; });
+  html += '</ol><div style="margin-top:.5rem;font-size:.78rem;color:#94a3b8">Можно уточнить: кто ты (SANG/цив), зона (город/GZ/ФЗ), что уже сделал.</div>';
+  return { title: s.title, html: html, links: s.links || [] };
+};
+
+window.renderSituation = function(raw) {
+  var host = document.getElementById('situ-host');
+  var boxR = document.getElementById('search-results');
+  if (!boxR) return;
+  if (!host) {
+    host = document.createElement('div');
+    host.id = 'situ-host';
+    boxR.parentNode.insertBefore(host, boxR);
+  }
+  var adv = window.adviseSituation ? window.adviseSituation(raw) : null;
+  if (!adv) { host.innerHTML = ''; return; }
+  var html = '<div class="situ-box"><h3>🧭 ' + adv.title + '</h3>' + adv.html + '<div class="situ-links">';
+  (adv.links || []).forEach(function(l) {
+    html += '<button type="button" data-situ-q="' + l + '">' + l + '</button>';
+  });
+  html += '</div></div>';
+  host.innerHTML = html;
+};
+
 function initAssistChat() {
   var fab = document.getElementById('assist-fab');
   var chat = document.getElementById('assist-chat');
@@ -10794,12 +10898,13 @@ function initAssistChat() {
   var input = document.getElementById('assist-input');
   var sendBtn = document.getElementById('assist-send');
   var closeBtn = document.getElementById('assist-close');
-  if (!fab || !chat || !body) {
-    console.warn('assist: DOM not ready', !!fab, !!chat, !!body);
-    return;
-  }
+  var settingsBtn = document.getElementById('assist-settings');
+  var settingsPanel = document.getElementById('assist-settings-panel');
+  if (!fab || !chat || !body) return;
   if (fab.dataset.bound === '1') return;
   fab.dataset.bound = '1';
+  var history = [];
+  var busy = false;
 
   function addMsg(text, who, quick) {
     var d = document.createElement('div');
@@ -10819,6 +10924,49 @@ function initAssistChat() {
     }
     body.appendChild(d);
     body.scrollTop = body.scrollHeight;
+    return d;
+  }
+
+  function relatedArticles(text) {
+    if (typeof INDEX === 'undefined') return [];
+    var exp = (window.expandMajestic ? window.expandMajestic(text) : text).toLowerCase();
+    var words = exp.split(/\s+/).filter(function(w) { return w.length > 2; });
+    return INDEX.map(function(a) {
+      var s = (a.code + ' ' + a.title + ' ' + (a.penalty || '') + ' ' + (a.label || '')).toLowerCase();
+      var score = 0;
+      words.forEach(function(w) { if (s.indexOf(w) !== -1) score++; });
+      return { a: a, score: score };
+    }).filter(function(x) { return x.score > 0; })
+      .sort(function(x, y) { return y.score - x.score; })
+      .slice(0, 5)
+      .map(function(x) { return x.a; });
+  }
+
+  function localAnswer(text) {
+    var adv = window.adviseSituation ? window.adviseSituation(text) : null;
+    var arts = relatedArticles(text);
+    var html = '';
+    var quick = [];
+    if (adv) {
+      html = adv.html;
+      quick = (adv.links || []).slice();
+    } else {
+      html = '<b>Разобрал как общий вопрос</b><ol style="margin:.4rem 0 0;padding-left:1.15rem">';
+      html += '<li>Напиши <b>кто ты</b> (SANG / гос / цив) и <b>где</b> (город, GZ, ФЗ, поставка).</li>';
+      html += '<li>Что уже сделал и что хочешь сделать (каф, отпустить, стрельба, рапорт).</li>';
+      html += '<li>Можно коротко сленгом: <i>каф, оски, дм, гз, матовозка, фз, строгач</i>.</li></ol>';
+      quick = ['кафнуть за оски', 'дм в гз', 'матовозка', 'проник на фз', 'выговор за форму'];
+    }
+    if (arts.length) {
+      html += '<div style="margin-top:.65rem"><b>Близкие статьи из базы</b><ul style="margin:.3rem 0 0;padding-left:1.1rem">';
+      arts.forEach(function(a) {
+        html += '<li><b>' + (a.label || '') + ' ' + a.code + '</b> — ' + (a.title || '') +
+          (a.penalty ? ' <span style="color:#fbbf24">(' + a.penalty + ')</span>' : '') + '</li>';
+        quick.push((a.label || '') + ' ' + a.code);
+      });
+      html += '</ul></div>';
+    }
+    return { html: html, quick: quick.slice(0, 8) };
   }
 
   function openChat() {
@@ -10826,75 +10974,115 @@ function initAssistChat() {
     if (!body.dataset.ready) {
       body.dataset.ready = '1';
       addMsg(
-        'Привет. Локальный помощник по кодексам Denver / SANG.<br>Опиши ситуацию — дам шаги и статьи.',
+        'Привет. Пиши ситуацию обычными словами — распишу <b>что делать</b> и подкину статьи из базы.<br><br>Примеры ниже или свой текст.',
         'bot',
-        ['матовозка', 'ФЗ проникновение', 'DM', 'задержание', 'маска', 'ДУ 4.9']
+        ['кафнуть за оски', 'дм в гз', 'матовозка санг', 'проник на фз', 'выговор за форму']
       );
     }
-    setTimeout(function() { if (input) input.focus(); }, 30);
+    setTimeout(function() { if (input) input.focus(); }, 20);
   }
   function closeChat() { chat.classList.remove('open'); }
 
   fab.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
-    if (chat.classList.contains('open')) closeChat();
-    else openChat();
+    if (chat.classList.contains('open')) closeChat(); else openChat();
   });
   if (closeBtn) closeBtn.addEventListener('click', function(e) { e.preventDefault(); closeChat(); });
 
-  function replyFor(text) {
-    var t = (text || '').toLowerCase();
-    if (typeof matchSituation === 'function') {
-      var s = matchSituation(t);
-      if (s) {
-        var html = '<b>' + s.title + '</b><ol style="margin:.4rem 0 0;padding-left:1.1rem">';
-        s.steps.forEach(function(step) { html += '<li>' + step + '</li>'; });
-        html += '</ol>';
-        return { html: html, quick: s.links || [] };
-      }
+  // Settings optional / advanced
+  if (settingsBtn) settingsBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (!settingsPanel) return;
+    var show = settingsPanel.style.display === 'none' || settingsPanel.style.display === '';
+    settingsPanel.style.display = show ? 'block' : 'none';
+    if (show && window.DLT_API) {
+      var c = window.DLT_API.load();
+      var d = window.DLT_API.defaults(c.provider);
+      var prov = document.getElementById('api-provider');
+      var base = document.getElementById('api-base');
+      var model = document.getElementById('api-model');
+      var key = document.getElementById('api-key');
+      if (prov) prov.value = c.provider || 'openrouter';
+      if (base) base.value = c.base || d.base;
+      if (model) model.value = c.model || d.model;
+      if (key) key.value = c.key || '';
     }
-    if (/^(ду|ву|ук|ак|пго|опп|фз|пост)/i.test(t) || /\d/.test(t)) {
-      return { html: 'Ищу: <b>' + text + '</b>', quick: [text], search: text };
-    }
-    if (typeof INDEX !== 'undefined') {
-      var words = t.split(/\s+/).filter(function(w) { return w.length > 2; });
-      var hits = INDEX.filter(function(a) {
-        var s = (a.code + ' ' + a.title + ' ' + (a.text || '') + ' ' + (a.label || '')).toLowerCase();
-        return words.some(function(w) { return s.indexOf(w) !== -1; });
-      }).slice(0, 5);
-      if (hits.length) {
-        var html = 'По смыслу:<ul style="margin:.35rem 0 0;padding-left:1.1rem">';
-        hits.forEach(function(a) {
-          html += '<li><b>' + (a.label || '') + ' ' + a.code + '</b> — ' + (a.title || '') + '</li>';
-        });
-        html += '</ul>';
-        return { html: html, quick: hits.map(function(a) { return (a.label || '') + ' ' + a.code; }).slice(0, 4), search: text };
-      }
-    }
-    return {
-      html: 'Уточни: зона (GZ/ФЗ), кто ты (SANG/гос), что случилось. Или код статьи.',
-      quick: ['матовозка', 'ФЗ', 'DM', 'ДУ 4.9']
-    };
+  });
+  var apiSave = document.getElementById('api-save');
+  if (apiSave) apiSave.addEventListener('click', function() {
+    if (!window.DLT_API) return;
+    window.DLT_API.save({
+      provider: (document.getElementById('api-provider') || {}).value,
+      base: (document.getElementById('api-base') || {}).value,
+      model: (document.getElementById('api-model') || {}).value,
+      key: (document.getElementById('api-key') || {}).value
+    });
+    if (settingsPanel) settingsPanel.style.display = 'none';
+    addMsg(window.DLT_API.hasKey() ? 'Доп. API включён. Можно пользоваться и без него.' : 'Ок, работаем без ключа — этого хватает.', 'bot');
+  });
+  var apiClear = document.getElementById('api-clear');
+  if (apiClear) apiClear.addEventListener('click', function() {
+    if (window.DLT_API) window.DLT_API.clear();
+    addMsg('API сброшен. Локальные ответы как раньше.', 'bot');
+  });
+  var apiProv = document.getElementById('api-provider');
+  if (apiProv && window.DLT_API) apiProv.addEventListener('change', function() {
+    var d = window.DLT_API.defaults(apiProv.value);
+    var base = document.getElementById('api-base');
+    var model = document.getElementById('api-model');
+    if (base && apiProv.value !== 'custom') base.value = d.base;
+    if (model) model.value = d.model;
+  });
+
+  function formatMd(s) {
+    s = String(s || '');
+    s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    s = s.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+    s = s.replace(/\n/g, '<br>');
+    return s;
   }
 
-  function ask(text) {
+  async function ask(text) {
     text = (text || '').trim();
-    if (!text) return;
+    if (!text || busy) return;
     addMsg(text, 'user');
-    var ans = replyFor(text);
-    addMsg(ans.html, 'bot', ans.quick);
-    if (ans.search && typeof runSearch === 'function') {
-      var box = document.getElementById('search');
-      if (box) {
-        box.value = ans.search;
-        if (typeof searchScope !== 'undefined') searchScope = 'all';
-        document.querySelectorAll('.scope-btn').forEach(function(x) {
-          x.classList.toggle('active', x.getAttribute('data-scope') === 'all');
-        });
-        if (/\d/.test(text) || text.length < 16) runSearch();
+    busy = true;
+    if (sendBtn) sendBtn.disabled = true;
+
+    // Prefer local always (works for everyone). API only bonus if configured.
+    var loc = localAnswer(text);
+    if (window.DLT_API && window.DLT_API.hasKey()) {
+      var thinking = addMsg('⏳ …', 'bot');
+      try {
+        var answer = await window.DLT_API.chat(text, history);
+        history.push({ role: 'user', content: text });
+        history.push({ role: 'assistant', content: answer });
+        if (history.length > 12) history = history.slice(-12);
+        thinking.innerHTML = formatMd(answer);
+      } catch (err) {
+        thinking.innerHTML = loc.html;
+        // attach quick manually
+        if (loc.quick && loc.quick.length) {
+          var q = document.createElement('div');
+          q.className = 'quick';
+          loc.quick.forEach(function(label) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.textContent = label;
+            b.addEventListener('click', function() { ask(label); });
+            q.appendChild(b);
+          });
+          thinking.appendChild(q);
+        }
       }
+    } else {
+      addMsg(loc.html, 'bot', loc.quick);
     }
+
+    busy = false;
+    if (sendBtn) sendBtn.disabled = false;
+    body.scrollTop = body.scrollHeight;
   }
 
   function submit() {
@@ -10907,6 +11095,8 @@ function initAssistChat() {
     if (e.key === 'Enter') { e.preventDefault(); submit(); }
   });
 }
+
+
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initAssistChat);
 } else {
