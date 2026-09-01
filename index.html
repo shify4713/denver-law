@@ -139,6 +139,9 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 .chk.compact b{font-size:.8rem}
 .chk.compact span{font-size:.68rem}
 
+
+.tab.core{border-color:rgba(248,113,113,.45);color:#fecaca}
+.tab.core.active,.tab.core:hover{background:rgba(127,29,29,.45);border-color:#f87171;color:#fff}
 </style>
 </head>
 <body>
@@ -150,25 +153,25 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 <div class="tabs" id="tabs">
   <button class="tab hot active" data-panel="memo">📋 Памятки</button>
   <button class="tab hot" data-panel="quick">⚡ Быстрые</button>
-  <button class="tab hot" data-panel="vu">🎖️ ВУ</button>
-  <button class="tab hot" data-panel="du">⚖️ ДУ</button>
+  <button class="tab core hot" data-panel="vu">📘 ВУ</button>
+  <button class="tab core hot" data-panel="du">⚖️ ДУ</button>
   <button class="tab hot" data-panel="lead">👑 Лидер</button>
-  <button class="tab hot" data-panel="fz">🪖 ФЗ</button>
+  <button class="tab core hot" data-panel="fz">🪖 ФЗ</button>
   <button class="tab hot" data-panel="sup">🚛 Поставки</button>
-  <button class="tab hot" data-panel="ws">🏭 Цеха</button>
-  <button class="tab hot" data-panel="ter">💥 Теракт</button>
-  <button class="tab hot" data-panel="raid">🎯 Рейд</button>
-  <button class="tab hot" data-panel="opp">📜 ОПП</button>
-  <button class="tab hot" data-panel="bank">🏦 Банк</button>
-  <button class="tab hot" data-panel="rob">🔫 Ограбы</button>
-  <button class="tab hot" data-panel="zone">🟢 Зоны</button>
-  <button class="tab" data-panel="uk">УК</button>
-  <button class="tab" data-panel="ak">АК</button>
+  <button class="tab" data-panel="opp">📜 ОПП</button>
+  <button class="tab" data-panel="bank">🏦 Банк</button>
+  <button class="tab" data-panel="zone">🟢 Зоны</button>
+  <button class="tab core" data-panel="uk">УК</button>
+  <button class="tab core" data-panel="ak">АК</button>
   <button class="tab" data-panel="dk">ДК</button>
   <button class="tab" data-panel="pk">ПК</button>
   <button class="tab" data-panel="tk">ТК</button>
   <button class="tab" data-panel="et">Этика</button>
-  <button class="tab" data-panel="pgo">ПГО</button>
+  <button class="tab core" data-panel="pgo">ПГО</button>
+  <button class="tab" data-panel="ws">🏭 Цеха</button>
+  <button class="tab" data-panel="ter">💥 Теракт</button>
+  <button class="tab" data-panel="raid">🎯 Рейд</button>
+  <button class="tab" data-panel="rob">🔫 Ограбы</button>
   <button class="tab" data-panel="search" id="tab-search" style="display:none">🔍 Результаты</button>
 </div>
 <div class="search-box">
@@ -183,643 +186,15 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 </div>
 
 
+
 <div class="panel" id="panel-quick">
-  <p class="hint">Только статьи <b>с наказаниями</b> · клик → кодекс · Ctrl+клик → копировать</p>
+  <p class="hint">Только самое частое · клик → кодекс · Ctrl+клик → копировать</p>
 
-  <div class="section-title" style="color:#bbf7d0">🟢 Игровые зоны</div>
-  <div class="qgrid">
-<div class="qcard sev-heavy" data-panel="zone" data-art="art-zone-1-1" data-copy="Зоны 1.1 — Криминал в Green zone — Demorgan 20-60 / WARN / Ban 3 дня" data-search="Зоны 1.1 Криминал в Green zone Demorgan 20-60 / WARN / Ban 3 дня" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 1.1</span></div>
-  <div class="qc-name">Криминал в Green zone</div>
-  <div class="qc-pen">Demorgan 20-60 / WARN / Ban 3 дня</div>
-</div>
-<div class="qcard sev-heavy" data-panel="zone" data-art="art-zone-1-2" data-copy="Зоны 1.2 — Перестрелки / стрельба — GunBan 1-8ч / Demorgan 35-120 / WARN / Ban / HardBan 3-30" data-search="Зоны 1.2 Перестрелки / стрельба GunBan 1-8ч / Demorgan 35-120 / WARN / Ban / HardBan 3-30" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 1.2</span></div>
-  <div class="qc-name">Перестрелки / стрельба</div>
-  <div class="qc-pen">GunBan 1-8ч / Demorgan 35-120 / WARN / Ban / HardBan 3-30</div>
-</div>
-<div class="qcard sev-heavy" data-panel="zone" data-art="art-zone-1-3" data-copy="Зоны 1.3 — Ограбления / похищения — WARN / HardBan 7 / PermBan" data-search="Зоны 1.3 Ограбления / похищения WARN / HardBan 7 / PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 1.3</span></div>
-  <div class="qc-name">Ограбления / похищения</div>
-  <div class="qc-pen">WARN / HardBan 7 / PermBan</div>
-</div>
-<div class="qcard sev-medium" data-panel="zone" data-art="art-zone-1-4" data-copy="Зоны 1.4 — Уход / прятки от погони — Demorgan 20-90 / WARN" data-search="Зоны 1.4 Уход / прятки от погони Demorgan 20-90 / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 1.4</span></div>
-  <div class="qc-name">Уход / прятки от погони</div>
-  <div class="qc-pen">Demorgan 20-90 / WARN</div>
-</div>
-<div class="qcard sev-medium" data-panel="zone" data-art="art-zone-1-5" data-copy="Зоны 1.5 — Музыка / посторонние звуки — Mute 30-60 минут" data-search="Зоны 1.5 Музыка / посторонние звуки Mute 30-60 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 1.5</span></div>
-  <div class="qc-name">Музыка / посторонние звуки</div>
-  <div class="qc-pen">Mute 30-60 минут</div>
-</div>
-<div class="qcard sev-light" data-panel="zone" data-art="art-zone-2-1" data-copy="Зоны 2.1 — Red: урон без предупреждения — —" data-search="Зоны 2.1 Red: урон без предупреждения —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 2.1</span></div>
-  <div class="qc-name">Red: урон без предупреждения</div>
-  <div class="qc-pen">—</div>
-</div>
-<div class="qcard sev-light" data-panel="zone" data-art="art-zone-2-2" data-copy="Зоны 2.2 — Red: PG — —" data-search="Зоны 2.2 Red: PG —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Зоны 2.2</span></div>
-  <div class="qc-name">Red: PG</div>
-  <div class="qc-pen">—</div>
-</div>
-  </div>
-
-
-  <div class="section-title" style="color:#fdba74">🔫 Ограбления / похищения</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-1-2" data-copy="Ограбы 1.2 — Цвет транспорта — Demorgan 35 минут" data-search="Ограбы 1.2 Цвет транспорта Demorgan 35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 1.2</span></div>
-  <div class="qc-name">Цвет транспорта</div>
-  <div class="qc-pen">Demorgan 35 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-1-5" data-copy="Ограбы 1.5 — Соотношение 2:1 — Demorgan 35-90 минут" data-search="Ограбы 1.5 Соотношение 2:1 Demorgan 35-90 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 1.5</span></div>
-  <div class="qc-name">Соотношение 2:1</div>
-  <div class="qc-pen">Demorgan 35-90 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-1-6" data-copy="Ограбы 1.6 — Оружие обязательно — Demorgan 15-35 минут" data-search="Ограбы 1.6 Оружие обязательно Demorgan 15-35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 1.6</span></div>
-  <div class="qc-name">Оружие обязательно</div>
-  <div class="qc-pen">Demorgan 15-35 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-1-8" data-copy="Ограбы 1.8 — Причины убийства — Demorgan 120 минут" data-search="Ограбы 1.8 Причины убийства Demorgan 120 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 1.8</span></div>
-  <div class="qc-name">Причины убийства</div>
-  <div class="qc-pen">Demorgan 120 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-2-1" data-copy="Ограбы 2.1 — Только через функционал — Demorgan 35-100 / WARN" data-search="Ограбы 2.1 Только через функционал Demorgan 35-100 / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 2.1</span></div>
-  <div class="qc-name">Только через функционал</div>
-  <div class="qc-pen">Demorgan 35-100 / WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-2-2" data-copy="Ограбы 2.2 — Нельзя требовать имущество — Ban 3 дня" data-search="Ограбы 2.2 Нельзя требовать имущество Ban 3 дня" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 2.2</span></div>
-  <div class="qc-name">Нельзя требовать имущество</div>
-  <div class="qc-pen">Ban 3 дня</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-2-3" data-copy="Ограбы 2.3 — Минимум 2 грабителя — Demorgan 15-35 минут" data-search="Ограбы 2.3 Минимум 2 грабителя Demorgan 15-35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 2.3</span></div>
-  <div class="qc-name">Минимум 2 грабителя</div>
-  <div class="qc-pen">Demorgan 15-35 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-2-4" data-copy="Ограбы 2.4 — Остановка ТС в движении — Demorgan 15-35 минут" data-search="Ограбы 2.4 Остановка ТС в движении Demorgan 15-35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 2.4</span></div>
-  <div class="qc-name">Остановка ТС в движении</div>
-  <div class="qc-pen">Demorgan 15-35 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-2-5" data-copy="Ограбы 2.5 — Стяжки / мешок — Demorgan 60 минут всем" data-search="Ограбы 2.5 Стяжки / мешок Demorgan 60 минут всем" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 2.5</span></div>
-  <div class="qc-name">Стяжки / мешок</div>
-  <div class="qc-pen">Demorgan 60 минут всем</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-3-1" data-copy="Ограбы 3.1 — Минимум 4 похитителя — WARN" data-search="Ограбы 3.1 Минимум 4 похитителя WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 3.1</span></div>
-  <div class="qc-name">Минимум 4 похитителя</div>
-  <div class="qc-pen">WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-3-3" data-copy="Ограбы 3.3 — Видеозапись похищения — Demorgan 15-35 всем + Выговор лидеру" data-search="Ограбы 3.3 Видеозапись похищения Demorgan 15-35 всем + Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 3.3</span></div>
-  <div class="qc-name">Видеозапись похищения</div>
-  <div class="qc-pen">Demorgan 15-35 всем + Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-3-4" data-copy="Ограбы 3.4 — Отпустить после выкупа — Demorgan 35 минут всем" data-search="Ограбы 3.4 Отпустить после выкупа Demorgan 35 минут всем" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 3.4</span></div>
-  <div class="qc-name">Отпустить после выкупа</div>
-  <div class="qc-pen">Demorgan 35 минут всем</div>
-</div>
-<div class="qcard sev-medium" data-panel="rob" data-art="art-rob-3-6" data-copy="Ограбы 3.6 — Время похищений — WARN" data-search="Ограбы 3.6 Время похищений WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 3.6</span></div>
-  <div class="qc-name">Время похищений</div>
-  <div class="qc-pen">WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-3-7" data-copy="Ограбы 3.7 — Лимит 2 / 12 часов — Demorgan 90 всем / Выговор лидеру" data-search="Ограбы 3.7 Лимит 2 / 12 часов Demorgan 90 всем / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 3.7</span></div>
-  <div class="qc-name">Лимит 2 / 12 часов</div>
-  <div class="qc-pen">Demorgan 90 всем / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-5-1" data-copy="Ограбы 5.1 — Обязанности стороны выкупа — Demorgan 90 / Выговор лидеру-инициатору" data-search="Ограбы 5.1 Обязанности стороны выкупа Demorgan 90 / Выговор лидеру-инициатору" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 5.1</span></div>
-  <div class="qc-name">Обязанности стороны выкупа</div>
-  <div class="qc-pen">Demorgan 90 / Выговор лидеру-инициатору</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-5-2-2" data-copy="Ограбы 5.2.2 — Штурм без диалога — Demorgan 90 / Выговор лидеру" data-search="Ограбы 5.2.2 Штурм без диалога Demorgan 90 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 5.2.2</span></div>
-  <div class="qc-name">Штурм без диалога</div>
-  <div class="qc-pen">Demorgan 90 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="rob" data-art="art-rob-5-5" data-copy="Ограбы 5.5 — Реакция гос. 30 мин — Выговор лидеру FIB (или LSPD/LSCSD)" data-search="Ограбы 5.5 Реакция гос. 30 мин Выговор лидеру FIB (или LSPD/LSCSD)" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Ограбы 5.5</span></div>
-  <div class="qc-name">Реакция гос. 30 мин</div>
-  <div class="qc-pen">Выговор лидеру FIB (или LSPD/LSCSD)</div>
-</div>
-  </div>
-
-
-  <div class="section-title" style="color:#86efac">🏦 Ограбление банков</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="bank" data-art="art-bank-1-2" data-copy="Банк 1.2 — Без огнестрела на ограблении — Demorgan 15-35 минут" data-search="Банк 1.2 Без огнестрела на ограблении Demorgan 15-35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.2</span></div>
-  <div class="qc-name">Без огнестрела на ограблении</div>
-  <div class="qc-pen">Demorgan 15-35 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="bank" data-art="art-bank-1-3" data-copy="Банк 1.3 — Караул на респаунах / у банка — Demorgan 35 минут" data-search="Банк 1.3 Караул на респаунах / у банка Demorgan 35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.3</span></div>
-  <div class="qc-name">Караул на респаунах / у банка</div>
-  <div class="qc-pen">Demorgan 35 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="bank" data-art="art-bank-1-4" data-copy="Банк 1.4 — Выход из игры во время ограбления — WARN / Ban 4-7 дней" data-search="Банк 1.4 Выход из игры во время ограбления WARN / Ban 4-7 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.4</span></div>
-  <div class="qc-name">Выход из игры во время ограбления</div>
-  <div class="qc-pen">WARN / Ban 4-7 дней</div>
-</div>
-<div class="qcard sev-medium" data-panel="bank" data-art="art-bank-1-7" data-copy="Банк 1.7 — Перекрытие входов транспортом — Demorgan 35 минут" data-search="Банк 1.7 Перекрытие входов транспортом Demorgan 35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.7</span></div>
-  <div class="qc-name">Перекрытие входов транспортом</div>
-  <div class="qc-pen">Demorgan 35 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="bank" data-art="art-bank-1-8-1" data-copy="Банк 1.8.1 — Удержание заложника > 30 мин — Demorgan 90 минут / Выговор лидеру" data-search="Банк 1.8.1 Удержание заложника > 30 мин Demorgan 90 минут / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.8.1</span></div>
-  <div class="qc-name">Удержание заложника &gt; 30 мин</div>
-  <div class="qc-pen">Demorgan 90 минут / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="bank" data-art="art-bank-1-9" data-copy="Банк 1.9 — Кого можно похитить — Demorgan 90 минут / Выговор лидеру" data-search="Банк 1.9 Кого можно похитить Demorgan 90 минут / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.9</span></div>
-  <div class="qc-name">Кого можно похитить</div>
-  <div class="qc-pen">Demorgan 90 минут / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="bank" data-art="art-bank-1-9-1" data-copy="Банк 1.9.1 — Максимум 1 заложник — Demorgan 90 минут всем / Выговор лидеру" data-search="Банк 1.9.1 Максимум 1 заложник Demorgan 90 минут всем / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 1.9.1</span></div>
-  <div class="qc-name">Максимум 1 заложник</div>
-  <div class="qc-pen">Demorgan 90 минут всем / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="bank" data-art="art-bank-2-2" data-copy="Банк 2.2 — Перехват другой фракции — Demorgan 30-90 / WARN / Выговор лидеру" data-search="Банк 2.2 Перехват другой фракции Demorgan 30-90 / WARN / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 2.2</span></div>
-  <div class="qc-name">Перехват другой фракции</div>
-  <div class="qc-pen">Demorgan 30-90 / WARN / Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="bank" data-art="art-bank-2-3" data-copy="Банк 2.3 — Цвет транспорта — Demorgan 90 минут" data-search="Банк 2.3 Цвет транспорта Demorgan 90 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 2.3</span></div>
-  <div class="qc-name">Цвет транспорта</div>
-  <div class="qc-pen">Demorgan 90 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="bank" data-art="art-bank-2-5" data-copy="Банк 2.5 — Затягивание после функционала — Demorgan 60 минут / WARN" data-search="Банк 2.5 Затягивание после функционала Demorgan 60 минут / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 2.5</span></div>
-  <div class="qc-name">Затягивание после функционала</div>
-  <div class="qc-pen">Demorgan 60 минут / WARN</div>
-</div>
-<div class="qcard sev-light" data-panel="bank" data-art="art-bank-3-2" data-copy="Банк 3.2 — Штурм без диалога — —" data-search="Банк 3.2 Штурм без диалога —" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Банк 3.2</span></div>
-  <div class="qc-name">Штурм без диалога</div>
-  <div class="qc-pen">—</div>
-</div>
-  </div>
-
-
-  <div class="section-title" style="color:#94a3b8">📜 ОПП — частое</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="opp" data-art="art-opp-1-2" data-copy="ОПП 1.2 — Русскоязычный проект — Mute 60-240 минут" data-search="ОПП 1.2 Русскоязычный проект Mute 60-240 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 1.2</span></div>
-  <div class="qc-name">Русскоязычный проект</div>
-  <div class="qc-pen">Mute 60-240 минут</div>
-</div>
-<div class="qcard sev-light" data-panel="opp" data-art="art-opp-1-6" data-copy="ОПП 1.6 — Срыв RP — ×1,5 — ×1,5 к сроку" data-search="ОПП 1.6 Срыв RP — ×1,5 ×1,5 к сроку" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 1.6</span></div>
-  <div class="qc-name">Срыв RP — ×1,5</div>
-  <div class="qc-pen">×1,5 к сроку</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-2-1" data-copy="ОПП 2.1 — Один аккаунт на человека — Блокировка всех аккаунтов 30 дней / PermBan" data-search="ОПП 2.1 Один аккаунт на человека Блокировка всех аккаунтов 30 дней / PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 2.1</span></div>
-  <div class="qc-name">Один аккаунт на человека</div>
-  <div class="qc-pen">Блокировка всех аккаунтов 30 дней / PermBan</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-2-2" data-copy="ОПП 2.2 — Передача аккаунта — PermBan" data-search="ОПП 2.2 Передача аккаунта PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 2.2</span></div>
-  <div class="qc-name">Передача аккаунта</div>
-  <div class="qc-pen">PermBan</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-2-4" data-copy="ОПП 2.4 — Продажа / обмен аккаунтов — PermBan" data-search="ОПП 2.4 Продажа / обмен аккаунтов PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 2.4</span></div>
-  <div class="qc-name">Продажа / обмен аккаунтов</div>
-  <div class="qc-pen">PermBan</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-1" data-copy="ОПП 5.1 — DM — GunBan 8ч / Demorgan 120 / WARN / Ban 3-30" data-search="ОПП 5.1 DM GunBan 8ч / Demorgan 120 / WARN / Ban 3-30" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.1</span></div>
-  <div class="qc-name">DM</div>
-  <div class="qc-pen">GunBan 8ч / Demorgan 120 / WARN / Ban 3-30</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-2" data-copy="ОПП 5.2 — DB (DriveBy) — Demorgan 30-90 / WARN / Ban 3-30" data-search="ОПП 5.2 DB (DriveBy) Demorgan 30-90 / WARN / Ban 3-30" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.2</span></div>
-  <div class="qc-name">DB (DriveBy)</div>
-  <div class="qc-pen">Demorgan 30-90 / WARN / Ban 3-30</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-3" data-copy="ОПП 5.3 — NonRP / NonRP Drive / Fly — Demorgan 15-90 / WARN / Ban / HardBan 3-30" data-search="ОПП 5.3 NonRP / NonRP Drive / Fly Demorgan 15-90 / WARN / Ban / HardBan 3-30" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.3</span></div>
-  <div class="qc-name">NonRP / NonRP Drive / Fly</div>
-  <div class="qc-pen">Demorgan 15-90 / WARN / Ban / HardBan 3-30</div>
-</div>
-<div class="qcard sev-medium" data-panel="opp" data-art="art-opp-5-4" data-copy="ОПП 5.4 — NLR — Demorgan 90 / WARN" data-search="ОПП 5.4 NLR Demorgan 90 / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.4</span></div>
-  <div class="qc-name">NLR</div>
-  <div class="qc-pen">Demorgan 90 / WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-8" data-copy="ОПП 5.8 — MG (Meta Gaming) — Demorgan 20-90 / WARN / Ban 2-5" data-search="ОПП 5.8 MG (Meta Gaming) Demorgan 20-90 / WARN / Ban 2-5" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.8</span></div>
-  <div class="qc-name">MG (Meta Gaming)</div>
-  <div class="qc-pen">Demorgan 20-90 / WARN / Ban 2-5</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-9" data-copy="ОПП 5.9 — Уход от RP — WARN / HardBan 4-8 дней" data-search="ОПП 5.9 Уход от RP WARN / HardBan 4-8 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.9</span></div>
-  <div class="qc-name">Уход от RP</div>
-  <div class="qc-pen">WARN / HardBan 4-8 дней</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-14" data-copy="ОПП 5.14 — Обман на имущество / лотереи — HardBan 30 / PermBan + обнуление" data-search="ОПП 5.14 Обман на имущество / лотереи HardBan 30 / PermBan + обнуление" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 5.14</span></div>
-  <div class="qc-name">Обман на имущество / лотереи</div>
-  <div class="qc-pen">HardBan 30 / PermBan + обнуление</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-6-16" data-copy="ОПП 6.16 — Читы / стороннее ПО — PermBan" data-search="ОПП 6.16 Читы / стороннее ПО PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 6.16</span></div>
-  <div class="qc-name">Читы / стороннее ПО</div>
-  <div class="qc-pen">PermBan</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-6-21" data-copy="ОПП 6.21 — RMT — реальные деньги — PermBan" data-search="ОПП 6.21 RMT — реальные деньги PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 6.21</span></div>
-  <div class="qc-name">RMT — реальные деньги</div>
-  <div class="qc-pen">PermBan</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-6-24" data-copy="ОПП 6.24 — Личная информация / докс — HardBan 30 / PermBan" data-search="ОПП 6.24 Личная информация / докс HardBan 30 / PermBan" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 6.24</span></div>
-  <div class="qc-name">Личная информация / докс</div>
-  <div class="qc-pen">HardBan 30 / PermBan</div>
-</div>
-<div class="qcard sev-medium" data-panel="opp" data-art="art-opp-4-1" data-copy="ОПП 4.1 — IC чат — без OOC — Mute 30-90 / Demorgan 5" data-search="ОПП 4.1 IC чат — без OOC Mute 30-90 / Demorgan 5" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 4.1</span></div>
-  <div class="qc-name">IC чат — без OOC</div>
-  <div class="qc-pen">Mute 30-90 / Demorgan 5</div>
-</div>
-<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-4-3" data-copy="ОПП 4.3 — Прямое оскорбление родственников — HardBan 30-60 дней" data-search="ОПП 4.3 Прямое оскорбление родственников HardBan 30-60 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ОПП 4.3</span></div>
-  <div class="qc-name">Прямое оскорбление родственников</div>
-  <div class="qc-pen">HardBan 30-60 дней</div>
-</div>
-  </div>
-
-
-  <div class="section-title" style="color:#f472b6">⚖️ ДУ — жёсткое</div>
+  <div class="section-title" style="color:#f9a8d4">⚖️ ДУ</div>
   <div class="qgrid">
 <div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-9" data-copy="ДУ 2.9 — Внешний вид → Увольнение" data-search="ДУ 2.9" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 2.9</span></div>
-  
-  
-  <div class="section-title" style="color:#fde68a">👑 Лидеры</div>
-  <div class="qgrid">
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-1-3" data-copy="Лидер 1.3 — Снятие по RP / перевороту — Ban 7 дней всем участникам" data-search="Лидер 1.3 Снятие по RP / перевороту Ban 7 дней всем участникам" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 1.3</span></div>
-  <div class="qc-name">Снятие по RP / перевороту</div>
-  <div class="qc-pen">Ban 7 дней всем участникам</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-1-7" data-copy="Лидер 1.7 — Ответственность за состав — Беседа / Выговор / Снятие" data-search="Лидер 1.7 Ответственность за состав Беседа / Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 1.7</span></div>
-  <div class="qc-name">Ответственность за состав</div>
-  <div class="qc-pen">Беседа / Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-1-8" data-copy="Лидер 1.8 — Макс. 3 заместителя — Выговор" data-search="Лидер 1.8 Макс. 3 заместителя Выговор" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 1.8</span></div>
-  <div class="qc-name">Макс. 3 заместителя</div>
-  <div class="qc-pen">Выговор</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-2-2" data-copy="Лидер 2.2 — Онлайн ≥2 ч/сутки — Выговор / Снятие" data-search="Лидер 2.2 Онлайн ≥2 ч/сутки Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 2.2</span></div>
-  <div class="qc-name">Онлайн ≥2 ч/сутки</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-medium" data-panel="lead" data-art="art-lead-2-6" data-copy="Лидер 2.6 — Минимум на балансе в конце срока — WARN" data-search="Лидер 2.6 Минимум на балансе в конце срока WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 2.6</span></div>
-  <div class="qc-name">Минимум на балансе в конце срока</div>
-  <div class="qc-pen">WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-2" data-copy="Лидер 3.2 — Деньги фракции лично — Выговор / Снятие" data-search="Лидер 3.2 Деньги фракции лично Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.2</span></div>
-  <div class="qc-name">Деньги фракции лично</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-3" data-copy="Лидер 3.3 — Твинки — Выговор / Снятие" data-search="Лидер 3.3 Твинки Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.3</span></div>
-  <div class="qc-name">Твинки</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-7" data-copy="Лидер 3.7 — Трансфер состава — WARN / Выговор / Снятие" data-search="Лидер 3.7 Трансфер состава WARN / Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.7</span></div>
-  <div class="qc-name">Трансфер состава</div>
-  <div class="qc-pen">WARN / Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-10" data-copy="Лидер 3.10 — Дневной онлайн ≥20 — Выговор / Снятие" data-search="Лидер 3.10 Дневной онлайн ≥20 Выговор / Снятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 3.10</span></div>
-  <div class="qc-name">Дневной онлайн ≥20</div>
-  <div class="qc-pen">Выговор / Снятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-4-2" data-copy="Лидер 4.2 — Гос: приём на 1 ранг — Выговор + понижение игрока на 1" data-search="Лидер 4.2 Гос: приём на 1 ранг Выговор + понижение игрока на 1" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 4.2</span></div>
-  <div class="qc-name">Гос: приём на 1 ранг</div>
-  <div class="qc-pen">Выговор + понижение игрока на 1</div>
-</div>
-<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-4-4" data-copy="Лидер 4.4 — После WARN/BAN админом — 1 ранг — Demorgan 60-90 / WARN / Выговор + понижение" data-search="Лидер 4.4 После WARN/BAN админом — 1 ранг Demorgan 60-90 / WARN / Выговор + понижение" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Лидер 4.4</span></div>
-  <div class="qc-name">После WARN/BAN админом — 1 ранг</div>
-  <div class="qc-pen">Demorgan 60-90 / WARN / Выговор + понижение</div>
-</div>
-  </div>
-<div class="section-title" style="color:#93c5fd">🪖 Нападение на ФЗ</div>
-  <div class="qgrid">
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-1-3" data-copy="ФЗ 1.3 — Запрещённый арсенал — Demorgan 90 / Ban / HardBan 3-5 + изъятие" data-search="ФЗ 1.3 Запрещённый арсенал Demorgan 90 / Ban / HardBan 3-5 + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 1.3</span></div>
-  
-  
-  <div class="section-title" style="color:#7dd3fc">🚛 Поставки / перехват</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="sup" data-art="art-sup-1-4" data-copy="Поставки 1.4 — Остановка при нападении — Demorgan 60 минут" data-search="Поставки 1.4 Остановка при нападении Demorgan 60 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.4</span></div>
-  <div class="qc-name">Остановка при нападении</div>
-  <div class="qc-pen">Demorgan 60 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="sup" data-art="art-sup-1-6" data-copy="Поставки 1.6 — 350 м от точки — Demorgan 90 минут" data-search="Поставки 1.6 350 м от точки Demorgan 90 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.6</span></div>
-  <div class="qc-name">350 м от точки</div>
-  <div class="qc-pen">Demorgan 90 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-7" data-copy="Поставки 1.7 — HS / HS Mk2 — HardBan 3-5 + изъятие спец." data-search="Поставки 1.7 HS / HS Mk2 HardBan 3-5 + изъятие спец." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.7</span></div>
-  <div class="qc-name">HS / HS Mk2</div>
-  <div class="qc-pen">HardBan 3-5 + изъятие спец.</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-9-3" data-copy="Поставки 1.9.3 — Крим не атакует 15–16 — Demorgan 90 / Выговор + изъятие" data-search="Поставки 1.9.3 Крим не атакует 15–16 Demorgan 90 / Выговор + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.9.3</span></div>
-  <div class="qc-name">Крим не атакует 15–16</div>
-  <div class="qc-pen">Demorgan 90 / Выговор + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-19" data-copy="Поставки 1.19 — Груз до конца боя — Demorgan 90 / Ban 5-10 / HardBan 3-7 / Выговор + изъятие" data-search="Поставки 1.19 Груз до конца боя Demorgan 90 / Ban 5-10 / HardBan 3-7 / Выговор + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.19</span></div>
-  <div class="qc-name">Груз до конца боя</div>
-  <div class="qc-pen">Demorgan 90 / Ban 5-10 / HardBan 3-7 / Выговор + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-20" data-copy="Поставки 1.20 — Уничтожение матовозки — Ban 5-7 / HardBan 3-7 / Выговор лидеру" data-search="Поставки 1.20 Уничтожение матовозки Ban 5-7 / HardBan 3-7 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 1.20</span></div>
-  <div class="qc-name">Уничтожение матовозки</div>
-  <div class="qc-pen">Ban 5-7 / HardBan 3-7 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-3-1" data-copy="Поставки 3.1 — SANG: время 15:00–22:30 — Demorgan 45 / Выговор лидеру" data-search="Поставки 3.1 SANG: время 15:00–22:30 Demorgan 45 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 3.1</span></div>
-  <div class="qc-name">SANG: время 15:00–22:30</div>
-  <div class="qc-pen">Demorgan 45 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-3-2" data-copy="Поставки 3.2 — SANG: запрос помощи — Demorgan 45 / Выговор лидеру" data-search="Поставки 3.2 SANG: запрос помощи Demorgan 45 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 3.2</span></div>
-  <div class="qc-name">SANG: запрос помощи</div>
-  <div class="qc-pen">Demorgan 45 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-4-3" data-copy="Поставки 4.3 — Крим: перекрытие 4 авто — Demorgan 60-120 / Ban 5 + изъятие" data-search="Поставки 4.3 Крим: перекрытие 4 авто Demorgan 60-120 / Ban 5 + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 4.3</span></div>
-  <div class="qc-name">Крим: перекрытие 4 авто</div>
-  <div class="qc-pen">Demorgan 60-120 / Ban 5 + изъятие</div>
-</div>
-<div class="qcard sev-medium" data-panel="sup" data-art="art-sup-4-4" data-copy="Поставки 4.4 — Крим: пешком в бою — Demorgan 90 минут" data-search="Поставки 4.4 Крим: пешком в бою Demorgan 90 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 4.4</span></div>
-  <div class="qc-name">Крим: пешком в бою</div>
-  <div class="qc-pen">Demorgan 90 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-4-6-3" data-copy="Поставки 4.6.3 — Крим: мин. 8 — Demorgan 60 / Выговор лидеру(ам)" data-search="Поставки 4.6.3 Крим: мин. 8 Demorgan 60 / Выговор лидеру(ам)" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 4.6.3</span></div>
-  <div class="qc-name">Крим: мин. 8</div>
-  <div class="qc-pen">Demorgan 60 / Выговор лидеру(ам)</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-4-11" data-copy="Поставки 4.11 — Крим: 2 атаки гос / день — Выговор лидеру" data-search="Поставки 4.11 Крим: 2 атаки гос / день Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 4.11</span></div>
-  <div class="qc-name">Крим: 2 атаки гос / день</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-4-13" data-copy="Поставки 4.13 — Крим: видео взлома — HardBan 7-15 + изъятие" data-search="Поставки 4.13 Крим: видео взлома HardBan 7-15 + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Пост. 4.13</span></div>
-  <div class="qc-name">Крим: видео взлома</div>
-  <div class="qc-pen">HardBan 7-15 + изъятие</div>
-</div>
-  </div>
-<div class="section-title" style="color:#fcd34d">🏭 Цеха / дилеры</div>
-  <div class="qgrid">
-<div class="qcard sev-medium" data-panel="ws" data-art="art-ws-1-1" data-copy="Цеха 1.1 — Участники — Demorgan 90 минут / WARN" data-search="Цеха 1.1 Участники Demorgan 90 минут / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 1.1</span></div>
-  
-  <div class="section-title" style="color:#fca5a5">💥 Теракты / захваты</div>
-  <div class="qgrid">
-<div class="qcard sev-light" data-panel="ter" data-art="art-ter-1-9" data-copy="Теракт 1.9 — Выкуп за заложника — 40k$ + 4 эпи" data-search="Теракт 1.9 Выкуп за заложника 40k$ + 4 эпи" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 1.9</span></div>
-  
-  <div class="section-title" style="color:#d8b4fe">🎯 Рейды</div>
-  <div class="qgrid">
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-1-2" data-copy="Рейд 1.2 — Ордер + куратор — Выговор лидеру" data-search="Рейд 1.2 Ордер + куратор Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 1.2</span></div>
-  <div class="qc-name">Ордер + куратор</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-1-5" data-copy="Рейд 1.5 — Выход из игры — WARN / Ban 2-5 дней" data-search="Рейд 1.5 Выход из игры WARN / Ban 2-5 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 1.5</span></div>
-  <div class="qc-name">Выход из игры</div>
-  <div class="qc-pen">WARN / Ban 2-5 дней</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-1-6" data-copy="Рейд 1.6 — Слив только IC — HardBan 15 / Выговор / Заморозка семьи 7 дн" data-search="Рейд 1.6 Слив только IC HardBan 15 / Выговор / Заморозка семьи 7 дн" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 1.6</span></div>
-  <div class="qc-name">Слив только IC</div>
-  <div class="qc-pen">HardBan 15 / Выговор / Заморозка семьи 7 дн</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-2-2" data-copy="Рейд 2.2 — Гос: минимум 10 — Выговор лидеру" data-search="Рейд 2.2 Гос: минимум 10 Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 2.2</span></div>
-  <div class="qc-name">Гос: минимум 10</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-2-2-1" data-copy="Рейд 2.2.1 — Гос: минимум 2 структуры — Выговор лидеру" data-search="Рейд 2.2.1 Гос: минимум 2 структуры Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 2.2.1</span></div>
-  <div class="qc-name">Гос: минимум 2 структуры</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="raid" data-art="art-raid-2-6" data-copy="Рейд 2.6 — Гос: огонь с предупреждением — Demorgan 15-35 минут" data-search="Рейд 2.6 Гос: огонь с предупреждением Demorgan 15-35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 2.6</span></div>
-  <div class="qc-name">Гос: огонь с предупреждением</div>
-  <div class="qc-pen">Demorgan 15-35 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-2-7" data-copy="Рейд 2.7 — Гос: интервал 48 ч — Выговор лидеру" data-search="Рейд 2.7 Гос: интервал 48 ч Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 2.7</span></div>
-  <div class="qc-name">Гос: интервал 48 ч</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-3-1" data-copy="Рейд 3.1 — Крим: помощь союзам — Выговор лидеру / Заморозка семьи 7 дн" data-search="Рейд 3.1 Крим: помощь союзам Выговор лидеру / Заморозка семьи 7 дн" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 3.1</span></div>
-  <div class="qc-name">Крим: помощь союзам</div>
-  <div class="qc-pen">Выговор лидеру / Заморозка семьи 7 дн</div>
-</div>
-<div class="qcard sev-heavy" data-panel="raid" data-art="art-raid-3-2" data-copy="Рейд 3.2 — Крим: слив склада — WARN / Ban 5-15 / Выговор + изъятие" data-search="Рейд 3.2 Крим: слив склада WARN / Ban 5-15 / Выговор + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Рейд 3.2</span></div>
-  <div class="qc-name">Крим: слив склада</div>
-  <div class="qc-pen">WARN / Ban 5-15 / Выговор + изъятие</div>
-</div>
-  </div>
-<div class="qc-name">Выкуп за заложника</div>
-  <div class="qc-pen">40k$ + 4 эпи</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-1-11" data-copy="Теракт 1.11 — Слив инфы только IC — Выговор лидеру" data-search="Теракт 1.11 Слив инфы только IC Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 1.11</span></div>
-  <div class="qc-name">Слив инфы только IC</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-2-1" data-copy="Теракт 2.1 — Огнестрел у каждого — Demorgan 35 / Выговор лидеру" data-search="Теракт 2.1 Огнестрел у каждого Demorgan 35 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 2.1</span></div>
-  <div class="qc-name">Огнестрел у каждого</div>
-  <div class="qc-pen">Demorgan 35 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-2-2" data-copy="Теракт 2.2 — Убийство заложника / 7 мин — Выговор лидеру" data-search="Теракт 2.2 Убийство заложника / 7 мин Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 2.2</span></div>
-  <div class="qc-name">Убийство заложника / 7 мин</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-2-3" data-copy="Теракт 2.3 — Переговорщик в заложники — WARN / Выговор лидеру" data-search="Теракт 2.3 Переговорщик в заложники WARN / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 2.3</span></div>
-  <div class="qc-name">Переговорщик в заложники</div>
-  <div class="qc-pen">WARN / Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="ter" data-art="art-ter-2-5" data-copy="Теракт 2.5 — Выкуп не раньше 15 мин — Demorgan 35 минут всем" data-search="Теракт 2.5 Выкуп не раньше 15 мин Demorgan 35 минут всем" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 2.5</span></div>
-  <div class="qc-name">Выкуп не раньше 15 мин</div>
-  <div class="qc-pen">Demorgan 35 минут всем</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-2-9" data-copy="Теракт 2.9 — Время 17:00–22:00 — Выговор лидеру" data-search="Теракт 2.9 Время 17:00–22:00 Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 2.9</span></div>
-  <div class="qc-name">Время 17:00–22:00</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-3-3" data-copy="Теракт 3.3 — Гос: соблюдение требований — Demorgan 90 / Выговор лидеру" data-search="Теракт 3.3 Гос: соблюдение требований Demorgan 90 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 3.3</span></div>
-  <div class="qc-name">Гос: соблюдение требований</div>
-  <div class="qc-pen">Demorgan 90 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-3-4" data-copy="Теракт 3.4 — Опасность для заложников — WARN / Выговор лидеру" data-search="Теракт 3.4 Опасность для заложников WARN / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 3.4</span></div>
-  <div class="qc-name">Опасность для заложников</div>
-  <div class="qc-pen">WARN / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ter" data-art="art-ter-3-6" data-copy="Теракт 3.6 — Обязательная реакция — Выговоры всем лидерам силовых" data-search="Теракт 3.6 Обязательная реакция Выговоры всем лидерам силовых" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Теракт 3.6</span></div>
-  <div class="qc-name">Обязательная реакция</div>
-  <div class="qc-pen">Выговоры всем лидерам силовых</div>
-</div>
-  </div>
-<div class="qc-name">Участники</div>
-  <div class="qc-pen">Demorgan 90 минут / WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-1-4" data-copy="Цеха 1.4 — DB запрещён — Ban 3-10 дней / HardBan 7-30 дней" data-search="Цеха 1.4 DB запрещён Ban 3-10 дней / HardBan 7-30 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 1.4</span></div>
-  <div class="qc-name">DB запрещён</div>
-  <div class="qc-pen">Ban 3-10 дней / HardBan 7-30 дней</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-1-6" data-copy="Цеха 1.6 — Возвышенности / крыши — Demorgan 100 / HardBan 3 дня" data-search="Цеха 1.6 Возвышенности / крыши Demorgan 100 / HardBan 3 дня" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 1.6</span></div>
-  <div class="qc-name">Возвышенности / крыши</div>
-  <div class="qc-pen">Demorgan 100 / HardBan 3 дня</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-2-2" data-copy="Цеха 2.2 — Трансфер / несколько фракций — HardBan 30 дней" data-search="Цеха 2.2 Трансфер / несколько фракций HardBan 30 дней" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 2.2</span></div>
-  <div class="qc-name">Трансфер / несколько фракций</div>
-  <div class="qc-pen">HardBan 30 дней</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-3-1" data-copy="Цеха 3.1 — Запрещённый арсенал — Demorgan 90 / Ban / HardBan 3-5 + изъятие" data-search="Цеха 3.1 Запрещённый арсенал Demorgan 90 / Ban / HardBan 3-5 + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 3.1</span></div>
-  <div class="qc-name">Запрещённый арсенал</div>
-  <div class="qc-pen">Demorgan 90 / Ban / HardBan 3-5 + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-3-2" data-copy="Цеха 3.2 — Багоюз — Ban 3-30 / HardBan 3-30" data-search="Цеха 3.2 Багоюз Ban 3-30 / HardBan 3-30" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 3.2</span></div>
-  <div class="qc-name">Багоюз</div>
-  <div class="qc-pen">Ban 3-30 / HardBan 3-30</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-3-4" data-copy="Цеха 3.4 — Вражеские матовозки — Demorgan 60-100 / Ban 3 / Выговор + изъятие" data-search="Цеха 3.4 Вражеские матовозки Demorgan 60-100 / Ban 3 / Выговор + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 3.4</span></div>
-  <div class="qc-name">Вражеские матовозки</div>
-  <div class="qc-pen">Demorgan 60-100 / Ban 3 / Выговор + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="ws" data-art="art-ws-3-5" data-copy="Цеха 3.5 — Респавн транспорта — Ban 10 дней + изъятие содержимого" data-search="Цеха 3.5 Респавн транспорта Ban 10 дней + изъятие содержимого" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Цеха 3.5</span></div>
-  <div class="qc-name">Респавн транспорта</div>
-  <div class="qc-pen">Ban 10 дней + изъятие содержимого</div>
-</div>
-  </div>
-<div class="qc-name">Запрещённый арсенал</div>
-  <div class="qc-pen">Demorgan 90 / Ban / HardBan 3-5 + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-1-6" data-copy="ФЗ 1.6 — Огонь вне зоны — Demorgan 90 / WARN / Выговор лидеру" data-search="ФЗ 1.6 Огонь вне зоны Demorgan 90 / WARN / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 1.6</span></div>
-  <div class="qc-name">Огонь вне зоны</div>
-  <div class="qc-pen">Demorgan 90 / WARN / Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="fz" data-art="art-fz-2-1" data-copy="ФЗ 2.1 — SANG: NLR / лазарет — Demorgan 90 / WARN" data-search="ФЗ 2.1 SANG: NLR / лазарет Demorgan 90 / WARN" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 2.1</span></div>
-  <div class="qc-name">SANG: NLR / лазарет</div>
-  <div class="qc-pen">Demorgan 90 / WARN</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-2-2" data-copy="ФЗ 2.2 — SANG: ранняя подготовка — Выговор лидеру" data-search="ФЗ 2.2 SANG: ранняя подготовка Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 2.2</span></div>
-  <div class="qc-name">SANG: ранняя подготовка</div>
-  <div class="qc-pen">Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-3-1" data-copy="ФЗ 3.1 — Гос: подкрепление после вызова — WARN / Выговор лидеру" data-search="ФЗ 3.1 Гос: подкрепление после вызова WARN / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 3.1</span></div>
-  <div class="qc-name">Гос: подкрепление после вызова</div>
-  <div class="qc-pen">WARN / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-3-2" data-copy="ФЗ 3.2 — Гос: лимит 20 с одной структуры — Demorgan 45 / Выговор лидерам" data-search="ФЗ 3.2 Гос: лимит 20 с одной структуры Demorgan 45 / Выговор лидерам" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 3.2</span></div>
-  <div class="qc-name">Гос: лимит 20 с одной структуры</div>
-  <div class="qc-pen">Demorgan 45 / Выговор лидерам</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-3-4" data-copy="ФЗ 3.4 — Гос: КПП-1 / КПП-2 — Demorgan 90 / Выговор лидерам" data-search="ФЗ 3.4 Гос: КПП-1 / КПП-2 Demorgan 90 / Выговор лидерам" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 3.4</span></div>
-  <div class="qc-name">Гос: КПП-1 / КПП-2</div>
-  <div class="qc-pen">Demorgan 90 / Выговор лидерам</div>
-</div>
-<div class="qcard sev-medium" data-panel="fz" data-art="art-fz-3-5" data-copy="ФЗ 3.5 — Гос: наручники — Demorgan 35 минут" data-search="ФЗ 3.5 Гос: наручники Demorgan 35 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 3.5</span></div>
-  <div class="qc-name">Гос: наручники</div>
-  <div class="qc-pen">Demorgan 35 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-4-2" data-copy="ФЗ 4.2 — Крим: минимум 10 — Demorgan 60 / Выговор лидеру" data-search="ФЗ 4.2 Крим: минимум 10 Demorgan 60 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.2</span></div>
-  <div class="qc-name">Крим: минимум 10</div>
-  <div class="qc-pen">Demorgan 60 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-4-3" data-copy="ФЗ 4.3 — Крим: максимум 80 — Demorgan 60 / Выговор лидеру" data-search="ФЗ 4.3 Крим: максимум 80 Demorgan 60 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.3</span></div>
-  <div class="qc-name">Крим: максимум 80</div>
-  <div class="qc-pen">Demorgan 60 / Выговор лидеру</div>
-</div>
-<div class="qcard sev-medium" data-panel="fz" data-art="art-fz-4-5" data-copy="ФЗ 4.5 — Крим: только КПП-1/2 — Demorgan 15 минут" data-search="ФЗ 4.5 Крим: только КПП-1/2 Demorgan 15 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.5</span></div>
-  <div class="qc-name">Крим: только КПП-1/2</div>
-  <div class="qc-pen">Demorgan 15 минут</div>
-</div>
-<div class="qcard sev-medium" data-panel="fz" data-art="art-fz-4-8" data-copy="ФЗ 4.8 — Крим: без ТС на форте — Demorgan 35-90 минут" data-search="ФЗ 4.8 Крим: без ТС на форте Demorgan 35-90 минут" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.8</span></div>
-  <div class="qc-name">Крим: без ТС на форте</div>
-  <div class="qc-pen">Demorgan 35-90 минут</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-4-15" data-copy="ФЗ 4.15 — Крим: только матовозка — Demorgan 60 / Выговор + изъятие" data-search="ФЗ 4.15 Крим: только матовозка Demorgan 60 / Выговор + изъятие" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.15</span></div>
-  <div class="qc-name">Крим: только матовозка</div>
-  <div class="qc-pen">Demorgan 60 / Выговор + изъятие</div>
-</div>
-<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-4-13" data-copy="ФЗ 4.13 — Крим: перехват матовозок — Demorgan 90 / Выговор лидеру" data-search="ФЗ 4.13 Крим: перехват матовозок Demorgan 90 / Выговор лидеру" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ФЗ 4.13</span></div>
-  <div class="qc-name">Крим: перехват матовозок</div>
-  <div class="qc-pen">Demorgan 90 / Выговор лидеру</div>
-</div>
-  </div>
-<div class="qc-name">Внешний вид (ирокез, тату лицо…)</div>
+  <div class="qc-name">Внешний вид</div>
   <div class="qc-pen">Увольнение</div>
 </div>
 <div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-7" data-copy="ДУ 4.7 — Криминал → Увольнение+ЧС" data-search="ДУ 4.7" onclick="goToArticle(this)">
@@ -829,7 +204,7 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
 </div>
 <div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-9" data-copy="ДУ 4.9 — Продажа оружия → Увольнение+ЧС" data-search="ДУ 4.9" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.9</span></div>
-  <div class="qc-name">Продажа / отдача табельного оружия</div>
+  <div class="qc-name">Продажа / отдача табельного</div>
   <div class="qc-pen">Увольнение + ЧС</div>
 </div>
 <div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-18" data-copy="ДУ 4.18 — Тайна → Увольнение+ЧС" data-search="ДУ 4.18" onclick="goToArticle(this)">
@@ -837,40 +212,54 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <div class="qc-name">Разглашение военной тайны</div>
   <div class="qc-pen">Увольнение + ЧС</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-7" data-copy="ДУ 2.7 — Конфликт → Увольнение+ЧС" data-search="ДУ 2.7" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 2.7</span></div>
-  <div class="qc-name">Конфликт между военными / гос.</div>
-  <div class="qc-pen">Строгий / Увольнение+ЧС</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-2-8" data-copy="ДУ 2.8 — Ложь → Увольнение+ЧС" data-search="ДУ 2.8" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 2.8</span></div>
-  <div class="qc-name">Ложь / введение в заблуждение</div>
-  <div class="qc-pen">Строгий / Увольнение+ЧС</div>
-</div>
-<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-11" data-copy="ДУ 4.11 — Игнор приказов → Строгий" data-search="ДУ 4.11" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.11</span></div>
-  <div class="qc-name">Игнор приказов старших</div>
-  <div class="qc-pen">Строгий выговор</div>
-</div>
-<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-13" data-copy="ДУ 4.13 — Огонь по безоружному → Строгий" data-search="ДУ 4.13" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.13</span></div>
-  <div class="qc-name">Огонь по безоружному</div>
-  <div class="qc-pen">Строгий (есть исключения)</div>
-</div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-14" data-copy="ДУ 4.14 — Покинуть ФЗ → Строгий/Увольнение" data-search="ДУ 4.14" onclick="goToArticle(this)">
+<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-14" data-copy="ДУ 4.14 — Покинуть ФЗ" data-search="ДУ 4.14" onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">ДУ 4.14</span></div>
   <div class="qc-name">Покинуть ФЗ без разрешения</div>
   <div class="qc-pen">Строгий / Увольнение</div>
 </div>
-<div class="qcard sev-heavy" data-panel="du" data-art="art-du-4-12" data-copy="ДУ 4.12 — Превышение полномочий" data-search="ДУ 4.12" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">ДУ 4.12</span></div>
-  <div class="qc-name">Превышение полномочий</div>
-  <div class="qc-pen">Строгий / Увольнение</div>
+<div class="qcard sev-medium" data-panel="du" data-art="art-du-4-13" data-copy="ДУ 4.13 — Огонь по безоружному" data-search="ДУ 4.13" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ДУ 4.13</span></div>
+  <div class="qc-name">Огонь по безоружному</div>
+  <div class="qc-pen">Строгий (есть искл.)</div>
 </div>
   </div>
 
-  <div class="section-title" style="color:#38bdf8">⚡ УК — частое</div>
+  <div class="section-title" style="color:#93c5fd">📘 ВУ / ФЗ / Поставки</div>
   <div class="qgrid">
+<div class="qcard sev-medium" data-panel="fz" data-art="art-fz-2-1" data-copy="ФЗ 2.1 — NLR лазарет" data-search="ФЗ 2.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ФЗ 2.1</span></div>
+  <div class="qc-name">NLR из лазарета</div>
+  <div class="qc-pen">Demorgan 90 / WARN</div>
+</div>
+<div class="qcard sev-heavy" data-panel="fz" data-art="art-fz-1-3" data-copy="ФЗ 1.3 — Запрет HS/дронов" data-search="ФЗ 1.3" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ФЗ 1.3</span></div>
+  <div class="qc-name">HS / дроны / стяжки</div>
+  <div class="qc-pen">Demorgan 90 / Ban / HardBan</div>
+</div>
+<div class="qcard sev-medium" data-panel="sup" data-art="art-sup-3-1" data-copy="Поставки 3.1 — SANG время" data-search="Поставки 3.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Пост. 3.1</span></div>
+  <div class="qc-name">SANG: 15:00–22:30</div>
+  <div class="qc-pen">Demorgan 45 / Выговор</div>
+</div>
+<div class="qcard sev-medium" data-panel="sup" data-art="art-sup-1-6" data-copy="Поставки 1.6 — 350м" data-search="Поставки 1.6" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Пост. 1.6</span></div>
+  <div class="qc-name">350 м от точки загрузки</div>
+  <div class="qc-pen">Demorgan 90</div>
+</div>
+<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-7" data-copy="Поставки 1.7 — HS" data-search="Поставки 1.7" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Пост. 1.7</span></div>
+  <div class="qc-name">HS на поставках</div>
+  <div class="qc-pen">HardBan 3-5 + изъятие</div>
+</div>
+<div class="qcard sev-heavy" data-panel="sup" data-art="art-sup-1-19" data-copy="Поставки 1.19 — груз до конца боя" data-search="Поставки 1.19" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Пост. 1.19</span></div>
+  <div class="qc-name">Груз до конца перестрелки</div>
+  <div class="qc-pen">Demorgan / Ban / изъятие</div>
+</div>
+  </div>
+
+  <div class="section-title" style="color:#f87171">⚡ УК · АК · ПГО</div>
+  <div class="qgrid" id="qgrid-codes">
 <div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-6-2" data-copy="Ст. УК 6.2 — Убийство, то есть умышленное причинение смерти друго… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 6.2 Убийство, то есть умышленное причинение смерти другому человеку и/или нанесения телесных повреждений тяжелой степени До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
   <div class="qc-top"><span class="qc-code">УК 6.2</span><span class="qc-stars">★★★★</span></div>
   <div class="qc-name">Убийство, то есть умышленное причинение смерти друго…</div>
@@ -911,60 +300,115 @@ tr.highlight{background:rgba(34,197,94,.18)!important;outline:2px solid var(--ac
   <div class="qc-name">Получение взятки</div>
   <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-15-5" data-copy="Ст. УК 15.5 — Дача взятки должностному лицу — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 15.5 Дача взятки должностному лицу До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 15.5</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Дача взятки должностному лицу</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
+  
+<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-5-1" data-copy="АК 5.1 — Ложный донос о совершении преступления — штраф до 15.000$" data-search="АК 5.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">АК 5.1</span></div>
+  <div class="qc-name">Ложный донос о совершении преступления</div>
+  <div class="qc-pen">штраф до 15.000$</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-16-1" data-copy="Ст. УК 16.1 — Вмешательство в деятельность суда и следствия — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 16.1 Вмешательство в деятельность суда и следствия До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 16.1</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Вмешательство в деятельность суда и следствия</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
+<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-5-2" data-copy="АК 5.2 — Ложный вызов сотрудников экстренных с… — штраф до 15.000$" data-search="АК 5.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">АК 5.2</span></div>
+  <div class="qc-name">Ложный вызов сотрудников экстренных с…</div>
+  <div class="qc-pen">штраф до 15.000$</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-17-1" data-copy="Ст. УК 17.1 — Умышленное и/или неоднократное посягательство на жиз… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 17.1 Умышленное и/или неоднократное посягательство на жизнь сотрудника правоохранительного органа, военнослужащего, а равно их близких в связи с исполнением им своих должностных обязанностей либо из мести за такую деятельность, путем нанесения телесных повреждений высокой степени тяжести, или прямой угрозы жизни До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 17.1</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Умышленное и/или неоднократное посягательство на жиз…</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
+<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-5-3" data-copy="АК 5.3 — Использование нецензурной лексики в о… — штраф до 15.000$" data-search="АК 5.3" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">АК 5.3</span></div>
+  <div class="qc-name">Использование нецензурной лексики в о…</div>
+  <div class="qc-pen">штраф до 15.000$</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-17-2" data-copy="Ст. УК 17.2 — Умышленное и/или неоднократное нанесением телесных п… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 17.2 Умышленное и/или неоднократное нанесением телесных повреждений легкой или средней степени тяжести, либо угроза применения насилия в отношении представителя власти или его близких в связи с исполнением им своих должностных обязанностей До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 17.2</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Умышленное и/или неоднократное нанесением телесных п…</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
+<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-5-4" data-copy="АК 5.4 — Курение в неположенном месте — штраф до 15.000$" data-search="АК 5.4" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">АК 5.4</span></div>
+  <div class="qc-name">Курение в неположенном месте</div>
+  <div class="qc-pen">штраф до 15.000$</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-8-1" data-copy="Ст. УК 8.1 — Насильственные действия сексуального характера, то е… — До 40 месяцев лишения свободы с созданием записи о судимости. ★★★★" data-search="УК 8.1 Насильственные действия сексуального характера, то есть половое сношение с применением насилия или с угрозой его применения к потерпевшей (потерпевшему) или к другим лицам либо с использованием беспомощного состояния потерпевшей (потерпевшему) До 40 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 8.1</span><span class="qc-stars">★★★★</span></div>
-  <div class="qc-name">Насильственные действия сексуального характера, то е…</div>
-  <div class="qc-pen">До 40 месяцев лишения свободы с созданием записи о судимости.</div>
+<div class="qcard sev-medium" data-panel="ak" data-art="art-ak-5-5" data-copy="АК 5.5 — Распитие спиртных напитков в обществе… — штраф до 15.000$." data-search="АК 5.5" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">АК 5.5</span></div>
+  <div class="qc-name">Распитие спиртных напитков в обществе…</div>
+  <div class="qc-pen">штраф до 15.000$.</div>
 </div>
-<div class="qcard sev-heavy" data-panel="uk" data-art="art-uk-14-1" data-copy="Ст. УК 14.1 — Посягательство на жизнь государственного или обществ… — До 50 месяцев лишения свободы с созданием записи о судимости. ★★★★★" data-search="УК 14.1 Посягательство на жизнь государственного или общественного деятеля, совершенное в целях прекращения его государственной или иной политической деятельности либо из мести за такую деятельность До 50 месяцев лишения свободы с созданием записи о судимости." onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">УК 14.1</span><span class="qc-stars">★★★★★</span></div>
-  <div class="qc-name">Посягательство на жизнь государственного или обществ…</div>
-  <div class="qc-pen">До 50 месяцев лишения свободы с созданием записи о судимости.</div>
+<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-1-2" data-copy="ПГО 1.1.2 — Сотрудникам гос. структур запрещено л… — WARN / Ban / HardBan 3-15 дней." data-search="ПГО 1.1.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ПГО 1.1.2</span></div>
+  <div class="qc-name">Сотрудникам гос. структур запрещено л…</div>
+  <div class="qc-pen">WARN / Ban / HardBan 3-15 дней.</div>
+</div>
+<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-1-3" data-copy="ПГО 1.1.3 — Руководящему составу запрещено иметь … — WARN." data-search="ПГО 1.1.3" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ПГО 1.1.3</span></div>
+  <div class="qc-name">Руководящему составу запрещено иметь …</div>
+  <div class="qc-pen">WARN.</div>
+</div>
+<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-1-4" data-copy="ПГО 1.1.4 — Сумма взятки не должна превышать 100.… — WARN." data-search="ПГО 1.1.4" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ПГО 1.1.4</span></div>
+  <div class="qc-name">Сумма взятки не должна превышать 100.…</div>
+  <div class="qc-pen">WARN.</div>
+</div>
+<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-2-1" data-copy="ПГО 1.2.1 — Запрещено продавать / сливать гос. им… — Demorgan 45-90 минут / Ban 3-30 дней / Hardban 7-30 / PermBan, а так же аннулирование сделки / обнуление персонажа." data-search="ПГО 1.2.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ПГО 1.2.1</span></div>
+  <div class="qc-name">Запрещено продавать / сливать гос. им…</div>
+  <div class="qc-pen">Demorgan 45-90 минут / Ban 3-30 дней / Hardban 7-3</div>
+</div>
+<div class="qcard sev-medium" data-panel="pgo" data-art="art-pgo-1-2-2" data-copy="ПГО 1.2.2 — Запрещено продавать или оставлять себ… — Demorgan 35-90 минут / Ban 3 - 15 дней / HardBan до изъятия." data-search="ПГО 1.2.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ПГО 1.2.2</span></div>
+  <div class="qc-name">Запрещено продавать или оставлять себ…</div>
+  <div class="qc-pen">Demorgan 35-90 минут / Ban 3 - 15 дней / HardBan д</div>
+</div>
+</div>
+
+
+  <div class="section-title" style="color:#94a3b8">📜 ОПП · зоны</div>
+  <div class="qgrid">
+<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-1" data-copy="ОПП 5.1 — DM" data-search="ОПП 5.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ОПП 5.1</span></div>
+  <div class="qc-name">DM</div>
+  <div class="qc-pen">GunBan / Demorgan / Ban</div>
+</div>
+<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-5-8" data-copy="ОПП 5.8 — MG" data-search="ОПП 5.8" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ОПП 5.8</span></div>
+  <div class="qc-name">MG</div>
+  <div class="qc-pen">Demorgan / WARN / Ban</div>
+</div>
+<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-6-16" data-copy="ОПП 6.16 — Читы" data-search="ОПП 6.16" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ОПП 6.16</span></div>
+  <div class="qc-name">Стороннее ПО</div>
+  <div class="qc-pen">PermBan</div>
+</div>
+<div class="qcard sev-heavy" data-panel="opp" data-art="art-opp-6-21" data-copy="ОПП 6.21 — RMT" data-search="ОПП 6.21" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">ОПП 6.21</span></div>
+  <div class="qc-name">RMT</div>
+  <div class="qc-pen">PermBan</div>
+</div>
+<div class="qcard sev-heavy" data-panel="zone" data-art="art-zone-1-1" data-copy="Зоны 1.1 — Криминал в GZ" data-search="Зоны 1.1" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">GZ 1.1</span></div>
+  <div class="qc-name">Криминал в Green zone</div>
+  <div class="qc-pen">Demorgan / WARN / Ban</div>
+</div>
+<div class="qcard sev-heavy" data-panel="zone" data-art="art-zone-1-2" data-copy="Зоны 1.2 — Стрельба в GZ" data-search="Зоны 1.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">GZ 1.2</span></div>
+  <div class="qc-name">Стрельба в Green zone</div>
+  <div class="qc-pen">GunBan / Demorgan / Ban</div>
 </div>
   </div>
 
-
-  <div class="section-title" style="color:#fb7185">📋 Этика — штрафы</div>
+  <div class="section-title" style="color:#fde68a">👑 Лидер</div>
   <div class="qgrid">
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-1" data-copy="Этика 38.1 — Оскорбление гражданина → до 25000$" data-search="Этика 38.1" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.1</span></div>
-  <div class="qc-name">Оскорбление гражданина</div>
-  <div class="qc-pen">до 25.000$</div>
+<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-1-7" data-copy="Лидер 1.7 — Ответственность" data-search="Лидер 1.7" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Лидер 1.7</span></div>
+  <div class="qc-name">Ответственность за состав</div>
+  <div class="qc-pen">Беседа / Выговор / Снятие</div>
 </div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-2" data-copy="Этика 38.2 — Оскорбление госника → до 30000$" data-search="Этика 38.2" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.2</span></div>
-  <div class="qc-name">Оскорбление госника</div>
-  <div class="qc-pen">до 30.000$</div>
+<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-2-2" data-copy="Лидер 2.2 — Онлайн" data-search="Лидер 2.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Лидер 2.2</span></div>
+  <div class="qc-name">Онлайн ≥2 ч/сутки</div>
+  <div class="qc-pen">Выговор / Снятие</div>
 </div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-4" data-copy="Этика 38.4 — Демонстрация власти → до 40000$" data-search="Этика 38.4" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.4</span></div>
-  <div class="qc-name">Демонстрация власти</div>
-  <div class="qc-pen">до 40.000$</div>
+<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-2" data-copy="Лидер 3.2 — Деньги фракции" data-search="Лидер 3.2" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Лидер 3.2</span></div>
+  <div class="qc-name">Деньги фракции лично</div>
+  <div class="qc-pen">Выговор / Снятие</div>
 </div>
-<div class="qcard sev-medium" data-panel="et" data-art="art-et-38-5" data-copy="Этика 38.5 — Внешний вид → до 30000$" data-search="Этика 38.5" onclick="goToArticle(this)">
-  <div class="qc-top"><span class="qc-code">Этика 38.5</span></div>
-  <div class="qc-name">Нарушение внешнего вида</div>
-  <div class="qc-pen">до 30.000$</div>
+<div class="qcard sev-heavy" data-panel="lead" data-art="art-lead-3-7" data-copy="Лидер 3.7 — Трансфер" data-search="Лидер 3.7" onclick="goToArticle(this)">
+  <div class="qc-top"><span class="qc-code">Лидер 3.7</span></div>
+  <div class="qc-name">Трансфер состава</div>
+  <div class="qc-pen">WARN / Выговор / Снятие</div>
 </div>
   </div>
 </div>
